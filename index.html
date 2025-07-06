@@ -112,7 +112,7 @@
 
         /* News Banner Carousel specific styles */
         #news-banner-carousel {
-            position: relative; /* Changed from fixed */
+            position: relative;
             width: 100%;
             overflow: hidden;
         }
@@ -133,10 +133,24 @@
         }
         .carousel-slide-banner img {
             width: 100%;
-            height: 450px; /* Increased height for hero-like banner */
+            height: 450px; /* Default height for desktop and larger screens */
             object-fit: cover;
-            object-position: center; /* Adicione esta linha */
+            object-position: center; /* Alinha a imagem no centro, cortando igualmente as laterais */
         }
+
+        /* Media queries for responsive banner height on smaller screens */
+        @media (max-width: 768px) { /* For tablets and larger phones */
+            .carousel-slide-banner img {
+                height: 300px; /* Reduced height for better mobile fit */
+            }
+        }
+
+        @media (max-width: 480px) { /* For smaller mobile devices */
+            .carousel-slide-banner img {
+                height: 250px; /* Further reduced height for very small screens */
+            }
+        }
+
         /* Hide scrollbar for banner carousel track */
         .carousel-track-banner::-webkit-scrollbar {
             display: none;
@@ -237,13 +251,13 @@
         <div class="carousel-container-banner mx-auto overflow-hidden">
             <div class="carousel-track-banner flex transition-transform duration-500 ease-in-out" id="carousel-track-banner">
                 <div class="carousel-slide-banner min-w-full flex-shrink-0">
-                    <img src="imagens/banner1.jpg" alt="Banner 1" class="w-full h-full object-cover">
+                    <img src="imagens/banner1.jpg" alt="Banner de Notícias 1" class="w-full h-full object-cover object-position-center">
                 </div>
                 <div class="carousel-slide-banner min-w-full flex-shrink-0">
-                    <img src="imagens/banner1.jpg" alt="Banner 2" class="w-full h-full object-cover">
+                    <img src="imagens/banner1.jpg" alt="Banner de Notícias 2" class="w-full h-full object-cover object-position-center">
                 </div>
                 <div class="carousel-slide-banner min-w-full flex-shrink-0">
-                    <img src="imagens/banner1.jpg" alt="Banner 3" class="w-full h-full object-cover">
+                    <img src="imagens/banner1.jpg" alt="Banner de Notícias 3" class="w-full h-full object-cover object-position-center">
                 </div>
             </div>
             <!-- Banner Navigation Arrows -->
@@ -279,7 +293,7 @@
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
                 <!-- Product Card 1: Canecas -->
                 <div class="bg-white rounded-xl shadow-lg overflow-hidden transform hover:scale-105 transition duration-300 ease-in-out">
-                    <img src="https://placehold.co/600x400/D1D5DB/000000?text=Canecas" alt="Canecas" class="w-full h-48 object-cover">
+                    <img src="https://placehold.co/600x400/D1D5DB/000000?text=Canecas" alt="Canecas personalizadas com estampas exclusivas" class="w-full h-48 object-cover">
                     <div class="p-6">
                         <h3 class="text-2xl font-semibold text-gray-900 mb-2">Canecas</h3>
                         <p class="text-gray-600 mb-4">
@@ -293,7 +307,7 @@
 
                 <!-- Product Card 2: Camisetas -->
                 <div class="bg-white rounded-xl shadow-lg overflow-hidden transform hover:scale-105 transition duration-300 ease-in-out">
-                    <img src="https://placehold.co/600x400/D1D5DB/000000?text=Camisetas" alt="Camisetas" class="w-full h-48 object-cover">
+                    <img src="https://placehold.co/600x400/D1D5DB/000000?text=Camisetas" alt="Camisetas de algodão com design único" class="w-full h-48 object-cover">
                     <div class="p-6">
                         <h3 class="text-2xl font-semibold text-gray-900 mb-2">Camisetas</h3>
                         <p class="text-gray-600 mb-4">
@@ -307,7 +321,7 @@
 
                 <!-- Product Card 3: Capas de Celular -->
                 <div class="bg-white rounded-xl shadow-lg overflow-hidden transform hover:scale-105 transition duration-300 ease-in-out">
-                    <img src="https://placehold.co/600x400/D1D5DB/000000?text=Capas+de+Celular" alt="Capas de Celular" class="w-full h-48 object-cover">
+                    <img src="https://placehold.co/600x400/D1D5DB/000000?text=Capas+de+Celular" alt="Capas de celular personalizadas" class="w-full h-48 object-cover">
                     <div class="p-6">
                         <h3 class="text-2xl font-semibold text-gray-900 mb-2">Capas de Celular</h3>
                         <p class="text-gray-600 mb-4">
@@ -321,7 +335,7 @@
 
                 <!-- Product Card 4: Chaveiros -->
                 <div class="bg-white rounded-xl shadow-lg overflow-hidden transform hover:scale-105 transition duration-300 ease-in-out">
-                    <img src="https://placehold.co/600x400/D1D5DB/000000?text=Chaveiros" alt="Chaveiros" class="w-full h-48 object-cover">
+                    <img src="https://placehold.co/600x400/D1D5DB/000000?text=Chaveiros" alt="Chaveiros personalizados com nomes ou designs" class="w-full h-48 object-cover">
                     <div class="p-6">
                         <h3 class="text-2xl font-semibold text-gray-900 mb-2">Chaveiros</h3>
                         <p class="text-gray-600 mb-4">
@@ -335,7 +349,7 @@
 
                 <!-- Product Card 5: Almofadas Decorativas -->
                 <div class="bg-white rounded-xl shadow-lg overflow-hidden transform hover:scale-105 transition duration-300 ease-in-out">
-                    <img src="https://placehold.co/600x400/D1D5DB/000000?text=Almofadas+Decorativas" alt="Almofadas Decorativas" class="w-full h-48 object-cover">
+                    <img src="https://placehold.co/600x400/D1D5DB/000000?text=Almofadas+Decorativas" alt="Almofadas decorativas com estampas personalizadas" class="w-full h-48 object-cover">
                     <div class="p-6">
                         <h3 class="text-2xl font-semibold text-gray-900 mb-2">Almofadas Decorativas</h3>
                         <p class="text-gray-600 mb-4">
@@ -349,7 +363,7 @@
 
                 <!-- Product Card 6: Quadros Decorativos -->
                 <div class="bg-white rounded-xl shadow-lg overflow-hidden transform hover:scale-105 transition duration-300 ease-in-out">
-                    <img src="https://placehold.co/600x400/D1D5DB/000000?text=Quadros+Decorativos" alt="Quadros Decorativos" class="w-full h-48 object-cover">
+                    <img src="https://placehold.co/600x400/D1D5DB/000000?text=Quadros+Decorativos" alt="Quadros decorativos com arte personalizada" class="w-full h-48 object-cover">
                     <div class="p-6">
                         <h3 class="text-2xl font-semibold text-gray-900 mb-2">Quadros Decorativos</h3>
                         <p class="text-gray-600 mb-4">
@@ -363,7 +377,7 @@
 
                 <!-- Product Card 7: Cadernos -->
                 <div class="bg-white rounded-xl shadow-lg overflow-hidden transform hover:scale-105 transition duration-300 ease-in-out">
-                    <img src="https://placehold.co/600x400/D1D5DB/000000?text=Cadernos" alt="Cadernos" class="w-full h-48 object-cover">
+                    <img src="https://placehold.co/600x400/D1D5DB/000000?text=Cadernos" alt="Cadernos com capas exclusivas" class="w-full h-48 object-cover">
                     <div class="p-6">
                         <h3 class="text-2xl font-semibold text-gray-900 mb-2">Cadernos</h3>
                         <p class="text-gray-600 mb-4">
@@ -377,7 +391,7 @@
 
                 <!-- Product Card 8: Agendas -->
                 <div class="bg-white rounded-xl shadow-lg overflow-hidden transform hover:scale-105 transition duration-300 ease-in-out">
-                    <img src="https://placehold.co/600x400/D1D5DB/000000?text=Agendas" alt="Agendas" class="w-full h-48 object-cover">
+                    <img src="https://placehold.co/600x400/D1D5DB/000000?text=Agendas" alt="Agendas personalizadas" class="w-full h-48 object-cover">
                     <div class="p-6">
                         <h3 class="text-2xl font-semibold text-gray-900 mb-2">Agendas</h3>
                         <p class="text-gray-600 mb-4">
@@ -391,7 +405,7 @@
 
                 <!-- Product Card 9: Artigos Religiosos -->
                 <div class="bg-white rounded-xl shadow-lg overflow-hidden transform hover:scale-105 transition duration-300 ease-in-out">
-                    <img src="https://placehold.co/600x400/D1D5DB/000000?text=Artigos+Religiosos" alt="Artigos Religiosos" class="w-full h-48 object-cover">
+                    <img src="https://placehold.co/600x400/D1D5DB/000000?text=Artigos+Religiosos" alt="Artigos religiosos personalizados" class="w-full h-48 object-cover">
                     <div class="p-6">
                         <h3 class="text-2xl font-semibold text-gray-900 mb-2">Artigos Religiosos</h3>
                         <p class="text-gray-600 mb-4">
@@ -405,7 +419,7 @@
 
                 <!-- Product Card 10: Blocos A6 -->
                 <div class="bg-white rounded-xl shadow-lg overflow-hidden transform hover:scale-105 transition duration-300 ease-in-out">
-                    <img src="https://placehold.co/600x400/D1D5DB/000000?text=Blocos+A6" alt="Blocos A6" class="w-full h-48 object-cover">
+                    <img src="https://placehold.co/600x400/D1D5DB/000000?text=Blocos+A6" alt="Blocos de anotações A6 personalizados" class="w-full h-48 object-cover">
                     <div class="p-6">
                         <h3 class="text-2xl font-semibold text-gray-900 mb-2">Blocos A6</h3>
                         <p class="text-gray-600 mb-4">
@@ -419,7 +433,7 @@
 
                 <!-- Product Card 11: Marcadores de Página -->
                 <div class="bg-white rounded-xl shadow-lg overflow-hidden transform hover:scale-105 transition duration-300 ease-in-out">
-                    <img src="https://placehold.co/600x400/D1D5DB/000000?text=Marcadores+de+Pagina" alt="Marcadores de Página" class="w-full h-48 object-cover">
+                    <img src="https://placehold.co/600x400/D1D5DB/000000?text=Marcadores+de+Pagina" alt="Marcadores de página personalizados" class="w-full h-48 object-cover">
                     <div class="p-6">
                         <h3 class="text-2xl font-semibold text-gray-900 mb-2">Marcadores de Página</h3>
                         <p class="text-gray-600 mb-4">
@@ -430,9 +444,9 @@
                         </button>
                     </div>
                 </div>
-                <!-- Product Card 12: Marcadores de Página -->
+                <!-- Product Card 12: Marcadores de Página (Duplicado, considere remover ou substituir) -->
                 <div class="bg-white rounded-xl shadow-lg overflow-hidden transform hover:scale-105 transition duration-300 ease-in-out">
-                    <img src="https://placehold.co/600x400/D1D5DB/000000?text=Marcadores+de+Pagina" alt="Marcadores de Página" class="w-full h-48 object-cover">
+                    <img src="https://placehold.co/600x400/D1D5DB/000000?text=Marcadores+de+Pagina" alt="Marcadores de página personalizados (exemplo 2)" class="w-full h-48 object-cover">
                     <div class="p-6">
                         <h3 class="text-2xl font-semibold text-gray-900 mb-2">Marcadores de Página</h3>
                         <p class="text-gray-600 mb-4">
@@ -460,7 +474,7 @@
                 </p>
             </div>
             <div class="md:w-1/2">
-                <img src="https://placehold.co/600x400/D1D5DB/000000?text=Nossa+Equipe" alt="Nossa Equipe" class="rounded-xl shadow-lg w-full h-auto object-cover">
+                <img src="https://placehold.co/600x400/D1D5DB/000000?text=Nossa+Equipe" alt="Equipe da Idealize Store trabalhando" class="rounded-xl shadow-lg w-full h-auto object-cover">
             </div>
         </div>
     </section>
@@ -473,16 +487,16 @@
             <div class="carousel-container">
                 <div class="carousel-track" id="carousel-track">
                     <div class="carousel-slide">
-                        <img src="https://placehold.co/900x400/A0A0A0/FFFFFF?text=Foto+Produto+1" alt="Foto Produto 1">
+                        <img src="https://placehold.co/900x400/A0A0A0/FFFFFF?text=Foto+Produto+1" alt="Exemplo de produto personalizado 1" class="w-full h-full object-cover">
                     </div>
                     <div class="carousel-slide">
-                        <img src="https://placehold.co/900x400/B0B0B0/FFFFFF?text=Foto+Produto+2" alt="Foto Produto 2">
+                        <img src="https://placehold.co/900x400/B0B0B0/FFFFFF?text=Foto+Produto+2" alt="Exemplo de produto personalizado 2" class="w-full h-full object-cover">
                     </div>
                     <div class="carousel-slide">
-                        <img src="https://placehold.co/900x400/C0C0C0/FFFFFF?text=Foto+Produto+3" alt="Foto Produto 3">
+                        <img src="https://placehold.co/900x400/C0C0C0/FFFFFF?text=Foto+Produto+3" alt="Exemplo de produto personalizado 3" class="w-full h-full object-cover">
                     </div>
                     <div class="carousel-slide">
-                        <img src="https://placehold.co/900x400/D0D0D0/FFFFFF?text=Foto+Produto+4" alt="Foto Produto 4">
+                        <img src="https://placehold.co/900x400/D0D0D0/FFFFFF?text=Foto+Produto+4" alt="Exemplo de produto personalizado 4" class="w-full h-full object-cover">
                     </div>
                 </div>
             </div>
@@ -665,7 +679,7 @@
         }
 
         function resetNewsAutoSlide() {
-            clearInterval(newsAutoSlideInterval);
+            clearInterval(newsAutoSlideInterval); // Corrigido o nome da variável aqui
             startNewsAutoSlide();
         }
 
