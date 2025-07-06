@@ -135,7 +135,7 @@
             width: 100%;
             height: 450px; /* Default height for desktop and larger screens */
             object-fit: cover;
-            object-position: center; /* Alinha a imagem no centro, cortando igualmente as laterais */
+            object-position: center; /* Ensures content is centered when cropped */
         }
 
         /* Media queries for responsive banner height on smaller screens */
@@ -213,6 +213,66 @@
         .banner-arrow.right {
             right: 10px;
         }
+
+        /* Custom style for video iframe container */
+        .video-responsive-container {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio (height / width * 100%) */
+            height: 0;
+            overflow: hidden;
+            background-color: black; /* Background for when video is loading or if it has black bars */
+            border-radius: 1rem; /* Apply rounded corners */
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); /* shadow-lg */
+        }
+
+        .video-responsive-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        /* Gallery indicators styles (similar to banner, but specific for gallery) */
+        .gallery-indicators {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px; /* Space above the dots */
+            z-index: 10; /* Ensure dots are above other content if needed */
+        }
+
+        .gallery-indicator-dot {
+            width: 10px; /* Smaller dots for gallery */
+            height: 10px; /* Smaller dots for gallery */
+            background-color: rgba(107, 114, 128, 0.5); /* Gray 500 with transparency */
+            border-radius: 50%;
+            margin: 0 5px; /* Margin between dots */
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            border: 1px solid rgba(0, 0, 0, 0.1); /* Subtle border */
+        }
+
+        .gallery-indicator-dot.active {
+            background-color: #6b7280; /* Solid Gray 500 for active dot */
+            transform: scale(1.2); /* Slightly larger when active */
+        }
+
+        /* --- New styles for Product Cards Focus Effect --- */
+        .product-card {
+            filter: blur(0); /* Start with no blur (focused) */
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); /* Start with shadow (focused) */
+            transform: scale(1.02); /* Start slightly enlarged (focused) */
+            transition: all 0.3s ease-in-out; /* Smooth transition for all properties */
+        }
+
+        .product-card.blurred {
+            filter: blur(4px); /* Apply blur when not active */
+            box-shadow: none; /* Remove shadow when blurred */
+            transform: scale(1); /* Return to original size when blurred */
+        }
+        /* --- End New styles for Product Cards Focus Effect --- */
     </style>
 </head>
 <body class="antialiased">
@@ -285,14 +345,32 @@
         </div>
     </section>
 
+    <!-- Video Manifesto Section -->
+    <section id="video-manifesto" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-6 max-w-4xl">
+            <h2 class="text-4xl font-bold text-center text-gray-800 mb-12 section-title mx-auto">Nosso Manifesto</h2>
+            <div class="video-responsive-container">
+                <!-- Replace YOUR_VIDEO_ID with the actual YouTube video ID -->
+                <iframe src="https://www.youtube.com/embed/a_gWwM2l9x0?si=L4z7kR5-b4618eB1"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        referrerpolicy="strict-origin-when-cross-origin"
+                        allowfullscreen>
+                </iframe>
+            </div>
+            <p class="text-center text-gray-700 mt-8 max-w-2xl mx-auto">
+                Assista ao nosso vídeo e descubra a paixão e o compromisso que colocamos em cada produto que criamos.
+            </p>
+        </div>
+    </section>
+
     <!-- Products Section -->
     <section id="produtos" class="py-16 bg-gray-50">
-        <div class="container mx-auto px-6 max-w-6xl"> <!-- Alterado de max-w-4xl para max-w-6xl -->
+        <div class="container mx-auto px-6 max-w-6xl">
             <h2 class="text-4xl font-bold text-center text-gray-800 mb-12 section-title mx-auto">Nossos Produtos Personalizados</h2>
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
                 <!-- Product Card 1: Canecas -->
-                <div class="bg-white rounded-xl shadow-lg overflow-hidden transform hover:scale-105 transition duration-300 ease-in-out">
+                <div class="product-card bg-white rounded-xl shadow-lg overflow-hidden">
                     <img src="https://placehold.co/600x400/D1D5DB/000000?text=Canecas" alt="Canecas personalizadas com estampas exclusivas" class="w-full h-48 object-cover">
                     <div class="p-6">
                         <h3 class="text-2xl font-semibold text-gray-900 mb-2">Canecas</h3>
@@ -306,7 +384,7 @@
                 </div>
 
                 <!-- Product Card 2: Camisetas -->
-                <div class="bg-white rounded-xl shadow-lg overflow-hidden transform hover:scale-105 transition duration-300 ease-in-out">
+                <div class="product-card bg-white rounded-xl shadow-lg overflow-hidden">
                     <img src="https://placehold.co/600x400/D1D5DB/000000?text=Camisetas" alt="Camisetas de algodão com design único" class="w-full h-48 object-cover">
                     <div class="p-6">
                         <h3 class="text-2xl font-semibold text-gray-900 mb-2">Camisetas</h3>
@@ -320,7 +398,7 @@
                 </div>
 
                 <!-- Product Card 3: Capas de Celular -->
-                <div class="bg-white rounded-xl shadow-lg overflow-hidden transform hover:scale-105 transition duration-300 ease-in-out">
+                <div class="product-card bg-white rounded-xl shadow-lg overflow-hidden">
                     <img src="https://placehold.co/600x400/D1D5DB/000000?text=Capas+de+Celular" alt="Capas de celular personalizadas" class="w-full h-48 object-cover">
                     <div class="p-6">
                         <h3 class="text-2xl font-semibold text-gray-900 mb-2">Capas de Celular</h3>
@@ -334,7 +412,7 @@
                 </div>
 
                 <!-- Product Card 4: Chaveiros -->
-                <div class="bg-white rounded-xl shadow-lg overflow-hidden transform hover:scale-105 transition duration-300 ease-in-out">
+                <div class="product-card bg-white rounded-xl shadow-lg overflow-hidden">
                     <img src="https://placehold.co/600x400/D1D5DB/000000?text=Chaveiros" alt="Chaveiros personalizados com nomes ou designs" class="w-full h-48 object-cover">
                     <div class="p-6">
                         <h3 class="text-2xl font-semibold text-gray-900 mb-2">Chaveiros</h3>
@@ -348,7 +426,7 @@
                 </div>
 
                 <!-- Product Card 5: Almofadas Decorativas -->
-                <div class="bg-white rounded-xl shadow-lg overflow-hidden transform hover:scale-105 transition duration-300 ease-in-out">
+                <div class="product-card bg-white rounded-xl shadow-lg overflow-hidden">
                     <img src="https://placehold.co/600x400/D1D5DB/000000?text=Almofadas+Decorativas" alt="Almofadas decorativas com estampas personalizadas" class="w-full h-48 object-cover">
                     <div class="p-6">
                         <h3 class="text-2xl font-semibold text-gray-900 mb-2">Almofadas Decorativas</h3>
@@ -362,7 +440,7 @@
                 </div>
 
                 <!-- Product Card 6: Quadros Decorativos -->
-                <div class="bg-white rounded-xl shadow-lg overflow-hidden transform hover:scale-105 transition duration-300 ease-in-out">
+                <div class="product-card bg-white rounded-xl shadow-lg overflow-hidden">
                     <img src="https://placehold.co/600x400/D1D5DB/000000?text=Quadros+Decorativos" alt="Quadros decorativos com arte personalizada" class="w-full h-48 object-cover">
                     <div class="p-6">
                         <h3 class="text-2xl font-semibold text-gray-900 mb-2">Quadros Decorativos</h3>
@@ -376,7 +454,7 @@
                 </div>
 
                 <!-- Product Card 7: Cadernos -->
-                <div class="bg-white rounded-xl shadow-lg overflow-hidden transform hover:scale-105 transition duration-300 ease-in-out">
+                <div class="product-card bg-white rounded-xl shadow-lg overflow-hidden">
                     <img src="https://placehold.co/600x400/D1D5DB/000000?text=Cadernos" alt="Cadernos com capas exclusivas" class="w-full h-48 object-cover">
                     <div class="p-6">
                         <h3 class="text-2xl font-semibold text-gray-900 mb-2">Cadernos</h3>
@@ -390,7 +468,7 @@
                 </div>
 
                 <!-- Product Card 8: Agendas -->
-                <div class="bg-white rounded-xl shadow-lg overflow-hidden transform hover:scale-105 transition duration-300 ease-in-out">
+                <div class="product-card bg-white rounded-xl shadow-lg overflow-hidden">
                     <img src="https://placehold.co/600x400/D1D5DB/000000?text=Agendas" alt="Agendas personalizadas" class="w-full h-48 object-cover">
                     <div class="p-6">
                         <h3 class="text-2xl font-semibold text-gray-900 mb-2">Agendas</h3>
@@ -404,7 +482,7 @@
                 </div>
 
                 <!-- Product Card 9: Artigos Religiosos -->
-                <div class="bg-white rounded-xl shadow-lg overflow-hidden transform hover:scale-105 transition duration-300 ease-in-out">
+                <div class="product-card bg-white rounded-xl shadow-lg overflow-hidden">
                     <img src="https://placehold.co/600x400/D1D5DB/000000?text=Artigos+Religiosos" alt="Artigos religiosos personalizados" class="w-full h-48 object-cover">
                     <div class="p-6">
                         <h3 class="text-2xl font-semibold text-gray-900 mb-2">Artigos Religiosos</h3>
@@ -418,7 +496,7 @@
                 </div>
 
                 <!-- Product Card 10: Blocos A6 -->
-                <div class="bg-white rounded-xl shadow-lg overflow-hidden transform hover:scale-105 transition duration-300 ease-in-out">
+                <div class="product-card bg-white rounded-xl shadow-lg overflow-hidden">
                     <img src="https://placehold.co/600x400/D1D5DB/000000?text=Blocos+A6" alt="Blocos de anotações A6 personalizados" class="w-full h-48 object-cover">
                     <div class="p-6">
                         <h3 class="text-2xl font-semibold text-gray-900 mb-2">Blocos A6</h3>
@@ -432,7 +510,7 @@
                 </div>
 
                 <!-- Product Card 11: Marcadores de Página -->
-                <div class="bg-white rounded-xl shadow-lg overflow-hidden transform hover:scale-105 transition duration-300 ease-in-out">
+                <div class="product-card bg-white rounded-xl shadow-lg overflow-hidden">
                     <img src="https://placehold.co/600x400/D1D5DB/000000?text=Marcadores+de+Pagina" alt="Marcadores de página personalizados" class="w-full h-48 object-cover">
                     <div class="p-6">
                         <h3 class="text-2xl font-semibold text-gray-900 mb-2">Marcadores de Página</h3>
@@ -445,7 +523,7 @@
                     </div>
                 </div>
                 <!-- Product Card 12: Marcadores de Página (Duplicado, considere remover ou substituir) -->
-                <div class="bg-white rounded-xl shadow-lg overflow-hidden transform hover:scale-105 transition duration-300 ease-in-out">
+                <div class="product-card bg-white rounded-xl shadow-lg overflow-hidden">
                     <img src="https://placehold.co/600x400/D1D5DB/000000?text=Marcadores+de+Pagina" alt="Marcadores de página personalizados (exemplo 2)" class="w-full h-48 object-cover">
                     <div class="p-6">
                         <h3 class="text-2xl font-semibold text-gray-900 mb-2">Marcadores de Página</h3>
@@ -500,22 +578,9 @@
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
-
-    <!-- Social Media Icons Section -->
-    <section class="bg-gray-700 py-6 text-center">
-        <div class="container mx-auto px-6 max-w-4xl">
-            <h3 class="text-xl font-semibold text-white mb-4">Siga-nos nas Redes Sociais!</h3>
-            <div class="flex justify-center space-x-6">
-                <!-- WhatsApp Icon -->
-                <a href="https://wa.me/SEUNUMERODOWHATSAPP" target="_blank" class="text-white hover:text-gray-300 transition duration-300 transform hover:scale-110">
-                    <i class="fab fa-whatsapp fa-2x"></i>
-                </a>
-                <!-- Instagram Icon -->
-                <a href="https://instagram.com/SEUINSTAGRAM" target="_blank" class="text-white hover:text-gray-300 transition duration-300 transform hover:scale-110">
-                    <i class="fab fa-instagram fa-2x"></i>
-                </a>
+            <!-- Gallery Indicators -->
+            <div class="gallery-indicators" id="gallery-indicators">
+                <!-- Dots will be dynamically generated here by JavaScript -->
             </div>
         </div>
     </section>
@@ -526,15 +591,20 @@
     </a>
 
     <!-- Footer -->
-    <footer class="bg-gray-800 text-white py-8 text-center">
+    <footer class="bg-gray-900 text-white py-12 text-center shadow-inner">
         <div class="container mx-auto px-6 max-w-4xl">
-            <p>&copy; 2025 Seu Portfólio de Produtos Personalizados. Todos os direitos reservados.</p>
-            <div class="flex justify-center space-x-4 mt-4 hidden">
-                <!-- These links are now redundant and can be removed or kept hidden -->
-                <a href="#" class="text-gray-400 hover:text-white transition duration-300">Facebook</a>
-                <a href="#" class="text-gray-400 hover:text-white transition duration-300">Instagram</a>
-                <a href="#" class="text-gray-400 hover:text-white transition duration-300">LinkedIn</a>
+            <h3 class="text-xl font-semibold mb-6">Conecte-se Conosco!</h3>
+            <div class="flex justify-center space-x-8 mb-8">
+                <!-- WhatsApp Icon -->
+                <a href="https://wa.me/SEUNUMERODOWHATSAPP" target="_blank" class="text-white hover:text-gray-400 transition duration-300 transform hover:scale-125">
+                    <i class="fab fa-whatsapp fa-2x"></i>
+                </a>
+                <!-- Instagram Icon -->
+                <a href="https://instagram.com/SEUINSTAGRAM" target="_blank" class="text-white hover:text-gray-400 transition duration-300 transform hover:scale-125">
+                    <i class="fab fa-instagram fa-2x"></i>
+                </a>
             </div>
+            <p class="text-gray-400 text-sm">&copy; 2025 Idealize Store. Todos os direitos reservados.</p>
         </div>
     </footer>
 
@@ -569,8 +639,30 @@
         // Automatic Image Carousel Logic (Gallery)
         const carouselTrack = document.getElementById('carousel-track');
         const carouselSlides = document.querySelectorAll('.carousel-slide');
+        const galleryIndicators = document.getElementById('gallery-indicators'); // Get the gallery indicators container
         let currentSlide = 0;
         const slideInterval = 3000; // Change slide every 3 seconds
+        let galleryAutoSlideInterval; // Variable to hold the interval ID for gallery
+
+        // Function to update gallery indicators
+        function updateGalleryIndicators() {
+            // Remove active class from all dots
+            Array.from(galleryIndicators.children).forEach((dot, index) => {
+                dot.classList.remove('active');
+            });
+            // Add active class to the current dot
+            if (galleryIndicators.children[currentSlide]) {
+                galleryIndicators.children[currentSlide].classList.add('active');
+            }
+        }
+
+        // Function to go to a specific gallery slide
+        function goToGallerySlide(index) {
+            currentSlide = index;
+            updateCarousel();
+            updateGalleryIndicators();
+            resetGalleryAutoSlide(); // Reset auto-slide timer on manual navigation
+        }
 
         function nextSlide() {
             currentSlide++;
@@ -578,6 +670,7 @@
                 currentSlide = 0; // Loop back to the first slide
             }
             updateCarousel();
+            updateGalleryIndicators(); // Update indicators when slide changes
         }
 
         function updateCarousel() {
@@ -587,11 +680,32 @@
             }
         }
 
-        // Start the automatic gallery carousel
-        setInterval(nextSlide, slideInterval);
+        function startGalleryAutoSlide() {
+            galleryAutoSlideInterval = setInterval(nextSlide, slideInterval);
+        }
+
+        function resetGalleryAutoSlide() {
+            clearInterval(galleryAutoSlideInterval);
+            startGalleryAutoSlide();
+        }
+
+        // Generate gallery indicator dots dynamically
+        function generateGalleryIndicators() {
+            galleryIndicators.innerHTML = ''; // Clear existing dots
+            carouselSlides.forEach((slide, index) => {
+                const dot = document.createElement('span');
+                dot.classList.add('gallery-indicator-dot');
+                dot.addEventListener('click', () => goToGallerySlide(index));
+                galleryIndicators.appendChild(dot);
+            });
+            updateGalleryIndicators(); // Set initial active dot
+        }
 
         // Update gallery carousel on window resize to maintain responsiveness
-        window.addEventListener('resize', updateCarousel);
+        window.addEventListener('resize', () => {
+            updateCarousel();
+            generateGalleryIndicators(); // Regenerate indicators on resize to ensure correct count/position
+        });
 
 
         // Fixed Header Logic
@@ -679,7 +793,7 @@
         }
 
         function resetNewsAutoSlide() {
-            clearInterval(newsAutoSlideInterval); // Corrigido o nome da variável aqui
+            clearInterval(newsAutoSlideInterval);
             startNewsAutoSlide();
         }
 
@@ -697,19 +811,57 @@
         prevBannerButton.addEventListener('click', prevNewsSlide);
         nextBannerButton.addEventListener('click', nextNewsSlide);
 
+        /* --- New JavaScript for Product Cards Focus Effect --- */
+        document.addEventListener('DOMContentLoaded', () => {
+            const productCards = document.querySelectorAll('.product-card'); // Seleciona todos os cartões de produto
+
+            // Função para aplicar o foco/desfoque nos cartões de produto
+            const handleProductCardFocus = (cardToFocus = null) => {
+                productCards.forEach(card => {
+                    if (card === cardToFocus) {
+                        // Se o cartão atual é o que está em foco (hover), remove o desfoque
+                        card.classList.remove('blurred');
+                    } else {
+                        // Se não é o cartão em foco, aplica o desfoque
+                        card.classList.add('blurred');
+                    }
+                });
+            };
+
+            // Estado inicial: todos os cartões começam em foco (sem a classe 'blurred')
+            // O CSS já define o estado padrão como focado.
+
+            // Adiciona event listeners para cada cartão de produto
+            productCards.forEach(card => {
+                // Ao passar o mouse sobre um cartão
+                card.addEventListener('mouseover', () => {
+                    handleProductCardFocus(card); // Coloca o cartão atual em foco e desfoca os outros
+                });
+
+                // Ao retirar o mouse de um cartão
+                card.addEventListener('mouseout', () => {
+                    // Quando o mouse sai, todos os cartões voltam a ficar em foco
+                    productCards.forEach(c => {
+                        c.classList.remove('blurred');
+                    });
+                });
+            });
+        });
+        /* --- End New JavaScript for Product Cards Focus Effect --- */
+
         // Initial positioning and carousel update on load
         window.addEventListener('load', () => {
             updateBodyPadding(); // Initialize padding
-            updateCarousel(); // Initialize gallery carousel
+            generateGalleryIndicators(); // Generate gallery indicators on load
+            startGalleryAutoSlide(); // Start auto-slide for gallery
             updateNewsCarousel(); // Initialize news banner carousel
             updateNewsIndicators(); // Initialize banner indicators
-            startNewsAutoSlide(); // Start auto-slide
+            startNewsAutoSlide(); // Start auto-slide for news banner
         });
 
         // Update positions on window resize
         window.addEventListener('resize', () => {
             updateBodyPadding(); // Update padding on resize
-            updateCarousel(); // Update gallery carousel on resize
             updateNewsCarousel(); // Update news banner carousel on resize
         });
     </script>
