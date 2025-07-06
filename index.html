@@ -15,7 +15,7 @@
             background-color: #f8f8f8; /* Light gray background */
             color: #333; /* Dark gray text */
             /* Padding top adjusted to accommodate the fixed header */
-            padding-top: 70px; /* Only header height */
+            padding-top: 70px; /* Initial padding, will be updated by JS */
         }
         .section-title {
             position: relative;
@@ -63,18 +63,6 @@
         .carousel-track {
             -ms-overflow-style: none;  /* IE and Edge */
             scrollbar-width: none;  /* Firefox */
-        }
-
-        /* Header fixed and scrolled states */
-        .header-initial {
-            padding-top: 0.4rem; /* py-3 */
-            padding-bottom: 0.4rem; /* py-3 */
-            transition: padding 0.3s ease-in-out;
-        }
-        .header-scrolled {
-            padding-top: 0.1rem; /* py-1 */
-            padding-bottom: 0.1rem; /* py-1 */
-            transition: padding 0.3s ease-in-out;
         }
 
         /* Hamburger menu animation styles */
@@ -147,6 +135,7 @@
             width: 100%;
             height: 450px; /* Increased height for hero-like banner */
             object-fit: cover;
+            object-position: center; /* Adicione esta linha */
         }
         /* Hide scrollbar for banner carousel track */
         .carousel-track-banner::-webkit-scrollbar {
@@ -214,12 +203,12 @@
 </head>
 <body class="antialiased">
     <!-- Header -->
-    <header id="main-header" class="fixed top-0 w-full z-50 bg-gradient-to-r from-gray-700 to-gray-900 text-white shadow-lg header-initial">
+    <header id="main-header" class="fixed top-0 w-full z-50 bg-gradient-to-r from-gray-700 to-gray-900 text-white shadow-lg">
 
-        <nav id="main-nav" class="container mx-auto px-6 py-4 flex justify-between items-center transition-all duration-300 ease-in-out">
+        <nav id="main-nav" class="container mx-auto px-6 py-2 flex justify-between items-center transition-all duration-300 ease-in-out">
             <a href="#" class="text-3xl font-bold rounded-lg p-2 hover:bg-white hover:text-gray-700 transition duration-300 ease-in-out flex items-center">
                 <!-- Logo adicionado aqui, usando o arquivo logo.png -->
-                <img src="imagens/logo.png" alt="Logo Idealize Store" class="h-20 w-auto mr-2">
+                <img id="header-logo" src="imagens/logo.png" alt="Logo Idealize Store" class="h-16 w-auto mr-2 transition-all duration-300 ease-in-out">
             </a>
             <!-- Mobile Menu Button (Hamburger) -->
             <button id="mobile-menu-button" class="md:hidden text-white focus:outline-none">
@@ -248,13 +237,13 @@
         <div class="carousel-container-banner mx-auto overflow-hidden">
             <div class="carousel-track-banner flex transition-transform duration-500 ease-in-out" id="carousel-track-banner">
                 <div class="carousel-slide-banner min-w-full flex-shrink-0">
-                    <img src="https://placehold.co/1920x450/E0E0E0/333333?text=Seu+Banner+1" alt="Banner 1" class="w-full h-full object-cover">
+                    <img src="imagens/banner1.jpg" alt="Banner 1" class="w-full h-full object-cover">
                 </div>
                 <div class="carousel-slide-banner min-w-full flex-shrink-0">
-                    <img src="https://placehold.co/1920x450/D0D0D0/333333?text=Seu+Banner+2" alt="Banner 2" class="w-full h-full object-cover">
+                    <img src="imagens/banner1.jpg" alt="Banner 2" class="w-full h-full object-cover">
                 </div>
                 <div class="carousel-slide-banner min-w-full flex-shrink-0">
-                    <img src="https://placehold.co/1920x450/C0C0C0/333333?text=Seu+Banner+3" alt="Banner 3" class="w-full h-full object-cover">
+                    <img src="imagens/banner1.jpg" alt="Banner 3" class="w-full h-full object-cover">
                 </div>
             </div>
             <!-- Banner Navigation Arrows -->
@@ -284,13 +273,13 @@
 
     <!-- Products Section -->
     <section id="produtos" class="py-16 bg-gray-50">
-        <div class="container mx-auto px-6 max-w-4xl">
+        <div class="container mx-auto px-6 max-w-6xl"> <!-- Alterado de max-w-4xl para max-w-6xl -->
             <h2 class="text-4xl font-bold text-center text-gray-800 mb-12 section-title mx-auto">Nossos Produtos Personalizados</h2>
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
                 <!-- Product Card 1: Canecas -->
                 <div class="bg-white rounded-xl shadow-lg overflow-hidden transform hover:scale-105 transition duration-300 ease-in-out">
-                    <img src="https://placehold.co/600x400/D1D5DB/000000?text=Canecas" alt="Canecas" class="w-full h-64 object-cover">
+                    <img src="https://placehold.co/600x400/D1D5DB/000000?text=Canecas" alt="Canecas" class="w-full h-48 object-cover">
                     <div class="p-6">
                         <h3 class="text-2xl font-semibold text-gray-900 mb-2">Canecas</h3>
                         <p class="text-gray-600 mb-4">
@@ -304,7 +293,7 @@
 
                 <!-- Product Card 2: Camisetas -->
                 <div class="bg-white rounded-xl shadow-lg overflow-hidden transform hover:scale-105 transition duration-300 ease-in-out">
-                    <img src="https://placehold.co/600x400/D1D5DB/000000?text=Camisetas" alt="Camisetas" class="w-full h-64 object-cover">
+                    <img src="https://placehold.co/600x400/D1D5DB/000000?text=Camisetas" alt="Camisetas" class="w-full h-48 object-cover">
                     <div class="p-6">
                         <h3 class="text-2xl font-semibold text-gray-900 mb-2">Camisetas</h3>
                         <p class="text-gray-600 mb-4">
@@ -318,7 +307,7 @@
 
                 <!-- Product Card 3: Capas de Celular -->
                 <div class="bg-white rounded-xl shadow-lg overflow-hidden transform hover:scale-105 transition duration-300 ease-in-out">
-                    <img src="https://placehold.co/600x400/D1D5DB/000000?text=Capas+de+Celular" alt="Capas de Celular" class="w-full h-64 object-cover">
+                    <img src="https://placehold.co/600x400/D1D5DB/000000?text=Capas+de+Celular" alt="Capas de Celular" class="w-full h-48 object-cover">
                     <div class="p-6">
                         <h3 class="text-2xl font-semibold text-gray-900 mb-2">Capas de Celular</h3>
                         <p class="text-gray-600 mb-4">
@@ -332,7 +321,7 @@
 
                 <!-- Product Card 4: Chaveiros -->
                 <div class="bg-white rounded-xl shadow-lg overflow-hidden transform hover:scale-105 transition duration-300 ease-in-out">
-                    <img src="https://placehold.co/600x400/D1D5DB/000000?text=Chaveiros" alt="Chaveiros" class="w-full h-64 object-cover">
+                    <img src="https://placehold.co/600x400/D1D5DB/000000?text=Chaveiros" alt="Chaveiros" class="w-full h-48 object-cover">
                     <div class="p-6">
                         <h3 class="text-2xl font-semibold text-gray-900 mb-2">Chaveiros</h3>
                         <p class="text-gray-600 mb-4">
@@ -346,7 +335,7 @@
 
                 <!-- Product Card 5: Almofadas Decorativas -->
                 <div class="bg-white rounded-xl shadow-lg overflow-hidden transform hover:scale-105 transition duration-300 ease-in-out">
-                    <img src="https://placehold.co/600x400/D1D5DB/000000?text=Almofadas+Decorativas" alt="Almofadas Decorativas" class="w-full h-64 object-cover">
+                    <img src="https://placehold.co/600x400/D1D5DB/000000?text=Almofadas+Decorativas" alt="Almofadas Decorativas" class="w-full h-48 object-cover">
                     <div class="p-6">
                         <h3 class="text-2xl font-semibold text-gray-900 mb-2">Almofadas Decorativas</h3>
                         <p class="text-gray-600 mb-4">
@@ -360,7 +349,7 @@
 
                 <!-- Product Card 6: Quadros Decorativos -->
                 <div class="bg-white rounded-xl shadow-lg overflow-hidden transform hover:scale-105 transition duration-300 ease-in-out">
-                    <img src="https://placehold.co/600x400/D1D5DB/000000?text=Quadros+Decorativos" alt="Quadros Decorativos" class="w-full h-64 object-cover">
+                    <img src="https://placehold.co/600x400/D1D5DB/000000?text=Quadros+Decorativos" alt="Quadros Decorativos" class="w-full h-48 object-cover">
                     <div class="p-6">
                         <h3 class="text-2xl font-semibold text-gray-900 mb-2">Quadros Decorativos</h3>
                         <p class="text-gray-600 mb-4">
@@ -374,7 +363,7 @@
 
                 <!-- Product Card 7: Cadernos -->
                 <div class="bg-white rounded-xl shadow-lg overflow-hidden transform hover:scale-105 transition duration-300 ease-in-out">
-                    <img src="https://placehold.co/600x400/D1D5DB/000000?text=Cadernos" alt="Cadernos" class="w-full h-64 object-cover">
+                    <img src="https://placehold.co/600x400/D1D5DB/000000?text=Cadernos" alt="Cadernos" class="w-full h-48 object-cover">
                     <div class="p-6">
                         <h3 class="text-2xl font-semibold text-gray-900 mb-2">Cadernos</h3>
                         <p class="text-gray-600 mb-4">
@@ -388,7 +377,7 @@
 
                 <!-- Product Card 8: Agendas -->
                 <div class="bg-white rounded-xl shadow-lg overflow-hidden transform hover:scale-105 transition duration-300 ease-in-out">
-                    <img src="https://placehold.co/600x400/D1D5DB/000000?text=Agendas" alt="Agendas" class="w-full h-64 object-cover">
+                    <img src="https://placehold.co/600x400/D1D5DB/000000?text=Agendas" alt="Agendas" class="w-full h-48 object-cover">
                     <div class="p-6">
                         <h3 class="text-2xl font-semibold text-gray-900 mb-2">Agendas</h3>
                         <p class="text-gray-600 mb-4">
@@ -402,7 +391,7 @@
 
                 <!-- Product Card 9: Artigos Religiosos -->
                 <div class="bg-white rounded-xl shadow-lg overflow-hidden transform hover:scale-105 transition duration-300 ease-in-out">
-                    <img src="https://placehold.co/600x400/D1D5DB/000000?text=Artigos+Religiosos" alt="Artigos Religiosos" class="w-full h-64 object-cover">
+                    <img src="https://placehold.co/600x400/D1D5DB/000000?text=Artigos+Religiosos" alt="Artigos Religiosos" class="w-full h-48 object-cover">
                     <div class="p-6">
                         <h3 class="text-2xl font-semibold text-gray-900 mb-2">Artigos Religiosos</h3>
                         <p class="text-gray-600 mb-4">
@@ -416,7 +405,7 @@
 
                 <!-- Product Card 10: Blocos A6 -->
                 <div class="bg-white rounded-xl shadow-lg overflow-hidden transform hover:scale-105 transition duration-300 ease-in-out">
-                    <img src="https://placehold.co/600x400/D1D5DB/000000?text=Blocos+A6" alt="Blocos A6" class="w-full h-64 object-cover">
+                    <img src="https://placehold.co/600x400/D1D5DB/000000?text=Blocos+A6" alt="Blocos A6" class="w-full h-48 object-cover">
                     <div class="p-6">
                         <h3 class="text-2xl font-semibold text-gray-900 mb-2">Blocos A6</h3>
                         <p class="text-gray-600 mb-4">
@@ -430,7 +419,7 @@
 
                 <!-- Product Card 11: Marcadores de Página -->
                 <div class="bg-white rounded-xl shadow-lg overflow-hidden transform hover:scale-105 transition duration-300 ease-in-out">
-                    <img src="https://placehold.co/600x400/D1D5DB/000000?text=Marcadores+de+Pagina" alt="Marcadores de Página" class="w-full h-64 object-cover">
+                    <img src="https://placehold.co/600x400/D1D5DB/000000?text=Marcadores+de+Pagina" alt="Marcadores de Página" class="w-full h-48 object-cover">
                     <div class="p-6">
                         <h3 class="text-2xl font-semibold text-gray-900 mb-2">Marcadores de Página</h3>
                         <p class="text-gray-600 mb-4">
@@ -443,7 +432,7 @@
                 </div>
                 <!-- Product Card 12: Marcadores de Página -->
                 <div class="bg-white rounded-xl shadow-lg overflow-hidden transform hover:scale-105 transition duration-300 ease-in-out">
-                    <img src="https://placehold.co/600x400/D1D5DB/000000?text=Marcadores+de+Pagina" alt="Marcadores de Página" class="w-full h-64 object-cover">
+                    <img src="https://placehold.co/600x400/D1D5DB/000000?text=Marcadores+de+Pagina" alt="Marcadores de Página" class="w-full h-48 object-cover">
                     <div class="p-6">
                         <h3 class="text-2xl font-semibold text-gray-900 mb-2">Marcadores de Página</h3>
                         <p class="text-gray-600 mb-4">
@@ -591,10 +580,11 @@
         window.addEventListener('resize', updateCarousel);
 
 
-        // Fixed Header Logic (Simplified as banner is no longer fixed)
+        // Fixed Header Logic
         const mainHeader = document.getElementById('main-header');
-        const mainNav = document.getElementById('main-nav'); // Obtém o elemento nav
-        const body = document.body; // Get body element
+        const mainNav = document.getElementById('main-nav');
+        const headerLogo = document.getElementById('header-logo'); // Get the logo element
+        const body = document.body;
 
         // Function to update body padding-top based on header height
         function updateBodyPadding() {
@@ -604,16 +594,17 @@
         window.addEventListener('scroll', () => {
             const scrollThreshold = 50; // Pixels scrolled before header shrinks
             if (window.scrollY > scrollThreshold) {
-                mainHeader.classList.remove('header-initial');
-                mainHeader.classList.add('header-scrolled');
-                // Altera o padding do nav para diminuir o cabeçalho
+                // Shrink header and logo
                 mainNav.classList.remove('py-2');
-                mainNav.classList.add('py-1'); // Pode ser 'py-2' ou 'py-1' para menor altura
+                mainNav.classList.add('py-1');
+                headerLogo.classList.remove('h-16');
+                headerLogo.classList.add('h-12'); // Smaller logo height
             } else {
-                mainHeader.classList.remove('header-scrolled');
-                mainHeader.classList.add('header-initial');
+                // Restore header and logo
                 mainNav.classList.remove('py-1');
                 mainNav.classList.add('py-2');
+                headerLogo.classList.remove('h-12');
+                headerLogo.classList.add('h-16');
             }
             updateBodyPadding(); // Update padding on scroll
         });
@@ -622,8 +613,8 @@
         const newsCarouselTrack = document.getElementById('carousel-track-banner');
         const newsCarouselSlides = document.querySelectorAll('.carousel-slide-banner');
         const newsBannerIndicators = document.getElementById('banner-indicators');
-        const prevBannerButton = document.getElementById('prev-banner'); // Get previous button
-        const nextBannerButton = document.getElementById('next-banner'); // Get next button
+        const prevBannerButton = document.getElementById('prev-banner');
+        const nextBannerButton = document.getElementById('next-banner');
         let currentNewsSlide = 0;
         const newsSlideInterval = 4000; // 4 seconds for news banners
         let newsAutoSlideInterval; // Variable to hold the interval ID
