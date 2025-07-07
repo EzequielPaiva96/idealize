@@ -28,7 +28,8 @@
         .section-title::after {
             content: '';
             position: absolute;
-            left: 0;
+            left: 50%; /* Centraliza a linha */
+            transform: translateX(-50%); /* Ajusta para centralizar perfeitamente */
             bottom: 0;
             width: 50%;
             height: 3px;
@@ -195,29 +196,29 @@
 
         /* Banner indicators styles */
         .banner-indicators {
-            position: absolute; /* Position absolutely within the banner section */
-            bottom: 20px; /* Distance from the bottom of the banner */
+            position: absolute;
+            bottom: 20px;
             left: 50%;
-            transform: translateX(-50%); /* Center horizontally */
+            transform: translateX(-50%);
             display: flex;
             justify-content: center;
-            z-index: 10; /* Ensure dots are above the image */
+            z-index: 10;
         }
 
         .banner-indicator-dot {
-            width: 12px; /* Slightly larger dots */
-            height: 12px; /* Slightly larger dots */
-            background-color: rgba(255, 255, 255, 0.5); /* White with transparency */
+            width: 12px;
+            height: 12px;
+            background-color: rgba(255, 255, 255, 0.5);
             border-radius: 50%;
-            margin: 0 6px; /* Increased margin */
+            margin: 0 6px;
             cursor: pointer;
             transition: background-color 0.3s ease, transform 0.3s ease;
-            border: 1px solid rgba(0, 0, 0, 0.2); /* Subtle border */
+            border: 1px solid rgba(0, 0, 0, 0.2);
         }
 
         .banner-indicator-dot.active {
-            background-color: white; /* Solid white for active dot */
-            transform: scale(1.2); /* Slightly larger when active */
+            background-color: white;
+            transform: scale(1.2);
         }
 
         /* Banner Navigation Arrows */
@@ -225,18 +226,18 @@
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
-            background-color: rgba(0, 0, 0, 0.05); /* Even more transparent */
+            background-color: rgba(0, 0, 0, 0.05);
             color: white;
-            padding: 4px 8px; /* Further reduced padding */
+            padding: 4px 8px;
             cursor: pointer;
             z-index: 10;
-            font-size: 0.8rem; /* Further reduced font size */
-            border-radius: 0.25rem; /* rounded-md */
+            font-size: 0.8rem;
+            border-radius: 0.25rem;
             transition: background-color 0.3s ease;
         }
 
         .banner-arrow:hover {
-            background-color: rgba(0, 0, 0, 0.2); /* Slightly more opaque on hover */
+            background-color: rgba(0, 0, 0, 0.2);
         }
 
         .banner-arrow.left {
@@ -251,12 +252,12 @@
         .video-responsive-container {
             position: relative;
             width: 100%;
-            padding-bottom: 56.25%; /* 16:9 aspect ratio (height / width * 100%) */
+            padding-bottom: 56.25%;
             height: 0;
             overflow: hidden;
-            background-color: black; /* Background for when video is loading or if it has black bars */
-            border-radius: 1rem; /* Apply rounded corners */
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); /* shadow-lg */
+            background-color: black;
+            border-radius: 1rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
         }
 
         .video-responsive-container iframe {
@@ -272,131 +273,129 @@
         .gallery-indicators {
             display: flex;
             justify-content: center;
-            margin-top: 20px; /* Space above the dots */
-            z-index: 10; /* Ensure dots are above other content if needed */
+            margin-top: 20px;
+            z-index: 10;
         }
 
         .gallery-indicator-dot {
-            width: 10px; /* Smaller dots for gallery */
-            height: 10px; /* Smaller dots for gallery */
-            background-color: rgba(107, 114, 128, 0.5); /* Gray 500 with transparency */
+            width: 10px;
+            height: 10px;
+            background-color: rgba(107, 114, 128, 0.5);
             border-radius: 50%;
-            margin: 0 5px; /* Margin between dots */
+            margin: 0 5px;
             cursor: pointer;
             transition: background-color 0.3s ease, transform 0.3s ease;
-            border: 1px solid rgba(0, 0, 0, 0.1); /* Subtle border */
+            border: 1px solid rgba(0, 0, 0, 0.1);
         }
 
         .gallery-indicator-dot.active {
-            background-color: #6b7280; /* Solid Gray 500 for active dot */
-            transform: scale(1.2); /* Slightly larger when active */
+            background-color: #6b7280;
+            transform: scale(1.2);
         }
 
         /* --- New styles for Product Cards Focus Effect --- */
         .product-card {
-            filter: blur(0); /* Start with no blur (focused) */
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); /* Start with shadow (focused) */
-            transform: scale(1.02); /* Start slightly enlarged (focused) */
-            transition: all 0.3s ease-in-out; /* Smooth transition for all properties */
+            filter: blur(0);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            transform: scale(1.02);
+            transition: all 0.3s ease-in-out;
         }
 
         .product-card.blurred {
-            filter: blur(4px); /* Apply blur when not active */
-            box-shadow: none; /* Remove shadow when blurred */
-            transform: scale(1); /* Return to original size when blurred */
+            filter: blur(4px);
+            box-shadow: none;
+            transform: scale(1);
         }
         /* --- End New styles for Product Cards Focus Effect --- */
 
         /* --- Mobile Header Specific Styles --- */
-        @media (max-width: 767px) { /* Apply styles for screens smaller than 768px (typical mobile breakpoint) */
+        @media (max-width: 767px) {
             #main-nav {
-                padding-top: 0.5rem; /* Reduced padding-top */
-                padding-bottom: 0.5rem; /* Reduced padding-bottom */
+                padding-top: 0.5rem;
+                padding-bottom: 0.5rem;
             }
 
             #header-logo {
-                height: 48px; /* Smaller logo height on mobile */
+                height: 48px;
             }
 
             /* Adjust padding-top for body on mobile to account for smaller header */
             body {
-                padding-top: 60px; /* Adjusted padding-top for a smaller header */
+                padding-top: 60px;
             }
 
             /* Further reduce padding-top on scroll for mobile */
             .scrolled-header #main-nav {
-                padding-top: 0.125rem; /* Ainda mais reduzido: 2px */
-                padding-bottom: 0.125rem; /* Ainda mais reduzido: 2px */
+                padding-top: 0.125rem;
+                padding-bottom: 0.125rem;
             }
 
             .scrolled-header #header-logo {
-                height: 32px; /* Ainda menor logo quando rolado em mobile */
+                height: 32px;
             }
 
             .scrolled-header body {
-                padding-top: 40px; /* Ajuste do padding-top para cabeçalho rolado em mobile */
+                padding-top: 40px;
             }
         }
         /* --- End Mobile Header Specific Styles --- */
 
         /* --- Gradient Text Effect (Header-like) --- */
         .header-gradient-text {
-            /* Using colors similar to the header's dark gradient */
-            background-image: linear-gradient(to right, #4b5563, #1f2937); /* Dark gray to darker gray */
+            background-image: linear-gradient(to right, #4b5563, #1f2937);
             -webkit-background-clip: text;
             background-clip: text;
-            color: transparent; /* Make text transparent to show background */
-            transition: all 0.5s ease-in-out; /* Smooth transition for hover effect */
+            color: transparent;
+            transition: all 0.5s ease-in-out;
         }
 
         .header-gradient-text:hover {
-            /* A subtle change on hover, perhaps slightly lighter or a different hue */
-            background-image: linear-gradient(to right, #6b7280, #374151); /* Lighter gray to darker gray on hover */
+            background-image: linear-gradient(to right, #6b7280, #374151);
         }
         /* --- End Gradient Text Effect --- */
 
         /* --- Custom Styles for Logo Hover Effect --- */
         .logo-link {
-            transition: transform 0.3s ease-in-out; /* Smooth transition for scaling */
+            transition: transform 0.3s ease-in-out;
         }
 
         .logo-link:hover {
-            transform: scale(1.05); /* Slightly enlarge the logo on hover */
+            transform: scale(1.05);
         }
         /* --- End Custom Styles for Logo Hover Effect --- */
 
         /* --- Custom Styles for Navigation Link Hover Effect (Jump) --- */
         .nav-link-jump {
-            position: relative; /* Needed for transform */
-            transition: transform 0.3s ease-in-out; /* Smooth transition for jumping */
+            position: relative;
+            transition: transform 0.3s ease-in-out;
         }
 
         .nav-link-jump:hover {
-            transform: translateY(-5px); /* Move the link up slightly on hover */
+            transform: translateY(-5px);
         }
         /* --- End Custom Styles for Navigation Link Hover Effect (Jump) --- */
 
         /* --- Style for writing-like font --- */
         .writing-font {
             font-family: 'Dancing Script', cursive;
-            font-weight: 700; /* Use a bolder weight for better readability with this font */
+            font-weight: 700;
         }
 
         /* --- Styles for scaling animations on hover --- */
         .scale-on-hover {
-            transition: transform 0.3s ease-in-out; /* Smooth transition for scaling */
+            transition: transform 0.3s ease-in-out;
         }
 
         .scale-on-hover:hover {
-            transform: scale(1.02); /* Slightly increase size on hover */
+            transform: scale(1.02);
         }
 
         .shrink-on-hover {
-            transition: transform 0.3s ease-in-out; /* Smooth transition for shrinking */
+            transition: transform 0.3s ease-in-out;
         }
 
         .shrink-on-hover:hover {
-            transform: scale(0.98); /* Slightly decrease size on hover */
+            transform: scale(0.98);
         }
         /* --- End styles for scaling animations on hover --- */
     </style>
@@ -477,9 +476,9 @@
 
     <!-- Video Manifesto Section -->
     <section id="video-manifesto" class="py-16 bg-gray-50">
-        <div class="container mx-auto px-6 max-w-4xl">
-            <!-- The writing-font class remains here -->
-            <h2 class="text-4xl font-bold text-center text-gray-800 mb-12 section-title mx-auto writing-font">Momentos especiais merecem ser lembrados.</h2>
+        <div class="container mx-auto px-6 max-w-4xl text-center"> <!-- Added text-center here -->
+            <!-- The writing-font class remains here, and mx-auto is re-added -->
+            <h2 class="text-4xl font-bold text-gray-800 mb-12 section-title writing-font mx-auto">Momentos especiais merecem ser lembrados.</h2>
             <div class="video-responsive-container">
                 <!-- Replace YOUR_VIDEO_ID with the actual YouTube video ID -->
                 <iframe src="https://www.youtube.com/embed/a_gWwM2l9x0?si=L4z7kR5-b4618eB1"
