@@ -345,19 +345,32 @@
         }
         /* --- End Mobile Header Specific Styles --- */
 
-        /* --- Gradient Text Effect (Header-like) --- */
+        /* --- Gradient Text Effect for H2 Title --- */
         .header-gradient-text {
-            /* Using colors similar to the header's dark gradient */
-            background-image: linear-gradient(to right, #4b5563, #1f2937); /* Dark gray to darker gray */
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent; /* Make text transparent to show background */
+            /* Default color for non-strong text within H2 */
+            color: #4a5568; /* A dark grey, not transparent, so it's visible without gradient */
             transition: all 0.5s ease-in-out; /* Smooth transition for hover effect */
         }
 
         .header-gradient-text:hover {
-            /* A subtle change on hover, perhaps slightly lighter or a different hue */
-            background-image: linear-gradient(to right, #6b7280, #374151); /* Lighter gray to darker gray on hover */
+            /* When hovering the H2, the non-strong text remains its default color */
+            color: #4a5568; /* Keep the same dark grey */
+        }
+
+        /* Styles for emphasized words within the H2 */
+        .header-gradient-text strong {
+            /* Initial darker gradient for emphasized words */
+            background-image: linear-gradient(to right, #4b5563, #1f2937); /* Dark gray to darker gray */
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent; /* Make text transparent to show background */
+            font-weight: 900; /* Extra bold for emphasis */
+            transition: all 0.5s ease-in-out; /* Smooth transition for hover effect */
+        }
+
+        /* Emphasized words also change to vibrant gradient on H2 hover */
+        .header-gradient-text:hover strong {
+            background-image: linear-gradient(to right, #3b82f6, #8b5cf6); /* Vibrant blue to purple on hover */
         }
         /* --- End Gradient Text Effect --- */
     </style>
@@ -425,7 +438,7 @@
     <!-- Novo Bloco de Texto Abaixo do Banner -->
     <section class="py-12 bg-white text-center">
         <div class="container mx-auto px-6 max-w-4xl">
-            <h2 class="text-4xl font-bold mb-4 header-gradient-text">Somos apaixonados por contar histórias.</h2>
+            <h2 class="text-4xl font-bold mb-4 header-gradient-text">Somos <strong>apaixonados</strong> por <strong>contar histórias</strong>.</h2>
             <p class="text-xl md:text-2xl text-gray-700 leading-relaxed">
                 Acreditamos que personalizar é mais do que escolher um nome ou uma cor — é dar significado. Por isso, criamos produtos únicos, feitos com carinho, cuidado e identidade. Porque cada pessoa é única, e seus presentes também devem ser.
             </p>
@@ -844,7 +857,7 @@
         const nextBannerButton = document.getElementById('next-banner');
         let currentNewsSlide = 0;
         const newsSlideInterval = 4000; // 4 seconds for news banners
-        let newsAutoSlideInterval; // Variable to hold the interval ID
+        let newsAutoSlideInterval; // Variable to hold the interval ID for news
 
         function updateNewsIndicators() {
             // Remove active class from all dots
