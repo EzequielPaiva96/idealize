@@ -273,6 +273,52 @@
             transform: scale(1); /* Return to original size when blurred */
         }
         /* --- End New styles for Product Cards Focus Effect --- */
+
+        /* --- Mobile Header Specific Styles --- */
+        @media (max-width: 767px) { /* Apply styles for screens smaller than 768px (typical mobile breakpoint) */
+            #main-nav {
+                padding-top: 0.5rem; /* Reduced padding-top */
+                padding-bottom: 0.5rem; /* Reduced padding-bottom */
+            }
+
+            #header-logo {
+                height: 48px; /* Smaller logo height on mobile */
+            }
+
+            /* Adjust padding-top for body on mobile to account for smaller header */
+            body {
+                padding-top: 60px; /* Adjusted padding-top for a smaller header */
+            }
+
+            /* Further reduce padding-top on scroll for mobile */
+            .scrolled-header #main-nav {
+                padding-top: 0.125rem; /* Ainda mais reduzido: 2px */
+                padding-bottom: 0.125rem; /* Ainda mais reduzido: 2px */
+            }
+
+            .scrolled-header #header-logo {
+                height: 32px; /* Ainda menor logo quando rolado em mobile */
+            }
+
+            .scrolled-header body {
+                padding-top: 40px; /* Ajuste do padding-top para cabeçalho rolado em mobile */
+            }
+
+            /* Styles when mobile menu is open */
+            .mobile-menu-open-header #main-nav {
+                padding-top: 0.125rem; /* Ainda menor padding quando menu está aberto */
+                padding-bottom: 0.125rem;
+            }
+
+            .mobile-menu-open-header #header-logo {
+                height: 30px; /* Ainda menor logo quando menu está aberto */
+            }
+
+            .mobile-menu-open-header body {
+                padding-top: 38px; /* Ajuste do padding-top para cabeçalho com menu mobile aberto */
+            }
+        }
+        /* --- End Mobile Header Specific Styles --- */
     </style>
 </head>
 <body class="antialiased">
@@ -609,6 +655,17 @@
     </footer>
 
     <script>
+        // Declarations for global access
+        const mainHeader = document.getElementById('main-header');
+        const mainNav = document.getElementById('main-nav');
+        const headerLogo = document.getElementById('header-logo');
+        const body = document.body;
+
+        // Function to update body padding-top based on header height
+        function updateBodyPadding() {
+            body.style.paddingTop = `${mainHeader.offsetHeight}px`;
+        }
+
         // Smooth scrolling for navigation links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
@@ -622,6 +679,8 @@
                 if (mobileMenu.classList.contains('open-menu')) {
                     mobileMenu.classList.remove('open-menu');
                     hamburgerIcon.classList.remove('open');
+                    mainHeader.classList.remove('mobile-menu-open-header'); // Remove the class here
+                    updateBodyPadding(); // Update padding
                 }
             });
         });
@@ -630,10 +689,15 @@
         const mobileMenuButton = document.getElementById('mobile-menu-button');
         const mobileMenu = document.getElementById('mobile-menu');
         const hamburgerIcon = document.getElementById('hamburger-icon');
+        // mainHeader already defined globally
 
         mobileMenuButton.addEventListener('click', () => {
             mobileMenu.classList.toggle('open-menu');
             hamburgerIcon.classList.toggle('open');
+            // Toggle a class on the main header when the mobile menu is open/closed
+            mainHeader.classList.toggle('mobile-menu-open-header');
+            // Re-calculate body padding after header size change
+            updateBodyPadding();
         });
 
         // Automatic Image Carousel Logic (Gallery)
@@ -709,15 +773,7 @@
 
 
         // Fixed Header Logic
-        const mainHeader = document.getElementById('main-header');
-        const mainNav = document.getElementById('main-nav');
-        const headerLogo = document.getElementById('header-logo'); // Get the logo element
-        const body = document.body;
-
-        // Function to update body padding-top based on header height
-        function updateBodyPadding() {
-            body.style.paddingTop = `${mainHeader.offsetHeight}px`;
-        }
+        // mainHeader, mainNav, headerLogo, body are already defined globally or within scope
 
         window.addEventListener('scroll', () => {
             const scrollThreshold = 50; // Pixels scrolled before header shrinks
@@ -727,12 +783,14 @@
                 mainNav.classList.add('py-1');
                 headerLogo.classList.remove('h-16');
                 headerLogo.classList.add('h-12'); // Smaller logo height
+                mainHeader.classList.add('scrolled-header'); /* Add class for mobile adjustments */
             } else {
                 // Restore header and logo
                 mainNav.classList.remove('py-1');
                 mainNav.classList.add('py-2');
                 headerLogo.classList.remove('h-12');
                 headerLogo.classList.add('h-16');
+                mainHeader.classList.remove('scrolled-header'); /* Remove class */
             }
             updateBodyPadding(); // Update padding on scroll
         });
