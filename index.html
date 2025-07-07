@@ -16,6 +16,7 @@
             color: #333; /* Dark gray text */
             /* Padding top adjusted to accommodate the fixed header */
             padding-top: 70px; /* Initial padding, will be updated by JS */
+            transition: padding-top 0.3s ease-in-out; /* Smooth transition for padding */
         }
         .section-title {
             position: relative;
@@ -103,6 +104,12 @@
             opacity: 0;
             overflow: hidden;
             transition: max-height 0.5s ease-out, opacity 0.3s ease-out;
+            position: absolute; /* Position it absolutely to overlap */
+            top: 100%; /* Position below the header */
+            left: 0;
+            width: 100%;
+            background-color: rgba(31, 41, 55, 0.95); /* Slightly transparent background for overlap */
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
         }
 
         #mobile-menu.open-menu {
@@ -328,49 +335,23 @@
             .scrolled-header body {
                 padding-top: 40px; /* Ajuste do padding-top para cabeçalho rolado em mobile */
             }
-
-            /* Styles when mobile menu is open */
-            .mobile-menu-open-header #main-nav {
-                padding-top: 0.125rem; /* Ainda menor padding quando menu está aberto */
-                padding-bottom: 0.125rem;
-            }
-
-            .mobile-menu-open-header #header-logo {
-                height: 30px; /* Ainda menor logo quando menu está aberto */
-            }
-
-            .mobile-menu-open-header body {
-                padding-top: 38px; /* Ajuste do padding-top para cabeçalho com menu mobile aberto */
-            }
+            /* Removed mobile-menu-open-header related styles as menu will now overlap */
         }
         /* --- End Mobile Header Specific Styles --- */
 
-        /* --- Gradient Text Effect for H2 Title --- */
+        /* --- Gradient Text Effect (Header-like) --- */
         .header-gradient-text {
-            /* Default color for non-strong text within H2 */
-            color: #4a5568; /* A dark grey, not transparent, so it's visible without gradient */
-            transition: all 0.5s ease-in-out; /* Smooth transition for hover effect */
-        }
-
-        .header-gradient-text:hover {
-            /* When hovering the H2, the non-strong text remains its default color */
-            color: #4a5568; /* Keep the same dark grey */
-        }
-
-        /* Styles for emphasized words within the H2 */
-        .header-gradient-text strong {
-            /* Initial darker gradient for emphasized words */
+            /* Using colors similar to the header's dark gradient */
             background-image: linear-gradient(to right, #4b5563, #1f2937); /* Dark gray to darker gray */
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent; /* Make text transparent to show background */
-            font-weight: 900; /* Extra bold for emphasis */
             transition: all 0.5s ease-in-out; /* Smooth transition for hover effect */
         }
 
-        /* Emphasized words also change to vibrant gradient on H2 hover */
-        .header-gradient-text:hover strong {
-            background-image: linear-gradient(to right, #3b82f6, #8b5cf6); /* Vibrant blue to purple on hover */
+        .header-gradient-text:hover {
+            /* A subtle change on hover, perhaps slightly lighter or a different hue */
+            background-image: linear-gradient(to right, #6b7280, #374151); /* Lighter gray to darker gray on hover */
         }
         /* --- End Gradient Text Effect --- */
     </style>
@@ -415,7 +396,7 @@
                     <img src="imagens/banner1.jpg" alt="Banner de Notícias 1" class="w-full h-full object-cover object-position-center">
                 </div>
                 <!-- Slide 2 do Banner -->
-                <div class="carousel-slide-banner min-w-full flex-shrink-0">
+                <div src="https://placehold.co/1200x550/3498db/ffffff?text=Banner+2" alt="Banner de Notícias 2" class="carousel-slide-banner min-w-full flex-shrink-0">
                     <img src="https://placehold.co/1200x550/3498db/ffffff?text=Banner+2" alt="Banner de Notícias 2" class="w-full h-full object-cover object-position-center">
                 </div>
                 <!-- Slide 3 do Banner -->
@@ -438,7 +419,7 @@
     <!-- Novo Bloco de Texto Abaixo do Banner -->
     <section class="py-12 bg-white text-center">
         <div class="container mx-auto px-6 max-w-4xl">
-            <h2 class="text-4xl font-bold mb-4 header-gradient-text">Somos <strong>apaixonados</strong> por <strong>contar histórias</strong>.</h2>
+            <h2 class="text-4xl font-bold mb-4 header-gradient-text">Somos apaixonados por contar histórias.</h2>
             <p class="text-xl md:text-2xl text-gray-700 leading-relaxed">
                 Acreditamos que personalizar é mais do que escolher um nome ou uma cor — é dar significado. Por isso, criamos produtos únicos, feitos com carinho, cuidado e identidade. Porque cada pessoa é única, e seus presentes também devem ser.
             </p>
@@ -709,86 +690,81 @@
     </footer>
 
     <script>
-        // Declarations for global access
+        // Declarações para acesso global
         const mainHeader = document.getElementById('main-header');
         const mainNav = document.getElementById('main-nav');
         const headerLogo = document.getElementById('header-logo');
         const body = document.body;
+        const mobileMenu = document.getElementById('mobile-menu');
+        const hamburgerIcon = document.getElementById('hamburger-icon');
 
-        // Function to update body padding-top based on header height
+        // Função para atualizar o padding-top do body com base na altura do cabeçalho
         function updateBodyPadding() {
             body.style.paddingTop = `${mainHeader.offsetHeight}px`;
         }
 
-        // Smooth scrolling for navigation links
+        // Smooth scrolling para links de navegação
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
                 document.querySelector(this.getAttribute('href')).scrollIntoView({
                     behavior: 'smooth'
                 });
-                // Close mobile menu if open
-                const mobileMenu = document.getElementById('mobile-menu');
-                const hamburgerIcon = document.getElementById('hamburger-icon');
+                // Fecha o menu móvel se estiver aberto
                 if (mobileMenu.classList.contains('open-menu')) {
                     mobileMenu.classList.remove('open-menu');
                     hamburgerIcon.classList.remove('open');
-                    mainHeader.classList.remove('mobile-menu-open-header'); // Remove the class here
-                    updateBodyPadding(); // Update padding
+                    // Não é mais necessário remover 'mobile-menu-open-header' ou chamar updateBodyPadding aqui
                 }
             });
         });
 
-        // Mobile menu toggle
+        // Toggle do menu móvel
         const mobileMenuButton = document.getElementById('mobile-menu-button');
-        const mobileMenu = document.getElementById('mobile-menu');
-        const hamburgerIcon = document.getElementById('hamburger-icon');
-        // mainHeader already defined globally
-
         mobileMenuButton.addEventListener('click', () => {
             mobileMenu.classList.toggle('open-menu');
             hamburgerIcon.classList.toggle('open');
-            // Toggle a class on the main header when the mobile menu is open/closed
-            mainHeader.classList.toggle('mobile-menu-open-header');
-            // Re-calculate body padding after header size change
-            updateBodyPadding();
+            // A classe 'mobile-menu-open-header' e a chamada para updateBodyPadding()
+            // não são mais necessárias aqui, pois o menu irá sobrepor.
         });
 
-        // Automatic Image Carousel Logic (Gallery)
+        // Removido o listener 'transitionend' para mobileMenu, pois não precisamos mais ajustar o padding do body ao fechar o menu.
+
+        // Lógica do Carrossel de Imagens Automático (Galeria)
         const carouselTrack = document.getElementById('carousel-track');
         const carouselSlides = document.querySelectorAll('.carousel-slide');
-        const galleryIndicators = document.getElementById('gallery-indicators'); // Get the gallery indicators container
+        const galleryIndicators = document.getElementById('gallery-indicators'); // Obtém o contêiner dos indicadores da galeria
         let currentSlide = 0;
-        const slideInterval = 3000; // Change slide every 3 seconds
-        let galleryAutoSlideInterval; // Variable to hold the interval ID for gallery
+        const slideInterval = 3000; // Muda o slide a cada 3 segundos
+        let galleryAutoSlideInterval; // Variável para armazenar o ID do intervalo da galeria
 
-        // Function to update gallery indicators
+        // Função para atualizar os indicadores da galeria
         function updateGalleryIndicators() {
-            // Remove active class from all dots
+            // Remove a classe 'active' de todos os pontos
             Array.from(galleryIndicators.children).forEach((dot, index) => {
                 dot.classList.remove('active');
             });
-            // Add active class to the current dot
+            // Adiciona a classe 'active' ao ponto atual
             if (galleryIndicators.children[currentSlide]) {
                 galleryIndicators.children[currentSlide].classList.add('active');
             }
         }
 
-        // Function to go to a specific gallery slide
+        // Função para ir para um slide específico da galeria
         function goToGallerySlide(index) {
             currentSlide = index;
             updateCarousel();
             updateGalleryIndicators();
-            resetGalleryAutoSlide(); // Reset auto-slide timer on manual navigation
+            resetGalleryAutoSlide(); // Reinicia o temporizador de auto-slide na navegação manual
         }
 
         function nextSlide() {
             currentSlide++;
             if (currentSlide >= carouselSlides.length) {
-                currentSlide = 0; // Loop back to the first slide
+                currentSlide = 0; // Volta para o primeiro slide
             }
             updateCarousel();
-            updateGalleryIndicators(); // Update indicators when slide changes
+            updateGalleryIndicators(); // Atualiza os indicadores quando o slide muda
         }
 
         function updateCarousel() {
@@ -807,64 +783,65 @@
             startGalleryAutoSlide();
         }
 
-        // Generate gallery indicator dots dynamically
+        // Gera os pontos indicadores da galeria dinamicamente
         function generateGalleryIndicators() {
-            galleryIndicators.innerHTML = ''; // Clear existing dots
+            galleryIndicators.innerHTML = ''; // Limpa os pontos existentes
             carouselSlides.forEach((slide, index) => {
                 const dot = document.createElement('span');
                 dot.classList.add('gallery-indicator-dot');
                 dot.addEventListener('click', () => goToGallerySlide(index));
                 galleryIndicators.appendChild(dot);
             });
-            updateGalleryIndicators(); // Set initial active dot
+            updateGalleryIndicators(); // Define o ponto ativo inicial
         }
 
-        // Update gallery carousel on window resize to maintain responsiveness
+        // Atualiza o carrossel da galeria no redimensionamento da janela para manter a responsividade
         window.addEventListener('resize', () => {
             updateCarousel();
-            generateGalleryIndicators(); // Regenerate indicators on resize to ensure correct count/position
+            generateGalleryIndicators(); // Regenera os indicadores no redimensionamento para garantir a contagem/posição correta
+            updateBodyPadding(); // Garante que o padding do body seja recalculado no redimensionamento
         });
 
 
-        // Fixed Header Logic
-        // mainHeader, mainNav, headerLogo, body are already defined globally or within scope
+        // Lógica do Cabeçalho Fixo
+        // mainHeader, mainNav, headerLogo, body já estão definidos globalmente ou no escopo
 
         window.addEventListener('scroll', () => {
-            const scrollThreshold = 50; // Pixels scrolled before header shrinks
+            const scrollThreshold = 50; // Pixels rolados antes que o cabeçalho encolha
             if (window.scrollY > scrollThreshold) {
-                // Shrink header and logo
+                // Encolhe o cabeçalho e o logotipo
                 mainNav.classList.remove('py-2');
                 mainNav.classList.add('py-1');
                 headerLogo.classList.remove('h-16');
-                headerLogo.classList.add('h-12'); // Smaller logo height
-                mainHeader.classList.add('scrolled-header'); /* Add class for mobile adjustments */
+                headerLogo.classList.add('h-12'); // Altura menor do logotipo
+                mainHeader.classList.add('scrolled-header'); /* Adiciona classe para ajustes móveis */
             } else {
-                // Restore header and logo
+                // Restaura o cabeçalho e o logotipo
                 mainNav.classList.remove('py-1');
                 mainNav.classList.add('py-2');
                 headerLogo.classList.remove('h-12');
                 headerLogo.classList.add('h-16');
-                mainHeader.classList.remove('scrolled-header'); /* Remove class */
+                mainHeader.classList.remove('scrolled-header'); /* Remove a classe */
             }
-            updateBodyPadding(); // Update padding on scroll
+            updateBodyPadding(); // Atualiza o padding ao rolar
         });
 
-        // News Banner Carousel Logic
+        // Lógica do Carrossel de Notícias (Banner)
         const newsCarouselTrack = document.getElementById('carousel-track-banner');
         const newsCarouselSlides = document.querySelectorAll('.carousel-slide-banner');
         const newsBannerIndicators = document.getElementById('banner-indicators');
         const prevBannerButton = document.getElementById('prev-banner');
         const nextBannerButton = document.getElementById('next-banner');
         let currentNewsSlide = 0;
-        const newsSlideInterval = 4000; // 4 seconds for news banners
-        let newsAutoSlideInterval; // Variable to hold the interval ID for news
+        const newsSlideInterval = 4000; // 4 segundos para banners de notícias
+        let newsAutoSlideInterval; // Variável para armazenar o ID do intervalo
 
         function updateNewsIndicators() {
-            // Remove active class from all dots
+            // Remove a classe 'active' de todos os pontos
             Array.from(newsBannerIndicators.children).forEach((dot, index) => {
                 dot.classList.remove('active');
             });
-            // Add active class to the current dot
+            // Adiciona a classe 'active' ao ponto atual
             newsBannerIndicators.children[currentNewsSlide].classList.add('active');
         }
 
@@ -872,7 +849,7 @@
             currentNewsSlide = index;
             updateNewsCarousel();
             updateNewsIndicators();
-            resetNewsAutoSlide(); // Reset auto-slide timer on manual navigation
+            resetNewsAutoSlide(); // Reinicia o temporizador de auto-slide na navegação manual
         }
 
         function nextNewsSlide() {
@@ -909,7 +886,7 @@
             startNewsAutoSlide();
         }
 
-        // Add click listeners to indicators
+        // Adiciona listeners de clique aos indicadores
         newsBannerIndicators.addEventListener('click', (event) => {
             if (event.target.classList.contains('banner-indicator-dot')) {
                 const index = Array.from(newsBannerIndicators.children).indexOf(event.target);
@@ -919,11 +896,11 @@
             }
         });
 
-        // Add click listeners to navigation arrows
+        // Adiciona listeners de clique às setas de navegação
         prevBannerButton.addEventListener('click', prevNewsSlide);
         nextBannerButton.addEventListener('click', nextNewsSlide);
 
-        /* --- New JavaScript for Product Cards Focus Effect --- */
+        /* --- Novo JavaScript para o Efeito de Foco dos Cartões de Produto --- */
         document.addEventListener('DOMContentLoaded', () => {
             const productCards = document.querySelectorAll('.product-card'); // Seleciona todos os cartões de produto
 
@@ -959,22 +936,22 @@
                 });
             });
         });
-        /* --- End New JavaScript for Product Cards Focus Effect --- */
+        /* --- Fim do Novo JavaScript para o Efeito de Foco dos Cartões de Produto --- */
 
-        // Initial positioning and carousel update on load
+        // Posicionamento inicial e atualização do carrossel ao carregar
         window.addEventListener('load', () => {
-            updateBodyPadding(); // Initialize padding
-            generateGalleryIndicators(); // Generate gallery indicators on load
-            startGalleryAutoSlide(); // Start auto-slide for gallery
-            updateNewsCarousel(); // Initialize news banner carousel
-            updateNewsIndicators(); // Initialize banner indicators
-            startNewsAutoSlide(); // Start auto-slide for news banner
+            updateBodyPadding(); // Inicializa o padding
+            generateGalleryIndicators(); // Gera os indicadores da galeria ao carregar
+            startGalleryAutoSlide(); // Inicia o auto-slide da galeria
+            updateNewsCarousel(); // Inicializa o carrossel de notícias (banner)
+            updateNewsIndicators(); // Inicializa os indicadores do banner
+            startNewsAutoSlide(); // Inicia o auto-slide do banner de notícias
         });
 
-        // Update positions on window resize
+        // Atualiza as posições no redimensionamento da janela
         window.addEventListener('resize', () => {
-            updateBodyPadding(); // Update padding on resize
-            updateNewsCarousel(); // Update news banner carousel on resize
+            updateBodyPadding(); // Atualiza o padding no redimensionamento
+            updateNewsCarousel(); // Atualiza o carrossel de notícias (banner) no redimensionamento
         });
     </script>
 </body>
