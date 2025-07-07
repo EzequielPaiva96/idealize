@@ -344,6 +344,22 @@
             }
         }
         /* --- End Mobile Header Specific Styles --- */
+
+        /* --- Gradient Text Effect (Header-like) --- */
+        .header-gradient-text {
+            /* Using colors similar to the header's dark gradient */
+            background-image: linear-gradient(to right, #4b5563, #1f2937); /* Dark gray to darker gray */
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent; /* Make text transparent to show background */
+            transition: all 0.5s ease-in-out; /* Smooth transition for hover effect */
+        }
+
+        .header-gradient-text:hover {
+            /* A subtle change on hover, perhaps slightly lighter or a different hue */
+            background-image: linear-gradient(to right, #6b7280, #374151); /* Lighter gray to darker gray on hover */
+        }
+        /* --- End Gradient Text Effect --- */
     </style>
 </head>
 <body class="antialiased">
@@ -384,17 +400,14 @@
                 <!-- Slide 1 do Banner -->
                 <div class="carousel-slide-banner min-w-full flex-shrink-0">
                     <img src="imagens/banner1.jpg" alt="Banner de Notícias 1" class="w-full h-full object-cover object-position-center">
-                    <!-- Conteúdo de texto e overlay removidos, pois a imagem será o foco principal -->
                 </div>
                 <!-- Slide 2 do Banner -->
                 <div class="carousel-slide-banner min-w-full flex-shrink-0">
                     <img src="https://placehold.co/1200x550/3498db/ffffff?text=Banner+2" alt="Banner de Notícias 2" class="w-full h-full object-cover object-position-center">
-                    <!-- Conteúdo de texto e overlay removidos -->
                 </div>
                 <!-- Slide 3 do Banner -->
                 <div class="carousel-slide-banner min-w-full flex-shrink-0">
                     <img src="https://placehold.co/1200x550/2ecc71/ffffff?text=Banner+3" alt="Banner de Notícias 3" class="w-full h-full object-cover object-position-center">
-                    <!-- Conteúdo de texto e overlay removidos -->
                 </div>
             </div>
             <!-- Banner Navigation Arrows -->
@@ -409,18 +422,15 @@
         </div>
     </section>
 
-    <!-- Hero Section (Removida, pois o banner agora atua como Hero) -->
-    <!-- <section class="bg-white py-20 text-center shadow-inner">
+    <!-- Novo Bloco de Texto Abaixo do Banner -->
+    <section class="py-12 bg-white text-center">
         <div class="container mx-auto px-6 max-w-4xl">
-            <h1 class="text-5xl font-extrabold text-gray-900 mb-4 leading-tight">Crie, Personalize, Encante.</h1>
-            <p class="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
-                Transformamos suas ideias em produtos únicos. Explore nosso portfólio de itens personalizados feitos com paixão e precisão.
+            <h2 class="text-4xl font-bold mb-4 header-gradient-text">Somos apaixonados por contar histórias.</h2>
+            <p class="text-xl md:text-2xl text-gray-700 leading-relaxed">
+                Acreditamos que personalizar é mais do que escolher um nome ou uma cor — é dar significado. Por isso, criamos produtos únicos, feitos com carinho, cuidado e identidade. Porque cada pessoa é única, e seus presentes também devem ser.
             </p>
-            <a href="#produtos" class="bg-gray-800 hover:bg-gray-900 text-white font-bold py-3 px-8 rounded-full shadow-lg transition duration-300 ease-in-out transform hover:scale-105">
-                Ver Produtos
-            </a>
         </div>
-    </section> -->
+    </section>
 
     <!-- Video Manifesto Section -->
     <section id="video-manifesto" class="py-16 bg-gray-50">
