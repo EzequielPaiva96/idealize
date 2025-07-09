@@ -12,12 +12,18 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
     <style>
+        /* Universal reset for margin and padding to ensure no browser defaults interfere */
+        html, body {
+            margin: 0;
+            padding: 0;
+        }
+
         /* Estilos globais para o corpo da página */
         body {
             font-family: 'Inter', sans-serif;
             background-color: #f8f8f8; /* Fundo cinza claro */
             color: #333; /* Texto cinza escuro */
-            padding-top: 70px; /* Padding inicial, será atualizado pelo JS */
+            padding-top: 0; /* Alterado de 70px para 0. O padding será definido exclusivamente pelo JS. */
             transition: padding-top 0.3s ease-in-out; /* Transição suave para o padding */
             min-height: 100vh; /* Garante que a página ocupe no mínimo a altura da viewport */
             display: flex;
@@ -52,7 +58,7 @@
             }
             /* Ajusta o padding-top para o body em dispositivos móveis para acomodar o cabeçalho menor */
             body {
-                padding-top: 60px;
+                padding-top: 60px; /* Mantido para dispositivos móveis, será ajustado pelo JS */
             }
             /* Reduz ainda mais o padding-top ao rolar para dispositivos móveis */
             .scrolled-header #main-nav {
