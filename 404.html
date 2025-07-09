@@ -23,14 +23,14 @@
             font-family: 'Inter', sans-serif;
             background-color: #f8f8f8; /* Fundo cinza claro */
             color: #333; /* Texto cinza escuro */
-            padding-top: 0; /* O padding será definido exclusivamente pelo JS. */
+            padding-top: 70px; /* **REINTRODUZIDO**: Padding inicial para desktop, será ajustado pelo JS. */
             transition: padding-top 0.3s ease-in-out; /* Transição suave para o padding */
             min-height: 100vh; /* Garante que a página ocupe no mínimo a altura da viewport */
             display: flex;
             flex-direction: column;
         }
 
-        /* **NOVO**: Estilos para o cabeçalho fixo */
+        /* Estilos para o cabeçalho fixo */
         #main-header {
             position: fixed; /* Fixa o cabeçalho no topo da viewport */
             top: 0; /* Alinha o cabeçalho ao topo */
@@ -66,8 +66,10 @@
             #header-logo {
                 height: 48px;
             }
-            /* **REMOVIDO**: padding-top do body aqui, agora gerenciado apenas pelo JS */
-            /* body { padding-top: 60px; } */
+            /* **REINTRODUZIDO**: Ajusta o padding-top para o body em dispositivos móveis para acomodar o cabeçalho menor */
+            body {
+                padding-top: 60px;
+            }
 
             /* Reduz ainda mais o padding-top ao rolar para dispositivos móveis */
             .scrolled-header #main-nav {
@@ -77,8 +79,10 @@
             .scrolled-header #header-logo {
                 height: 32px;
             }
-            /* **REMOVIDO**: padding-top do body aqui, agora gerenciado apenas pelo JS */
-            /* .scrolled-header body { padding-top: 40px; } */
+            /* **REINTRODUZIDO**: Ajusta o padding-top do body ao rolar para dispositivos móveis */
+            .scrolled-header body {
+                padding-top: 40px;
+            }
 
             /* Mobile menu specific styles */
             #mobile-menu {
