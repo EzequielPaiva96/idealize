@@ -65,6 +65,52 @@
             .scrolled-header body {
                 padding-top: 40px;
             }
+            /* Mobile menu specific styles */
+            #mobile-menu {
+                display: none; /* Hidden by default */
+                position: absolute;
+                top: 100%; /* Position below the header */
+                left: 0;
+                width: 100%;
+                background-color: #ffffff; /* White background for the menu */
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+                z-index: 40; /* Above other content, below fixed elements */
+                flex-direction: column;
+                padding: 1rem 0;
+            }
+            #mobile-menu.open-menu {
+                display: flex; /* Show when open */
+            }
+            #mobile-menu a {
+                padding: 0.75rem 1.5rem;
+                color: #333;
+                text-align: center;
+                border-bottom: 1px solid #eee;
+            }
+            #mobile-menu a:last-child {
+                border-bottom: none;
+            }
+            #mobile-menu a:hover {
+                background-color: #f0f0f0;
+            }
+
+            /* Hamburger icon animation */
+            .hamburger-icon div {
+                width: 25px;
+                height: 3px;
+                background-color: #333;
+                margin: 5px 0;
+                transition: all 0.3s ease;
+            }
+            .hamburger-icon.open .bar1 {
+                transform: rotate(-45deg) translate(-5px, 6px);
+            }
+            .hamburger-icon.open .bar2 {
+                opacity: 0;
+            }
+            .hamburger-icon.open .bar3 {
+                transform: rotate(45deg) translate(-5px, -6px);
+            }
         }
         /* --- Fim dos Estilos Específicos do Cabeçalho Móvel --- */
 
@@ -128,7 +174,7 @@
                 <a href="index.html" class="bg-gray-700 hover:bg-gray-800 text-white font-bold py-3 px-6 rounded-full transition duration-300 ease-in-out transform hover:scale-105 shadow-lg">
                     <i class="fas fa-home mr-2"></i> Ir para a Página Inicial
                 </a>
-                <a href="#produtos" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-6 rounded-full transition duration-300 ease-in-out transform hover:scale-105 shadow-lg">
+                <a href="index.html#produtos" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-6 rounded-full transition duration-300 ease-in-out transform hover:scale-105 shadow-lg">
                     <i class="fas fa-box-open mr-2"></i> Ver Nossos Produtos
                 </a>
             </div>
@@ -158,8 +204,10 @@
                 }
                 const html = await response.text();
                 document.getElementById(elementId).innerHTML = html;
+                return true; // Indica que o carregamento foi bem-sucedido
             } catch (error) {
                 console.error(`Não foi possível carregar ${filePath}:`, error);
+                return false; // Indica que o carregamento falhou
             }
         }
 
@@ -169,10 +217,11 @@
             const mainNav = document.getElementById('main-nav');
             const headerLogo = document.getElementById('header-logo');
             const body = document.body;
-            const mobileMenu = document.getElementById('mobile-menu'); // Pode não existir na 404
-            const hamburgerIcon = document.getElementById('hamburger-icon'); // Pode não existir na 404
-            const mobileMenuButton = document.getElementById('mobile-menu-button'); // Pode não existir na 404
+            const mobileMenu = document.getElementById('mobile-menu');
+            const hamburgerIcon = document.getElementById('hamburger-icon');
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
 
+            // Função para atualizar o padding do body com base na altura do cabeçalho
             function updateBodyPadding() {
                 if (mainHeader) {
                     body.style.paddingTop = `${mainHeader.offsetHeight}px`;
@@ -181,15 +230,25 @@
 
             // Toggle do menu móvel (se os elementos existirem)
             if (mobileMenuButton && mobileMenu && hamburgerIcon) {
-                mobileMenuButton.addEventListener('click', () => {
+                // Remove qualquer listener anterior para evitar duplicatas em chamadas repetidas (ex: resize)
+                mobileMenuButton.removeEventListener('click', toggleMobileMenu);
+                mobileMenuButton.addEventListener('click', toggleMobileMenu);
+
+                function toggleMobileMenu() {
                     mobileMenu.classList.toggle('open-menu');
                     hamburgerIcon.classList.toggle('open');
-                });
+                }
+            } else {
+                console.warn("Elementos do menu móvel (botão, menu ou ícone) não encontrados. A funcionalidade do menu pode não estar ativa.");
             }
 
             // Smooth scrolling para links de navegação (para links internos na mesma página)
             document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function (e) {
+                // Remove qualquer listener anterior para evitar duplicatas
+                anchor.removeEventListener('click', handleSmoothScroll);
+                anchor.addEventListener('click', handleSmoothScroll);
+
+                function handleSmoothScroll(e) {
                     // Previne o comportamento padrão apenas se o link for interno (começa com #)
                     // e não for um link vazio ou apenas '#'
                     if (this.getAttribute('href').length > 1) {
@@ -205,13 +264,20 @@
                     // Fecha o menu móvel se estiver aberto (se os elementos existirem)
                     if (mobileMenu && mobileMenu.classList.contains('open-menu')) {
                         mobileMenu.classList.remove('open-menu');
-                        hamburgerIcon.classList.remove('open');
+                        if (hamburgerIcon) { // Garante que o ícone exista antes de tentar remover a classe
+                            hamburgerIcon.classList.remove('open');
+                        }
                     }
-                });
+                }
             });
 
             // Lógica do Cabeçalho Fixo (encolher ao rolar)
-            window.addEventListener('scroll', () => {
+            // Usa uma função nomeada para que possa ser removida e adicionada se necessário,
+            // embora para o 'scroll' event, geralmente não é um problema ter múltiplos listeners.
+            window.removeEventListener('scroll', handleHeaderScroll);
+            window.addEventListener('scroll', handleHeaderScroll);
+
+            function handleHeaderScroll() {
                 const scrollThreshold = 50;
                 if (window.scrollY > scrollThreshold) {
                     if (mainNav) { mainNav.classList.remove('py-2'); mainNav.classList.add('py-1'); }
@@ -223,19 +289,27 @@
                     if (mainHeader) { mainHeader.classList.remove('scrolled-header'); }
                 }
                 updateBodyPadding();
-            });
+            }
 
             updateBodyPadding(); // Atualiza o padding do body no carregamento inicial
         }
 
         // Ação principal ao carregar o DOM
         document.addEventListener('DOMContentLoaded', async () => {
-            await loadHTML('header-placeholder', 'header.html');
+            // Carrega o cabeçalho e, se bem-sucedido, inicializa os scripts
+            const headerLoaded = await loadHTML('header-placeholder', 'header.html');
+            if (headerLoaded) {
+                initPageScripts(); // Chama a inicialização dos scripts imediatamente após o cabeçalho ser carregado
+            } else {
+                console.error("Não foi possível carregar o cabeçalho. Algumas funcionalidades podem não estar disponíveis.");
+            }
+
+            // Carrega o rodapé
             await loadHTML('footer-placeholder', 'footer.html');
-            initPageScripts();
         });
 
         // Adiciona um listener para o evento resize da janela para recalcular o padding do body
+        // e re-inicializar scripts que dependem do layout.
         window.addEventListener('resize', () => {
             initPageScripts();
         });
