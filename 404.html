@@ -23,12 +23,22 @@
             font-family: 'Inter', sans-serif;
             background-color: #f8f8f8; /* Fundo cinza claro */
             color: #333; /* Texto cinza escuro */
-            padding-top: 0; /* Alterado de 70px para 0. O padding será definido exclusivamente pelo JS. */
+            padding-top: 0; /* O padding será definido exclusivamente pelo JS. */
             transition: padding-top 0.3s ease-in-out; /* Transição suave para o padding */
             min-height: 100vh; /* Garante que a página ocupe no mínimo a altura da viewport */
             display: flex;
             flex-direction: column;
         }
+
+        /* **NOVO**: Estilos para o cabeçalho fixo */
+        #main-header {
+            position: fixed; /* Fixa o cabeçalho no topo da viewport */
+            top: 0; /* Alinha o cabeçalho ao topo */
+            width: 100%; /* Ocupa toda a largura */
+            z-index: 50; /* Garante que o cabeçalho fique acima de outros conteúdos */
+            /* As cores de fundo e outros paddings do cabeçalho devem vir do header.html */
+        }
+
         /* Estilo para títulos de seção com linha inferior */
         .section-title {
             position: relative;
@@ -56,10 +66,9 @@
             #header-logo {
                 height: 48px;
             }
-            /* Ajusta o padding-top para o body em dispositivos móveis para acomodar o cabeçalho menor */
-            body {
-                padding-top: 60px; /* Mantido para dispositivos móveis, será ajustado pelo JS */
-            }
+            /* **REMOVIDO**: padding-top do body aqui, agora gerenciado apenas pelo JS */
+            /* body { padding-top: 60px; } */
+
             /* Reduz ainda mais o padding-top ao rolar para dispositivos móveis */
             .scrolled-header #main-nav {
                 padding-top: 0.125rem;
@@ -68,9 +77,9 @@
             .scrolled-header #header-logo {
                 height: 32px;
             }
-            .scrolled-header body {
-                padding-top: 40px;
-            }
+            /* **REMOVIDO**: padding-top do body aqui, agora gerenciado apenas pelo JS */
+            /* .scrolled-header body { padding-top: 40px; } */
+
             /* Mobile menu specific styles */
             #mobile-menu {
                 display: none; /* Hidden by default */
@@ -80,7 +89,7 @@
                 width: 100%;
                 background-color: #ffffff; /* White background for the menu */
                 box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-                z-index: 40; /* Above other content, below fixed elements */
+                z-index: 40; /* Acima de outro conteúdo, abaixo de elementos fixos */
                 flex-direction: column;
                 padding: 1rem 0;
             }
@@ -219,6 +228,8 @@
 
         // Função para inicializar comportamentos da página
         function initPageScripts() {
+            // **IMPORTANTE**: Certifique-se de que o seu 'header.html' contém um elemento com o ID 'main-header'.
+            // Sem ele, o cálculo do padding não funcionará corretamente.
             const mainHeader = document.getElementById('main-header');
             const mainNav = document.getElementById('main-nav');
             const headerLogo = document.getElementById('header-logo');
