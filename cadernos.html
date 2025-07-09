@@ -148,12 +148,12 @@
             transform: translateY(-5px); /* Move link up slightly on hover */
         }
 
-        /* Custom Styles for Notebook Card Hover Effect - Increased Effect */
-        .notebook-card-hover {
+        /* Custom Styles for Mug Card Hover Effect - Increased Effect */
+        .mug-card-hover {
             transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
         }
 
-        .notebook-card-hover:hover {
+        .mug-card-hover:hover {
             transform: translateY(-10px) scale(1.05); /* Move up more and enlarge more on hover */
             box-shadow: 0 15px 25px -5px rgba(0, 0, 0, 0.2), 0 8px 10px -6px rgba(0, 0, 0, 0.1); /* Add a much stronger shadow */
         }
@@ -334,18 +334,50 @@
             <!-- Section describing the quality and customization of notebooks -->
             <section class="grid grid-cols-1 md:grid-cols-2 gap-10 items-stretch">
                 <!-- Notebook Detail 1: Quality and Versatility -->
-                <div class="bg-white rounded-xl shadow-lg overflow-hidden p-6 flex flex-col notebook-card-hover">
-                    <img src="https://placehold.co/600x400/D1D5DB/000000?text=Caderno+Detalhe+1" alt="Caderno personalizado de alta qualidade, mostrando capa e acabamento." class="w-full h-auto rounded-lg mb-4">
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden p-6 flex flex-col mug-card-hover">
+                    <img src="https://placehold.co/600x400/D1D5DB/000000?text=Caderno+Detalhe+1" alt="Caderno personalizado com capa dura e design exclusivo." class="w-full h-auto rounded-lg mb-4">
                     <p class="text-gray-700 text-lg flex-grow">
-                        Nossos cadernos são produzidos com materiais de alta qualidade, garantindo durabilidade e uma experiência de escrita superior. Perfeitos para anotações, esboços ou como diário.
+                        Nossos cadernos personalizados são ideais para organizar suas ideias, estudos ou trabalho. Com materiais de alta qualidade, eles oferecem durabilidade e um toque único para o seu dia a dia.
                     </p>
                 </div>
-                <!-- Notebook Detail 2: Customization Options -->
-                <div class="bg-white rounded-xl shadow-lg overflow-hidden p-6 flex flex-col notebook-card-hover">
-                    <img src="https://placehold.co/600x400/D1D5DB/000000?text=Caderno+Detalhe+2" alt="Caderno personalizado com um design exclusivo, mostrando a versatilidade de fotos, frases ou logotipos." class="w-full h-auto rounded-lg mb-4">
+                <!-- Notebook Detail 2: Perfect for Gifts and Branding -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden p-6 flex flex-col mug-card-hover">
+                    <img src="https://placehold.co/600x400/D1D5DB/000000?text=Caderno+Detalhe+2" alt="Caderno com logotipo de empresa, mostrando opções de personalização para brindes." class="w-full h-auto rounded-lg mb-4">
                     <p class="text-gray-700 text-lg flex-grow">
-                        Personalize seu caderno com fotos, frases inspiradoras, logotipos da sua empresa ou qualquer design que desejar. Ideal para uso pessoal, presentes ou brindes corporativos!
+                        Personalize com seu nome, fotos, frases inspiradoras, ou o logotipo da sua empresa. Perfeito para presentear, usar como brinde corporativo ou para expressar sua criatividade.
                     </p>
+                </div>
+            </section>
+
+            <!-- New Section: Product Details/Description -->
+            <section class="mt-12 p-8">
+                <h2 class="text-3xl font-semibold text-center text-gray-800 mb-6 section-title mx-auto">Detalhes do Produto</h2>
+                <div class="text-gray-700 text-lg leading-relaxed space-y-4">
+                    <div>
+                        <h3 class="font-bold text-xl text-gray-800 mb-2">Quantidade de Folhas:</h3>
+                        <p>Oferecemos cadernos com diversas opções de folhas para atender às suas necessidades:</p>
+                        <ul class="list-disc list-inside ml-4">
+                            <li><strong>90 folhas (180 páginas):</strong> Ideal para uso diário e anotações.</li>
+                            <li><strong>120 folhas (240 páginas):</strong> Mais espaço para projetos e estudos aprofundados.</li>
+                            <li><strong>150 folhas (300 páginas):</strong> Para quem precisa de muito espaço e longa duração.</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-xl text-gray-800 mb-2">Capa e Laminação:</h3>
+                        <p>Nossas capas são produzidas com <strong>material rígido de alta qualidade</strong>, garantindo proteção e durabilidade ao seu caderno. Você pode escolher o acabamento da laminação:</p>
+                        <ul class="list-disc list-inside ml-4">
+                            <li><strong>Laminação Fosca:</strong> Proporciona um toque suave e elegante, com efeito anti-reflexo.</li>
+                            <li><strong>Laminação Brilho:</strong> Oferece cores mais vibrantes e um acabamento luminoso, destacando a arte.</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-xl text-gray-800 mb-2">Tamanhos Disponíveis:</h3>
+                        <p>Disponibilizamos nossos cadernos em tamanhos versáteis para se adequar ao seu uso:</p>
+                        <ul class="list-disc list-inside ml-4">
+                            <li><strong>A5 (14,8 x 21 cm):</strong> Compacto e prático para levar na bolsa.</li>
+                            <li><strong>A4 (21 x 29,7 cm):</strong> Tamanho padrão para maior espaço de escrita e desenho.</li>
+                        </ul>
+                    </div>
                 </div>
             </section>
 
@@ -353,7 +385,7 @@
             <section class="mt-12 text-center">
                 <h2 class="text-3xl font-semibold text-gray-800 mb-6">Como Personalizar o Seu?</h2>
                 <p class="text-lg text-gray-700 leading-relaxed mb-6">
-                    Envie-nos sua ideia, foto ou arte através do nosso WhatsApp. Nossa equipe criará uma prévia para sua aprovação antes da produção. Simples, rápido e do seu jeito!
+                    Envie-nos sua arte, foto ou ideia através do nosso WhatsApp. Nossa equipe criará uma prévia para sua aprovação antes da produção. Simples, rápido e do seu jeito!
                 </p>
                 <!-- WhatsApp Call to Action Button -->
                 <a href="https://wa.me/+5598984204274" target="_blank" class="inline-block bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-8 rounded-full transition duration-300 ease-in-out transform hover:scale-105">
@@ -361,7 +393,7 @@
                 </a>
             </section>
 
-            <!-- Image Section for Recent Works -->
+            <!-- Image Strip Section with Animation -->
             <section class="mt-20">
                 <h2 class="text-3xl font-semibold text-center text-gray-800 mb-8 section-title mx-auto">Nossos Trabalhos Recentes</h2>
                 <div class="image-animation-viewport">
