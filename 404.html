@@ -92,10 +92,11 @@
 
         /* Mobile Menu Slide Animation */
         #mobile-menu {
-            max-height: 0;
-            opacity: 0;
+            /* Changed properties for better transition */
+            height: 0; /* Start with height 0 */
             overflow: hidden;
-            transition: max-height 0.5s ease-out, opacity 0.3s ease-out;
+            transition: height 0.5s ease-out, opacity 0.3s ease-out; /* Transition height and opacity */
+            opacity: 0; /* Start with opacity 0 */
             position: absolute;
             top: 100%; /* Position below the header */
             left: 0;
@@ -106,7 +107,8 @@
         }
 
         #mobile-menu.open-menu {
-            max-height: 500px; /* Sufficient height to show all menu items */
+            height: auto; /* Allow height to adjust to content */
+            max-height: 500px; /* Still good to have a max-height to prevent issues with very long content */
             opacity: 1;
         }
 
@@ -335,9 +337,9 @@
                     if (mainHeader) { mainHeader.classList.add('scrolled-header'); }
                     // Ajusta o padding-top do body quando o cabeçalho encolhe
                     if (window.innerWidth <= 767) { // Para mobile
-                         body.style.paddingTop = '40px';
+                        body.style.paddingTop = '40px';
                     } else { // Para desktop
-                         body.style.paddingTop = '48px'; // Altura do cabeçalho encolhido em desktop (h-12)
+                        body.style.paddingTop = '48px'; // Altura do cabeçalho encolhido em desktop (h-12)
                     }
                 } else {
                     if (mainNav) { mainNav.classList.remove('py-1'); mainNav.classList.add('py-2'); }
