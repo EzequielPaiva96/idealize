@@ -23,20 +23,20 @@
             font-family: 'Inter', sans-serif;
             background-color: #f8f8f8; /* Fundo cinza claro */
             color: #333; /* Texto cinza escuro */
-            padding-top: 70px; /* **REINTRODUZIDO**: Padding inicial para desktop, será ajustado pelo JS. */
+            /* Padding inicial para desktop, correspondendo à altura do cabeçalho */
+            padding-top: 70px; /* Altura padrão do cabeçalho */
             transition: padding-top 0.3s ease-in-out; /* Transição suave para o padding */
             min-height: 100vh; /* Garante que a página ocupe no mínimo a altura da viewport */
             display: flex;
             flex-direction: column;
         }
 
-        /* Estilos para o cabeçalho fixo */
+        /* Estilos para o cabeçalho fixo (já presente no header.html, mas mantido para clareza) */
         #main-header {
             position: fixed; /* Fixa o cabeçalho no topo da viewport */
             top: 0; /* Alinha o cabeçalho ao topo */
             width: 100%; /* Ocupa toda a largura */
             z-index: 50; /* Garante que o cabeçalho fique acima de outros conteúdos */
-            /* As cores de fundo e outros paddings do cabeçalho devem vir do header.html */
         }
 
         /* Estilo para títulos de seção com linha inferior */
@@ -57,6 +57,59 @@
             border-radius: 9999px;
         }
 
+        /* Hamburger menu icon animation styles */
+        .hamburger-icon {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 30px;
+            height: 20px;
+            cursor: pointer;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .hamburger-icon span {
+            display: block;
+            width: 100%;
+            height: 3px;
+            background-color: white; /* Cor das barras do hambúrguer */
+            border-radius: 2px;
+            transition: all 0.3s ease-in-out;
+        }
+
+        /* Hamburger icon transformation when open */
+        .hamburger-icon.open span:nth-child(1) {
+            transform: translateY(8.5px) rotate(45deg);
+        }
+
+        .hamburger-icon.open span:nth-child(2) {
+            opacity: 0; /* Hide the middle bar */
+        }
+
+        .hamburger-icon.open span:nth-child(3) {
+            transform: translateY(-8.5px) rotate(-45deg);
+        }
+
+        /* Mobile Menu Slide Animation */
+        #mobile-menu {
+            max-height: 0;
+            opacity: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-out, opacity 0.3s ease-out;
+            position: absolute;
+            top: 100%; /* Position below the header */
+            left: 0;
+            width: 100%;
+            background-color: rgba(31, 41, 55, 0.95); /* Semi-transparent dark background */
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            z-index: 40; /* Ensure it's above other content but below fixed header */
+        }
+
+        #mobile-menu.open-menu {
+            max-height: 500px; /* Sufficient height to show all menu items */
+            opacity: 1;
+        }
+
         /* --- Estilos Específicos do Cabeçalho Móvel (copiados do index.html para consistência) --- */
         @media (max-width: 767px) {
             #main-nav {
@@ -66,9 +119,9 @@
             #header-logo {
                 height: 48px;
             }
-            /* **REINTRODUZIDO**: Ajusta o padding-top para o body em dispositivos móveis para acomodar o cabeçalho menor */
+            /* Ajusta o padding-top para o body em dispositivos móveis para acomodar o cabeçalho menor */
             body {
-                padding-top: 60px;
+                padding-top: 60px; /* Altura padrão do cabeçalho em mobile */
             }
 
             /* Reduz ainda mais o padding-top ao rolar para dispositivos móveis */
@@ -79,57 +132,18 @@
             .scrolled-header #header-logo {
                 height: 32px;
             }
-            /* **REINTRODUZIDO**: Ajusta o padding-top do body ao rolar para dispositivos móveis */
             .scrolled-header body {
-                padding-top: 40px;
+                padding-top: 40px; /* Altura do cabeçalho encolhido em mobile */
             }
 
-            /* Mobile menu specific styles */
+            /* Mobile menu specific styles (já definidos acima, mas mantidos para consistência de agrupamento de media query) */
             #mobile-menu {
-                display: none; /* Hidden by default */
-                position: absolute;
-                top: 100%; /* Position below the header */
-                left: 0;
-                width: 100%;
-                background-color: #ffffff; /* White background for the menu */
-                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-                z-index: 40; /* Acima de outro conteúdo, abaixo de elementos fixos */
-                flex-direction: column;
+                /* As propriedades de max-height, opacity, overflow, position etc. já estão definidas fora da media query */
+                /* Apenas garantindo que o display: flex seja aplicado quando a classe open-menu está presente */
+                flex-direction: column; /* Garante que os itens do menu fiquem em coluna */
                 padding: 1rem 0;
             }
-            #mobile-menu.open-menu {
-                display: flex; /* Show when open */
-            }
-            #mobile-menu a {
-                padding: 0.75rem 1.5rem;
-                color: #333;
-                text-align: center;
-                border-bottom: 1px solid #eee;
-            }
-            #mobile-menu a:last-child {
-                border-bottom: none;
-            }
-            #mobile-menu a:hover {
-                background-color: #f0f0f0;
-            }
-
-            /* Hamburger icon animation */
-            .hamburger-icon div {
-                width: 25px;
-                height: 3px;
-                background-color: #333;
-                margin: 5px 0;
-                transition: all 0.3s ease;
-            }
-            .hamburger-icon.open .bar1 {
-                transform: rotate(-45deg) translate(-5px, 6px);
-            }
-            .hamburger-icon.open .bar2 {
-                opacity: 0;
-            }
-            .hamburger-icon.open .bar3 {
-                transform: rotate(45deg) translate(-5px, -6px);
-            }
+            /* As regras .hamburger-icon div e .hamburger-icon.open .barX foram removidas daqui */
         }
         /* --- Fim dos Estilos Específicos do Cabeçalho Móvel --- */
 
@@ -178,8 +192,39 @@
     </style>
 </head>
 <body class="antialiased">
-    <!-- Placeholder para o Cabeçalho -->
-    <div id="header-placeholder"></div>
+    <!-- Cabeçalho Integrado Diretamente no HTML -->
+    <header id="main-header" class="fixed top-0 w-full z-50 bg-gradient-to-r from-gray-700 to-gray-900 text-white shadow-lg">
+        <nav id="main-nav" class="container mx-auto px-6 py-2 flex justify-between items-center transition-all duration-300 ease-in-out">
+            <!-- O link do logo agora aponta para index.html para voltar à página principal -->
+            <a href="index.html" class="logo-link text-3xl font-bold rounded-lg p-2 flex items-center">
+                <img id="header-logo" src="imagens/logo.png" alt="Logo Idealize Store" class="h-16 w-auto mr-2 transition-all duration-300 ease-in-out">
+            </a>
+            <!-- Botão do Menu Móvel (Hambúrguer) -->
+            <button id="mobile-menu-button" class="md:hidden text-white focus:outline-none">
+                <div class="hamburger-icon" id="hamburger-icon">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </button>
+            <!-- Links de Navegação para Desktop -->
+            <div class="hidden md:flex space-x-6">
+                <!-- Links de navegação agora apontam explicitamente para index.html#secao para garantir que funcionem de qualquer página -->
+                <a href="index.html#Home" class="nav-link-jump text-white hover:text-gray-300 transition duration-300 rounded-md px-3 py-2">Home</a>
+                <a href="index.html#produtos" class="nav-link-jump text-white hover:text-gray-300 transition duration-300 rounded-md px-3 py-2">Produtos</a>
+                <a href="index.html#sobre" class="nav-link-jump text-white hover:text-gray-300 transition duration-300 rounded-md px-3 py-2">Sobre Nós</a>
+                <a href="index.html#carousel" class="nav-link-jump text-white hover:text-gray-300 transition duration-300 rounded-md px-3 py-2">Galeria</a>
+            </div>
+        </nav>
+        <!-- Menu Móvel -->
+        <div id="mobile-menu" class="md:hidden bg-gray-800 pb-4">
+            <!-- Links do menu móvel também apontam explicitamente para index.html#secao -->
+            <a href="index.html#Home" class="block text-white px-6 py-3 hover:bg-gray-900 transition duration-300">Home</a>
+            <a href="index.html#produtos" class="block text-white px-6 py-3 hover:bg-gray-900 transition duration-300">Produtos</a>
+            <a href="index.html#sobre" class="block text-white px-6 py-3 hover:bg-gray-900 transition duration-300">Sobre Nós</a>
+            <a href="index.html#carousel" class="block text-white px-6 py-3 hover:bg-gray-900 transition duration-300">Galeria</a>
+        </div>
+    </header>
 
     <main class="flex items-center justify-center py-16 bg-gray-50 text-center">
         <div class="container mx-auto px-6 max-w-2xl">
@@ -213,7 +258,7 @@
     <div id="footer-placeholder"></div>
 
     <script>
-        // Função para carregar conteúdo HTML em um placeholder
+        // Função para carregar conteúdo HTML em um placeholder (agora só para o rodapé)
         async function loadHTML(elementId, filePath) {
             try {
                 const absoluteUrl = new URL(filePath, window.location.href).href;
@@ -223,17 +268,15 @@
                 }
                 const html = await response.text();
                 document.getElementById(elementId).innerHTML = html;
-                return true; // Indica que o carregamento foi bem-sucedido
+                return true;
             } catch (error) {
                 console.error(`Não foi possível carregar ${filePath}:`, error);
-                return false; // Indica que o carregamento falhou
+                return false;
             }
         }
 
         // Função para inicializar comportamentos da página
         function initPageScripts() {
-            // **IMPORTANTE**: Certifique-se de que o seu 'header.html' contém um elemento com o ID 'main-header'.
-            // Sem ele, o cálculo do padding não funcionará corretamente.
             const mainHeader = document.getElementById('main-header');
             const mainNav = document.getElementById('main-nav');
             const headerLogo = document.getElementById('header-logo');
@@ -242,16 +285,8 @@
             const hamburgerIcon = document.getElementById('hamburger-icon');
             const mobileMenuButton = document.getElementById('mobile-menu-button');
 
-            // Função para atualizar o padding do body com base na altura do cabeçalho
-            function updateBodyPadding() {
-                if (mainHeader) {
-                    body.style.paddingTop = `${mainHeader.offsetHeight}px`;
-                }
-            }
-
             // Toggle do menu móvel (se os elementos existirem)
             if (mobileMenuButton && mobileMenu && hamburgerIcon) {
-                // Remove qualquer listener anterior para evitar duplicatas em chamadas repetidas (ex: resize)
                 mobileMenuButton.removeEventListener('click', toggleMobileMenu);
                 mobileMenuButton.addEventListener('click', toggleMobileMenu);
 
@@ -265,13 +300,10 @@
 
             // Smooth scrolling para links de navegação (para links internos na mesma página)
             document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                // Remove qualquer listener anterior para evitar duplicatas
                 anchor.removeEventListener('click', handleSmoothScroll);
                 anchor.addEventListener('click', handleSmoothScroll);
 
                 function handleSmoothScroll(e) {
-                    // Previne o comportamento padrão apenas se o link for interno (começa com #)
-                    // e não for um link vazio ou apenas '#'
                     if (this.getAttribute('href').length > 1) {
                         e.preventDefault();
                         const targetId = this.getAttribute('href').substring(1);
@@ -282,10 +314,9 @@
                             });
                         }
                     }
-                    // Fecha o menu móvel se estiver aberto (se os elementos existirem)
                     if (mobileMenu && mobileMenu.classList.contains('open-menu')) {
                         mobileMenu.classList.remove('open-menu');
-                        if (hamburgerIcon) { // Garante que o ícone exista antes de tentar remover a classe
+                        if (hamburgerIcon) {
                             hamburgerIcon.classList.remove('open');
                         }
                     }
@@ -293,8 +324,6 @@
             });
 
             // Lógica do Cabeçalho Fixo (encolher ao rolar)
-            // Usa uma função nomeada para que possa ser removida e adicionada se necessário,
-            // embora para o 'scroll' event, geralmente não é um problema ter múltiplos listeners.
             window.removeEventListener('scroll', handleHeaderScroll);
             window.addEventListener('scroll', handleHeaderScroll);
 
@@ -304,35 +333,43 @@
                     if (mainNav) { mainNav.classList.remove('py-2'); mainNav.classList.add('py-1'); }
                     if (headerLogo) { headerLogo.classList.remove('h-16'); headerLogo.classList.add('h-12'); }
                     if (mainHeader) { mainHeader.classList.add('scrolled-header'); }
+                    // Ajusta o padding-top do body quando o cabeçalho encolhe
+                    if (window.innerWidth <= 767) { // Para mobile
+                         body.style.paddingTop = '40px';
+                    } else { // Para desktop
+                         body.style.paddingTop = '48px'; // Altura do cabeçalho encolhido em desktop (h-12)
+                    }
                 } else {
                     if (mainNav) { mainNav.classList.remove('py-1'); mainNav.classList.add('py-2'); }
                     if (headerLogo) { headerLogo.classList.remove('h-12'); headerLogo.classList.add('h-16'); }
                     if (mainHeader) { mainHeader.classList.remove('scrolled-header'); }
+                    // Restaura o padding-top do body para a altura padrão do cabeçalho
+                    if (window.innerWidth <= 767) { // Para mobile
+                        body.style.paddingTop = '60px';
+                    } else { // Para desktop
+                        body.style.paddingTop = '70px'; // Altura padrão do cabeçalho
+                    }
                 }
-                updateBodyPadding();
             }
 
-            updateBodyPadding(); // Atualiza o padding do body no carregamento inicial
+            // Chamada inicial para garantir que o padding do body esteja correto ao carregar
+            // com base na altura inicial do cabeçalho.
+            handleHeaderScroll(); // Simula uma rolagem para aplicar o padding inicial correto
         }
 
         // Ação principal ao carregar o DOM
         document.addEventListener('DOMContentLoaded', async () => {
-            // Carrega o cabeçalho e, se bem-sucedido, inicializa os scripts
-            const headerLoaded = await loadHTML('header-placeholder', 'header.html');
-            if (headerLoaded) {
-                initPageScripts(); // Chama a inicialização dos scripts imediatamente após o cabeçalho ser carregado
-            } else {
-                console.error("Não foi possível carregar o cabeçalho. Algumas funcionalidades podem não estar disponíveis.");
-            }
-
-            // Carrega o rodapé
+            // Carrega apenas o rodapé, pois o cabeçalho agora está embutido
             await loadHTML('footer-placeholder', 'footer.html');
+
+            // Inicializa os scripts da página, incluindo a lógica do cabeçalho
+            initPageScripts();
         });
 
-        // Adiciona um listener para o evento resize da janela para recalcular o padding do body
+        // Event listener para o evento resize da janela para recalcular o padding do body
         // e re-inicializar scripts que dependem do layout.
         window.addEventListener('resize', () => {
-            initPageScripts();
+            initPageScripts(); // Re-executa para ajustar o padding e outras lógicas responsivas
         });
     </script>
 </body>
