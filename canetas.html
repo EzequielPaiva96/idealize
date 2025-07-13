@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Idealize Store - Canetas Personalizadas</title>
+    <!-- Tailwind CSS CDN for utility-first styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome for icons, specifically the WhatsApp icon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Google Fonts: Inter for general text and Dancing Script for a decorative touch -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* Definindo uma variável CSS para o espaçamento entre as imagens */
+        :root {
+            --image-gap: 1rem; /* Tamanho do espaçamento entre as imagens */
+        }
+
+        /* Base body styles for font, background, and text color */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8f8f8; /* Light gray background */
+            color: #333; /* Dark gray text */
+            padding-top: 70px; /* Initial padding, will be updated dynamically by JS based on header height */
+            transition: padding-top 0.3s ease-in-out; /* Smooth transition for padding changes */
+        }
+
+        /* Styles for the section title underline effect */
+        .section-title {
+            position: relative;
+            display: inline-block;
+            padding-bottom: 8px; /* Space for the underline */
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%); /* Center the underline */
+            bottom: 0;
+            width: 30%; /* Smaller width for the underline */
+            height: 3px;
+            background-color: rgba(107, 114, 128, 0.5); /* More transparent gray color for the underline */
+            border-radius: 9999px; /* Rounded ends for the underline */
+        }
+
+        /* Hamburger menu icon animation styles */
+        .hamburger-icon {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 30px;
+            height: 20px;
+            cursor: pointer;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .hamburger-icon span {
+            display: block;
+            width: 100%;
+            height: 3px;
+            background-color: white;
+            border-radius: 2px;
+            transition: all 0.3s ease-in-out;
+        }
+
+        /* Hamburger icon transformation when open */
+        .hamburger-icon.open span:nth-child(1) {
+            transform: translateY(8.5px) rotate(45deg);
+        }
+
+        .hamburger-icon.open span:nth-child(2) {
+            opacity: 0; /* Hide the middle bar */
+        }
+
+        .hamburger-icon.open span:nth-child(3) {
+            transform: translateY(-8.5px) rotate(-45deg);
+        }
+
+        /* Mobile Menu Slide Animation */
+        #mobile-menu {
+            max-height: 0;
+            opacity: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-out, opacity 0.3s ease-out;
+            position: absolute;
+            top: 100%; /* Position below the header */
+            left: 0;
+            width: 100%;
+            background-color: rgba(31, 41, 55, 0.95); /* Semi-transparent dark background */
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            z-index: 40; /* Ensure it's above other content but below fixed header */
+        }
+
+        #mobile-menu.open-menu {
+            max-height: 500px; /* Sufficient height to show all menu items */
+            opacity: 1;
+        }
+
+        /* Mobile Header Specific Styles */
+        @media (max-width: 767px) {
+            #main-nav {
+                padding-top: 0.5rem;
+                padding-bottom: 0.5rem;
+            }
+
+            #header-logo {
+                height: 48px;
+            }
+
+            /* Adjust padding-top for body on mobile to account for smaller header */
+            body {
+                padding-top: 60px;
+            }
+
+            /* Further reduce padding-top on scroll for mobile */
+            .scrolled-header #main-nav {
+                padding-top: 0.125rem;
+                padding-bottom: 0.125rem;
+            }
+
+            .scrolled-header #header-logo {
+                height: 32px;
+            }
+
+            .scrolled-header body {
+                padding-top: 40px;
+            }
+        }
+
+        /* Custom Styles for Logo Hover Effect */
+        .logo-link {
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .logo-link:hover {
+            transform: scale(1.05); /* Slightly enlarge logo on hover */
+        }
+
+        /* Custom Styles for Navigation Link Hover Effect (Jump) */
+        .nav-link-jump {
+            position: relative;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .nav-link-jump:hover {
+            transform: translateY(-5px); /* Move link up slightly on hover */
+        }
+
+        /* Custom Styles for Mug Card Hover Effect - Increased Effect */
+        .mug-card-hover {
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        }
+
+        .mug-card-hover:hover {
+            transform: translateY(-10px) scale(1.05); /* Move up more and enlarge more on hover */
+            box-shadow: 0 15px 25px -5px rgba(0, 0, 0, 0.2), 0 8px 10px -6px rgba(0, 0, 0, 0.1); /* Add a much stronger shadow */
+        }
+
+        /* New CSS for image strip */
+        .image-animation-viewport {
+            position: relative;
+            width: 100%;
+            max-width: 960px; /* Max width for desktop */
+            margin: 0 auto;
+            /* Removed overflow: hidden to allow hover scale */
+        }
+
+        .image-strip-animated {
+            display: flex;
+            gap: var(--image-gap); /* Espaçamento entre as imagens */
+            width: 100%; /* A faixa ocupa 100% da largura do viewport */
+            justify-content: center; /* Centraliza as imagens */
+            flex-wrap: wrap; /* Permite que as imagens quebrem para a próxima linha em telas menores */
+            /* Removed animation properties */
+        }
+
+        .image-strip-item {
+            flex-shrink: 0; /* Impede que os itens encolham */
+            /* Adiciona transição para o efeito de hover */
+            transition: transform 0.3s ease-in-out;
+        }
+
+        /* Mobile: 1 imagem visível por vez */
+        @media (max-width: 767px) {
+            .image-strip-item {
+                width: calc(100% - var(--image-gap)); /* 100% da largura do viewport menos o gap */
+            }
+        }
+
+        /* Desktop: 3 imagens visíveis por vez */
+        @media (min-width: 768px) {
+            .image-strip-item {
+                width: calc((100% - 2 * var(--image-gap)) / 3); /* Largura do viewport menos 2 gaps, dividido por 3 imagens */
+            }
+        }
+
+        /* Efeito de aumentar ao passar o mouse */
+        .image-aspect-ratio-container:hover {
+            transform: scale(1.05); /* Aumenta a imagem em 5% */
+            z-index: 10; /* Garante que a imagem ampliada fique acima das outras */
+        }
+
+        .image-aspect-ratio-container {
+            position: relative;
+            width: 100%;
+            padding-bottom: 85%; /* Proporção da imagem (altura é 85% da largura) */
+            overflow: hidden;
+            border-radius: 0.75rem; /* Cantos arredondados para o contêiner */
+            cursor: pointer; /* Indica que é clicável */
+            transition: transform 0.3s ease-in-out; /* Transição para o efeito de hover */
+        }
+
+        .image-aspect-ratio-container img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Garante que a imagem preencha o contêiner */
+            object-position: center;
+            border-radius: 0.75rem; /* Garante que a própria imagem seja arredondada */
+        }
+
+        /* Lightbox Styles */
+        .lightbox-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9); /* Darker, more opaque background */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000; /* Ensure it's on top */
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+        }
+
+        .lightbox-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .lightbox-content {
+            position: relative;
+            max-width: 90%;
+            max-height: 90%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .lightbox-content img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain; /* Ensure the whole image is visible */
+            border-radius: 0.75rem;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+        }
+
+        .lightbox-close, .lightbox-nav {
+            position: absolute;
+            background-color: rgba(255, 255, 255, 0.2); /* Semi-transparent white */
+            color: white;
+            border: none;
+            padding: 0.75rem 1rem;
+            border-radius: 9999px; /* Fully rounded */
+            cursor: pointer;
+            font-size: 1.5rem;
+            transition: background-color 0.3s ease-in-out, transform 0.2s ease-in-out;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px; /* Fixed width for buttons */
+            height: 50px; /* Fixed height for buttons */
+        }
+
+        .lightbox-close:hover, .lightbox-nav:hover {
+            background-color: rgba(255, 255, 255, 0.4);
+            transform: scale(1.1);
+        }
+
+        .lightbox-close {
+            top: 1.5rem;
+            right: 1.5rem;
+        }
+
+        .lightbox-nav.prev {
+            left: 1.5rem;
+        }
+
+        .lightbox-nav.next {
+            right: 1.5rem;
+        }
+
+        /* Media queries for responsive lightbox navigation */
+        @media (max-width: 768px) {
+            .lightbox-nav.prev {
+                left: 0.5rem;
+                font-size: 1.2rem;
+                width: 40px;
+                height: 40px;
+            }
+            .lightbox-nav.next {
+                right: 0.5rem;
+                font-size: 1.2rem;
+                width: 40px;
+                height: 40px;
+            }
+            .lightbox-close {
+                top: 0.5rem;
+                right: 0.5rem;
+                font-size: 1.2rem;
+                width: 40px;
+                height: 40px;
+            }
+        }
+    </style>
+</head>
+<body class="antialiased">
+    <!-- Placeholder for the header content -->
+    <div id="header-placeholder"></div>
+
+    <!-- Main content area for the Canetas page -->
+    <main class="py-16 bg-gray-100 min-h-screen" role="main">
+        <div class="container mx-auto px-6 max-w-4xl">
+            <!-- Page Title -->
+            <h1 class="text-5xl font-bold text-center text-gray-800 mb-12 section-title mx-auto">Canetas Personalizadas</h1>
+
+            <!-- Section describing the quality and customization of pens -->
+            <section class="grid grid-cols-1 md:grid-cols-2 gap-10 items-stretch">
+                <!-- Pen Detail 1: Quality and Versatility -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden p-6 flex flex-col mug-card-hover">
+                    <img src="https://placehold.co/600x400/D1D5DB/000000?text=Caneta+Detalhe+1" alt="Caneta personalizada com gravação a laser e design elegante." class="w-full h-auto rounded-lg mb-4">
+                    <p class="text-gray-700 text-lg flex-grow">
+                        Nossas canetas personalizadas são o brinde perfeito para clientes, funcionários ou um presente elegante para amigos e familiares. Combine funcionalidade com um toque exclusivo.
+                    </p>
+                </div>
+                <!-- Pen Detail 2: Perfect for Gifts and Branding -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden p-6 flex flex-col mug-card-hover">
+                    <img src="https://placehold.co/600x400/D1D5DB/000000?text=Caneta+Detalhe+2" alt="Canetas personalizadas com logotipos de empresas e nomes gravados." class="w-full h-auto rounded-lg mb-4">
+                    <p class="text-gray-700 text-lg flex-grow">
+                        Ideal para eventos corporativos, feiras, congressos, formaturas, casamentos, ou para dar um toque profissional ao seu material de escritório.
+                    </p>
+                </div>
+            </section>
+
+            <!-- New Section: Product Details/Description for Pens -->
+            <section class="mt-12 p-8">
+                <h2 class="text-3xl font-semibold text-center text-gray-800 mb-6 section-title mx-auto">Detalhes do Produto</h2>
+                <div class="text-gray-700 text-lg leading-relaxed space-y-4">
+                    <div>
+                        <h3 class="font-bold text-xl text-gray-800 mb-2">Materiais Disponíveis:</h3>
+                        <p>Oferecemos canetas em diversos materiais, garantindo durabilidade e um acabamento de qualidade:</p>
+                        <ul class="list-disc list-inside ml-4">
+                            <li><strong>Plástico:</strong> Leve, econômico e disponível em diversas cores, ideal para grandes quantidades.</li>
+                            <li><strong>Metal:</strong> Elegante, resistente e perfeito para gravações que conferem um toque sofisticado.</li>
+                            <li><strong>Papelão Reciclado:</strong> Uma opção ecológica e sustentável, com um visual natural e distinto.</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-xl text-gray-800 mb-2">Opções de Personalização:</h3>
+                        <p>Personalize suas canetas para torná-las únicas:</p>
+                        <ul class="list-disc list-inside ml-4">
+                            <li><strong>Impressão Digital/UV:</strong> Permite cores vibrantes e designs complexos em canetas de plástico, metal e outros materiais.</li>
+                            <li><strong>Nomes e Textos:</strong> Personalize com o nome de cada pessoa ou uma mensagem especial.</li>
+                            <li><strong>Logotipos e Marcas:</strong> Fortaleça a identidade da sua empresa ou evento.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section on how to personalize -->
+            <section class="mt-12 text-center">
+                <h2 class="text-3xl font-semibold text-gray-800 mb-6">Como Personalizar a Sua Caneta?</h2>
+                <p class="text-lg text-gray-700 leading-relaxed mb-6">
+                    Envie-nos sua arte, logotipo ou ideia através do nosso WhatsApp. Nossa equipe criará uma prévia para sua aprovação antes da produção. Simples, rápido e do seu jeito!
+                </p>
+                <!-- WhatsApp Call to Action Button -->
+                <a href="https://wa.me/+5598984204274" target="_blank" class="inline-block bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-8 rounded-full transition duration-300 ease-in-out transform hover:scale-105">
+                    <i class="fab fa-whatsapp mr-2"></i> Solicitar Personalização
+                </a>
+            </section>
+
+            <!-- Image Strip Section with Animation -->
+            <section class="mt-20">
+                <h2 class="text-3xl font-semibold text-center text-gray-800 mb-8 section-title mx-auto">Nossos Trabalhos Recentes</h2>
+                <div class="image-animation-viewport">
+                    <div class="image-strip-animated">
+                        <!-- Unique Images (3 total) - Adjusted data-index for gallery navigation -->
+                        <div class="image-strip-item">
+                            <div class="image-aspect-ratio-container">
+                                <img src="https://placehold.co/800x680/A78BFA/FFFFFF?text=Caneta+Empresa" alt="Caneta personalizada com logo de empresa" data-index="0">
+                            </div>
+                        </div>
+                        <div class="image-strip-item">
+                            <div class="image-aspect-ratio-container">
+                                <img src="https://placehold.co/800x680/FDBA74/FFFFFF?text=Caneta+Nome" alt="Caneta personalizada com nome" data-index="1">
+                            </div>
+                        </div>
+                        <div class="image-strip-item">
+                            <div class="image-aspect-ratio-container">
+                                <img src="https://placehold.co/800x680/6EE7B7/FFFFFF?text=Caneta+Evento" alt="Caneta personalizada para evento" data-index="2">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Fixed WhatsApp floating button for easy access -->
+    <a href="https://wa.me/+5598984204274" target="_blank" class="fixed bottom-6 right-6 bg-green-500 hover:bg-green-600 text-white p-4 rounded-full shadow-lg transition duration-300 ease-in-out transform hover:scale-110 z-50" aria-label="Fale conosco pelo WhatsApp">
+        <i class="fab fa-whatsapp fa-2x"></i>
+    </a>
+
+    <!-- Placeholder for the footer content -->
+    <div id="footer-placeholder"></div>
+
+    <!-- Lightbox Structure -->
+    <div id="lightbox" class="lightbox-overlay">
+        <div class="lightbox-content">
+            <img id="lightbox-img" src="" alt="Imagem Ampliada">
+            <button id="lightbox-close" class="lightbox-close" aria-label="Fechar Galeria">
+                <i class="fas fa-times"></i>
+            </button>
+            <button id="lightbox-prev" class="lightbox-nav prev" aria-label="Imagem Anterior">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <button id="lightbox-next" class="lightbox-nav next" aria-label="Próxima Imagem">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // Function to load HTML content into a specified placeholder element
+        async function loadHTML(elementId, filePath) {
+            try {
+                const response = await fetch(filePath);
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                const html = await response.text();
+                document.getElementById(elementId).innerHTML = html;
+            } catch (error) {
+                console.error(`Could not load ${filePath}:`, error);
+            }
+        }
+
+        // Global variables for lightbox
+        let currentImageIndex = 0;
+        let galleryImages = []; // To store unique image sources for the gallery
+
+        // Function to open the lightbox
+        function openLightbox(index) {
+            currentImageIndex = index;
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightbox-img');
+
+            if (galleryImages.length > 0) {
+                lightboxImg.src = galleryImages[currentImageIndex];
+                lightbox.classList.add('active');
+                document.body.style.overflow = 'hidden'; // Prevent scrolling when lightbox is open
+            }
+        }
+
+        // Function to close the lightbox
+        function closeLightbox() {
+            const lightbox = document.getElementById('lightbox');
+            lightbox.classList.remove('active');
+            document.body.style.overflow = ''; // Restore scrolling
+        }
+
+        // Function to show the next image in the gallery
+        function showNextImage() {
+            currentImageIndex = (currentImageIndex + 1) % galleryImages.length;
+            document.getElementById('lightbox-img').src = galleryImages[currentImageIndex];
+        }
+
+        // Function to show the previous image in the gallery
+        function showPrevImage() {
+            currentImageIndex = (currentImageIndex - 1 + galleryImages.length) % galleryImages.length;
+            document.getElementById('lightbox-img').src = galleryImages[currentImageIndex];
+        }
+
+        // Event listener for when the DOM is fully loaded
+        document.addEventListener('DOMContentLoaded', async () => {
+            // Load header and footer HTML content asynchronously
+            await loadHTML('header-placeholder', 'header.html');
+            await loadHTML('footer-placeholder', 'footer.html');
+
+            // Get references to DOM elements after header and footer are loaded
+            const mainHeader = document.getElementById('main-header');
+            const mainNav = document.getElementById('main-nav');
+            const headerLogo = document.getElementById('header-logo');
+            const body = document.body;
+            const mobileMenu = document.getElementById('mobile-menu');
+            const hamburgerIcon = document.getElementById('hamburger-icon');
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+
+            // Add event listener for the mobile menu button if it exists
+            if (mobileMenuButton) {
+                mobileMenuButton.addEventListener('click', () => {
+                    mobileMenu.classList.toggle('open-menu'); // Toggle mobile menu visibility
+                    hamburgerIcon.classList.toggle('open'); // Animate hamburger icon
+                });
+            }
+
+            // Function to dynamically update body padding based on the header's height
+            function updateBodyPadding() {
+                if (mainHeader) {
+                    body.style.paddingTop = `${mainHeader.offsetHeight}px`;
+                }
+            }
+
+            // Smooth scrolling for navigation links that point to sections on the index.html page
+            document.querySelectorAll('a[href^="index.html#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault(); // Prevent default anchor behavior
+                    const targetHash = this.getAttribute('href').split('#')[1]; // Get the target section ID
+                    // Redirect to index.html and then scroll to the specified section
+                    window.location.href = `index.html#${targetHash}`;
+                });
+            });
+
+            // Event listener for window scroll to implement sticky header effects
+            window.addEventListener('scroll', () => {
+                const scrollThreshold = 50; // Scroll position threshold to trigger header changes
+                if (window.scrollY > scrollThreshold) {
+                    // Apply 'scrolled' styles when scrolled past the threshold
+                    if (mainNav) { mainNav.classList.remove('py-2'); mainNav.classList.add('py-1'); }
+                    if (headerLogo) { headerLogo.classList.remove('h-16'); headerLogo.classList.add('h-12'); }
+                    if (mainHeader) { mainHeader.classList.add('scrolled-header'); }
+                } else {
+                    // Revert to initial styles when scrolled back to top
+                    if (mainNav) { mainNav.classList.remove('py-1'); mainNav.classList.add('py-2'); }
+                    if (headerLogo) { headerLogo.classList.remove('h-12'); headerLogo.classList.add('h-16'); }
+                    if (mainHeader) { mainHeader.classList.remove('scrolled-header'); }
+                }
+                updateBodyPadding(); // Update body padding after header size changes
+            });
+
+            // Initial setup call to ensure correct body padding on page load
+            updateBodyPadding();
+
+            // Lightbox Initialization
+            const imageElements = document.querySelectorAll('.image-strip-animated img[data-index]');
+            // Update galleryImages to only include the 3 unique images
+            galleryImages = Array.from(imageElements).map(img => img.src);
+
+            imageElements.forEach(img => {
+                img.addEventListener('click', () => {
+                    const index = parseInt(img.dataset.index);
+                    openLightbox(index);
+                });
+            });
+
+            // Lightbox close button event listener
+            document.getElementById('lightbox-close').addEventListener('click', closeLightbox);
+
+            // Lightbox navigation button event listeners
+            document.getElementById('lightbox-prev').addEventListener('click', showPrevImage);
+            document.getElementById('lightbox-next').addEventListener('click', showNextImage);
+
+            // Close lightbox when clicking outside the image
+            document.getElementById('lightbox').addEventListener('click', (e) => {
+                if (e.target.id === 'lightbox') {
+                    closeLightbox();
+                }
+            });
+
+            // Keyboard navigation for lightbox (Escape to close, arrows for next/prev)
+            document.addEventListener('keydown', (e) => {
+                const lightbox = document.getElementById('lightbox');
+                if (lightbox.classList.contains('active')) {
+                    if (e.key === 'Escape') {
+                        closeLightbox();
+                    } else if (e.key === 'ArrowRight') {
+                        showNextImage();
+                    } else if (e.key === 'ArrowLeft') {
+                        showPrevImage();
+                    }
+                }
+            });
+        });
+
+        // Event listener for window resize to adjust body padding dynamically
+        window.addEventListener('resize', () => {
+            updateBodyPadding();
+        });
+    </script>
+</body>
+</html>
