@@ -499,8 +499,8 @@
         // Event listener for when the DOM is fully loaded
         document.addEventListener('DOMContentLoaded', async () => {
             // Load header and footer HTML content asynchronously
-            await loadHTML('header-placeholder', 'header.html');
-            await loadHTML('footer-placeholder', 'footer.html');
+            await loadHTML('header-placeholder', '../header.html');
+            await loadHTML('footer-placeholder', '../footer.html');
 
             // Get references to DOM elements after header and footer are loaded
             const mainHeader = document.getElementById('main-header');
