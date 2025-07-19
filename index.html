@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,35 +15,26 @@
         /* Estilos globais para o corpo da página */
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #f8f8f8;
-            /* Fundo cinza claro */
-            color: #333;
-            /* Texto cinza escuro */
-            padding-top: 70px;
-            /* Padding inicial, será atualizado pelo JS */
-            transition: padding-top 0.3s ease-in-out;
-            /* Transição suave para o padding */
+            background-color: #f8f8f8; /* Fundo cinza claro */
+            color: #333; /* Texto cinza escuro */
+            padding-top: 70px; /* Padding inicial, será atualizado pelo JS */
+            transition: padding-top 0.3s ease-in-out; /* Transição suave para o padding */
         }
-
         /* Estilo para títulos de seção com linha inferior */
         .section-title {
             position: relative;
             display: inline-block;
             padding-bottom: 8px;
         }
-
         .section-title::after {
             content: '';
             position: absolute;
-            left: 50%;
-            /* Centraliza a linha */
-            transform: translateX(-50%);
-            /* Ajusta para centralizar perfeitamente */
+            left: 50%; /* Centraliza a linha */
+            transform: translateX(-50%); /* Ajusta para centralizar perfeitamente */
             bottom: 0;
             width: 50%;
             height: 3px;
-            background-color: #6b7280;
-            /* Cinza 500 para destaque */
+            background-color: #6b7280; /* Cinza 500 para destaque */
             border-radius: 9999px;
         }
 
@@ -52,45 +42,33 @@
         .carousel-container {
             position: relative;
             width: 100%;
-            max-width: 900px;
-            /* Largura máxima para o carrossel da galeria */
+            max-width: 900px; /* Largura máxima para o carrossel da galeria */
             margin: 0 auto;
             overflow: hidden;
-            border-radius: 1rem;
-            /* rounded-xl */
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-            /* shadow-lg */
+            border-radius: 1rem; /* rounded-xl */
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); /* shadow-lg */
         }
-
         .carousel-track {
             display: flex;
             transition: transform 0.5s ease-in-out;
         }
-
         .carousel-slide {
             min-width: 100%;
             flex-shrink: 0;
         }
-
         .carousel-slide img {
             width: 100%;
-            height: 400px;
-            /* Altura fixa para imagens do carrossel da galeria */
+            height: 400px; /* Altura fixa para imagens do carrossel da galeria */
             object-fit: cover;
-            border-radius: 1rem;
-            /* rounded-xl */
+            border-radius: 1rem; /* rounded-xl */
         }
-
         /* Esconde a barra de rolagem para o track do carrossel */
         .carousel-track::-webkit-scrollbar {
             display: none;
         }
-
         .carousel-track {
-            -ms-overflow-style: none;
-            /* IE e Edge */
-            scrollbar-width: none;
-            /* Firefox */
+            -ms-overflow-style: none;  /* IE e Edge */
+            scrollbar-width: none;  /* Firefox */
         }
 
         /* Estilos de animação do menu hambúrguer */
@@ -103,7 +81,6 @@
             cursor: pointer;
             transition: transform 0.3s ease-in-out;
         }
-
         .hamburger-icon span {
             display: block;
             width: 100%;
@@ -112,15 +89,12 @@
             border-radius: 2px;
             transition: all 0.3s ease-in-out;
         }
-
         .hamburger-icon.open span:nth-child(1) {
             transform: translateY(8.5px) rotate(45deg);
         }
-
         .hamburger-icon.open span:nth-child(2) {
             opacity: 0;
         }
-
         .hamburger-icon.open span:nth-child(3) {
             transform: translateY(-8.5px) rotate(-45deg);
         }
@@ -131,20 +105,15 @@
             opacity: 0;
             overflow: hidden;
             transition: max-height 0.5s ease-out, opacity 0.3s ease-out;
-            position: absolute;
-            /* Posiciona absolutamente para sobrepor */
-            top: 100%;
-            /* Posiciona abaixo do cabeçalho */
+            position: absolute; /* Posiciona absolutamente para sobrepor */
+            top: 100%; /* Posiciona abaixo do cabeçalho */
             left: 0;
             width: 100%;
-            background-color: rgba(31, 41, 55, 0.95);
-            /* Fundo ligeiramente transparente para sobreposição */
+            background-color: rgba(31, 41, 55, 0.95); /* Fundo ligeiramente transparente para sobreposição */
             box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
         }
-
         #mobile-menu.open-menu {
-            max-height: 500px;
-            /* Ajuste este valor se o conteúdo do seu menu for mais alto */
+            max-height: 500px; /* Ajuste este valor se o conteúdo do seu menu for mais alto */
             opacity: 1;
         }
 
@@ -152,98 +121,65 @@
         #news-banner-carousel {
             position: relative;
             width: 100%;
-            background-color: #f8f8f8;
-            /* Fundo cinza claro */
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-            /* shadow-md */
+            background-color: #f8f8f8; /* Fundo cinza claro */
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); /* shadow-md */
         }
-
         .carousel-container-banner {
             width: 100%;
             margin: 0 auto;
             overflow: hidden;
-            position: relative;
-            /* Necessário para posicionamento absoluto das setas */
+            position: relative; /* Necessário para posicionamento absoluto das setas */
         }
-
         .carousel-track-banner {
             display: flex;
             transition: transform 0.5s ease-in-out;
         }
-
         .carousel-slide-banner {
             min-width: 100%;
             flex-shrink: 0;
-            position: relative;
-            /* Adicionado para sobreposição e posicionamento de conteúdo */
-            height: 550px;
-            /* Altura aumentada para desktop */
+            position: relative; /* Adicionado para sobreposição e posicionamento de conteúdo */
+            height: 550px; /* Altura aumentada para desktop */
         }
-
         .carousel-slide-banner img {
-            position: absolute;
-            /* Posiciona a imagem absolutamente para permitir sobreposição */
+            position: absolute; /* Posiciona a imagem absolutamente para permitir sobreposição */
             top: 0;
             left: 0;
             width: 100%;
-            height: 100%;
-            /* Preenche a altura do slide pai */
+            height: 100%; /* Preenche a altura do slide pai */
             object-fit: cover;
-            object-position: center center;
-            /* Garante que o conteúdo seja centralizado ao cortar */
-            z-index: 1;
-            /* Garante que a imagem esteja atrás da sobreposição e do texto */
+            object-position: center center; /* Garante que o conteúdo seja centralizado ao cortar */
+            z-index: 1; /* Garante que a imagem esteja atrás da sobreposição e do texto */
         }
-
         /* Estilo de sobreposição (mantido para uso futuro ou se o usuário quiser adicionar novamente) */
         .banner-overlay {
             position: absolute;
-            inset: 0;
-            /* Top, right, bottom, left para 0 */
-            background-color: rgba(0, 0, 0, 0.4);
-            /* Sobreposição escura semi-transparente */
-            z-index: 2;
-            /* Acima da imagem, abaixo do texto */
+            inset: 0; /* Top, right, bottom, left para 0 */
+            background-color: rgba(0, 0, 0, 0.4); /* Sobreposição escura semi-transparente */
+            z-index: 2; /* Acima da imagem, abaixo do texto */
         }
-
         /* Estilo do contêiner de conteúdo (mantido para uso futuro ou se o usuário quiser adicionar novamente) */
         .banner-content {
-            position: relative;
-            /* Torna o conteúdo relativo para ficar acima da sobreposição */
-            z-index: 3;
-            /* Acima da sobreposição */
-            color: white;
-            /* Cor do texto */
-            padding: 1rem;
-            /* Padding para o conteúdo */
-            max-width: 90%;
-            /* Limita a largura do conteúdo */
+            position: relative; /* Torna o conteúdo relativo para ficar acima da sobreposição */
+            z-index: 3; /* Acima da sobreposição */
+            color: white; /* Cor do texto */
+            padding: 1rem; /* Padding para o conteúdo */
+            max-width: 90%; /* Limita a largura do conteúdo */
         }
-
         /* Media queries para altura responsiva do banner em telas menores */
-        @media (max-width: 768px) {
-
-            /* Para tablets e telefones maiores */
+        @media (max-width: 768px) { /* Para tablets e telefones maiores */
             .carousel-slide-banner {
-                height: 400px;
-                /* Altura reduzida para melhor ajuste em dispositivos móveis */
+                height: 400px; /* Altura reduzida para melhor ajuste em dispositivos móveis */
             }
         }
-
-        @media (max-width: 480px) {
-
-            /* Para dispositivos móveis menores */
+        @media (max-width: 480px) { /* Para dispositivos móveis menores */
             .carousel-slide-banner {
-                height: 300px;
-                /* Altura ainda mais reduzida para telas muito pequenas */
+                height: 300px; /* Altura ainda mais reduzida para telas muito pequenas */
             }
         }
-
         /* Esconde a barra de rolagem para o track do carrossel do banner */
         .carousel-track-banner::-webkit-scrollbar {
             display: none;
         }
-
         .carousel-track-banner {
             -ms-overflow-style: none;
             scrollbar-width: none;
@@ -259,7 +195,6 @@
             justify-content: center;
             z-index: 10;
         }
-
         .banner-indicator-dot {
             width: 12px;
             height: 12px;
@@ -270,7 +205,6 @@
             transition: background-color 0.3s ease, transform 0.3s ease;
             border: 1px solid rgba(0, 0, 0, 0.2);
         }
-
         .banner-indicator-dot.active {
             background-color: white;
             transform: scale(1.2);
@@ -290,15 +224,12 @@
             border-radius: 0.25rem;
             transition: background-color 0.3s ease;
         }
-
         .banner-arrow:hover {
             background-color: rgba(0, 0, 0, 0.2);
         }
-
         .banner-arrow.left {
             left: 10px;
         }
-
         .banner-arrow.right {
             right: 10px;
         }
@@ -314,7 +245,6 @@
             border-radius: 1rem;
             box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
         }
-
         .video-responsive-container iframe {
             position: absolute;
             top: 0;
@@ -331,7 +261,6 @@
             margin-top: 20px;
             z-index: 10;
         }
-
         .gallery-indicator-dot {
             width: 10px;
             height: 10px;
@@ -342,7 +271,6 @@
             transition: background-color 0.3s ease, transform 0.3s ease;
             border: 1px solid rgba(0, 0, 0, 0.1);
         }
-
         .gallery-indicator-dot.active {
             background-color: #6b7280;
             transform: scale(1.2);
@@ -355,20 +283,17 @@
             transform: scale(1.02);
             transition: all 0.3s ease-in-out;
         }
-
         .product-card.blurred {
             filter: blur(4px);
             box-shadow: none;
             transform: scale(1);
         }
-
         /* --- Fim dos Novos estilos para o Efeito de Foco dos Cartões de Produto --- */
-
+        
         .feedback {
-            max-width: 90%;
-            /* Largura máxima para o carrossel da galeria */
+            max-width: 90%; /* Largura máxima para o carrossel da galeria */
             margin: 0 auto;
-            color: transparent
+            color:transparent
         }
 
 
@@ -378,31 +303,25 @@
                 padding-top: 0.5rem;
                 padding-bottom: 0.5rem;
             }
-
             #header-logo {
                 height: 48px;
             }
-
             /* Ajusta o padding-top para o body em dispositivos móveis para acomodar o cabeçalho menor */
             body {
                 padding-top: 60px;
             }
-
             /* Reduz ainda mais o padding-top ao rolar para dispositivos móveis */
             .scrolled-header #main-nav {
                 padding-top: 0.125rem;
                 padding-bottom: 0.125rem;
             }
-
             .scrolled-header #header-logo {
                 height: 32px;
             }
-
             .scrolled-header body {
                 padding-top: 40px;
             }
         }
-
         /* --- Fim dos Estilos Específicos do Cabeçalho Móvel --- */
 
         /* --- Efeito de Texto Gradiente (Similar ao Cabeçalho) --- */
@@ -413,22 +332,18 @@
             color: transparent;
             transition: all 0.5s ease-in-out;
         }
-
         .header-gradient-text:hover {
             background-image: linear-gradient(to right, #6b7280, #374151);
         }
-
         /* --- Fim do Efeito de Texto Gradiente --- */
 
         /* --- Estilos Personalizados para Efeito Hover do Logo --- */
         .logo-link {
             transition: transform 0.3s ease-in-out;
         }
-
         .logo-link:hover {
             transform: scale(1.05);
         }
-
         /* --- Fim dos Estilos Personalizados para Efeito Hover do Logo --- */
 
         /* --- Estilos Personalizados para Efeito Hover de Link de Navegação (Salto) --- */
@@ -436,11 +351,9 @@
             position: relative;
             transition: transform 0.3s ease-in-out;
         }
-
         .nav-link-jump:hover {
             transform: translateY(-5px);
         }
-
         /* --- Fim dos Estilos Personalizados para Efeito Hover de Link de Navegação (Salto) --- */
 
         /* --- Estilo para fonte tipo escrita --- */
@@ -453,28 +366,24 @@
         .scale-on-hover {
             transition: transform 0.3s ease-in-out;
         }
-
         .scale-on-hover:hover {
             transform: scale(1.02);
         }
-
         .shrink-on-hover {
             transition: transform 0.3s ease-in-out;
         }
-
         .shrink-on-hover:hover {
             transform: scale(0.98);
         }
-
         /* --- Fim dos estilos para animações de escala no hover --- */
     </style>
 </head>
-<!-- Favicon -->
-<link rel="icon" href="/idealize/imagens/Favicon/favi-32.ico" type="image/x-icon">
-<link rel="icon" type="/idealize/image/png" href="/idealize/imagens/Favicon/favi-16.ico" sizes="16x16" />
-<link rel="icon" type="/idealize/image/png" href="/idealize/imagens/Favicon/favi-32.png" sizes="32x32" />
+    <!-- Favicon -->
+      <link rel="icon" href="/idealize/imagens/Favicon/favi-32.ico" type="image/x-icon">
+      <link rel="icon" type="/idealize/image/png" href="/idealize/imagens/Favicon/favi-16.ico" sizes="16x16"/>
+      <link rel="icon" type="/idealize/image/png" href="/idealize/imagens/Favicon/favi-32.png" sizes="32x32"/>
 
-
+    
 <body class="antialiased">
 
     <!-- Importando o cabeçalho -->
@@ -483,22 +392,18 @@
     <!-- Seção do Carrossel de Notícias (Agora uma seção hero) -->
     <section id="news-banner-carousel" class="w-full bg-gray-100 shadow-md">
         <div class="carousel-container-banner mx-auto overflow-hidden">
-            <div class="carousel-track-banner flex transition-transform duration-500 ease-in-out"
-                id="carousel-track-banner">
+            <div class="carousel-track-banner flex transition-transform duration-500 ease-in-out" id="carousel-track-banner">
                 <!-- Slide 1 do Banner -->
                 <div class="carousel-slide-banner min-w-full flex-shrink-0">
-                    <img src="imagens/Banners/banner1.jpg" alt="Banner de Notícias 1"
-                        class="w-full h-full object-cover object-position-center">
+                    <img src="imagens/Banners/banner1.jpg" alt="Banner de Notícias 1" class="w-full h-full object-cover object-position-center">
                 </div>
                 <!-- Slide 2 do Banner -->
                 <div class="carousel-slide-banner min-w-full flex-shrink-0">
-                    <img src="imagens/Banners/banner2.jpg" alt="Banner de Notícias 2"
-                        class="w-full h-full object-cover object-position-center">
+                    <img src="imagens/Banners/banner2.jpg" alt="Banner de Notícias 2" class="w-full h-full object-cover object-position-center">
                 </div>
                 <!-- Slide 3 do Banner -->
                 <div class="carousel-slide-banner min-w-full flex-shrink-0">
-                    <img src="imagens/Banners/banner3.jpg" alt="Banner de Notícias 3"
-                        class="w-full h-full object-cover object-position-center">
+                    <img src="imagens/Banners/banner3.jpg" alt="Banner de Notícias 3" class="w-full h-full object-cover object-position-center">
                 </div>
             </div>
             <!-- Setas de Navegação do Banner -->
@@ -516,12 +421,9 @@
     <!-- Novo Bloco de Texto Abaixo do Banner -->
     <section class="py-12 bg-white text-center">
         <div class="container mx-auto px-6 max-w-4xl">
-            <h2 class="text-4xl font-bold mb-4 header-gradient-text scale-on-hover">Somos apaixonados por contar
-                histórias.</h2>
+            <h2 class="text-4xl font-bold mb-4 header-gradient-text scale-on-hover">Somos apaixonados por contar histórias.</h2>
             <p class="text-lg md:text-xl text-gray-700 leading-relaxed shrink-on-hover">
-                Acreditamos que personalizar é mais do que escolher um nome ou uma cor — é dar significado. Por isso,
-                criamos produtos únicos, feitos com carinho, cuidado e identidade. Porque cada pessoa é única, e seus
-                presentes também devem ser.
+                Acreditamos que personalizar é mais do que escolher um nome ou uma cor — é dar significado. Por isso, criamos produtos únicos, feitos com carinho, cuidado e identidade. Porque cada pessoa é única, e seus presentes também devem ser.
             </p>
         </div>
     </section>
@@ -529,12 +431,12 @@
     <!-- Seção do Manifesto em Vídeo -->
     <section id="video-manifesto" class="py-16 bg-gray-50">
         <div class="container mx-auto px-6 max-w-4xl text-center">
-            <h2 class="text-4xl font-bold text-gray-800 mb-12 section-title writing-font mx-auto">Momentos especiais
-                merecem ser lembrados.</h2>
+            <h2 class="text-4xl font-bold text-gray-800 mb-12 section-title writing-font mx-auto">Momentos especiais merecem ser lembrados.</h2>
             <div class="video-responsive-container">
                 <iframe src="https://www.youtube.com/embed/a_gWwM2l9x0?si=L4z7kR5-b4618eB1"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                    referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        referrerpolicy="strict-origin-when-cross-origin"
+                        allowfullscreen>
                 </iframe>
             </div>
         </div>
@@ -547,658 +449,585 @@
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
 
-                <!-- Cartão de Produto 1: Canecas -->
-                <section id="produtos" class="py-16 bg-gray-50">
-                    <div class="container mx-auto px-6 max-w-6xl">
-                        <h2 class="text-4xl font-bold text-center text-gray-800 mb-12 section-title mx-auto">Nossos
-                            Produtos</h2>
-
-                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-
-                            <div class="product-card bg-white rounded-xl shadow-lg overflow-hidden">
-                                <img src="imagens/Produtos/Produtos1.jpg"
-                                    alt="Canecas personalizadas com estampas exclusivas"
-                                    class="w-full h-48 object-cover">
-                                <div class="p-6">
-                                    <h3 class="text-2xl font-semibold text-gray-900 mb-2">Canecas</h3>
-                                    <p class="text-gray-600 mb-4">
-                                        Canecas de cerâmica com estampas exclusivas, fotos ou frases. Perfeitas para
-                                        presentes ou uso diário.
-                                    </p>
-                                    <a href="Produtos/canecas.html"
-                                        class="bg-gray-700 hover:bg-gray-800 text-white font-bold py-2 px-4 rounded-full transition duration-300 inline-block">
-                                        Saiba Mais
-                                    </a>
-                                </div>
-                            </div>
-
-                            <div class="product-card bg-white rounded-xl shadow-lg overflow-hidden">
-                                <img src="imagens/Produtos/Produtos2.jpg" alt="Blocos de anotações A6 personalizados"
-                                    class="w-full h-48 object-cover">
-                                <div class="p-6">
-                                    <h3 class="text-2xl font-semibold text-gray-900 mb-2">Bloquinhos</h3>
-                                    <p class="text-gray-600 mb-4">
-                                        Blocos de anotações compactos no tamanho A6, ideais para levar para qualquer
-                                        lugar, com capas personalizadas.
-                                    </p>
-                                    <a href="Produtos/blocos.html"
-                                        class="bg-gray-700 hover:bg-gray-800 text-white font-bold py-2 px-4 rounded-full transition duration-300 inline-block">
-                                        Saiba Mais
-                                    </a>
-                                </div>
-                            </div>
-
-                            <div class="product-card bg-white rounded-xl shadow-lg overflow-hidden">
-                                <img src="imagens/Produtos/Produtos3.jpg" alt="Cadernos com capas exclusivas"
-                                    class="w-full h-48 object-cover">
-                                <div class="p-6">
-                                    <h3 class="text-2xl font-semibold text-gray-900 mb-2">Cadernos</h3>
-                                    <p class="text-gray-600 mb-4">
-                                        Cadernos com capas exclusivas, nomes ou designs que inspiram. Perfeitos para
-                                        estudos, trabalho ou anotações.
-                                    </p>
-                                    <a href="Produtos/cadernos.html"
-                                        class="bg-gray-700 hover:bg-gray-800 text-white font-bold py-2 px-4 rounded-full transition duration-300 inline-block">
-                                        Saiba Mais
-                                    </a>
-                                </div>
-                            </div>
-
-                            <div class="product-card bg-white rounded-xl shadow-lg overflow-hidden">
-                                <img src="imagens/Produtos/Produtos4.jpg" alt="Agendas personalizadas"
-                                    class="w-full h-48 object-cover">
-                                <div class="p-6">
-                                    <h3 class="text-2xl font-semibold text-gray-900 mb-2">Agendas</h3>
-                                    <p class="text-gray-600 mb-4">
-                                        Organize seu dia com estilo! Agendas personalizadas com seu nome, logo ou arte
-                                        favorita.
-                                    </p>
-                                    <a href="Produtos/agendas.html"
-                                        class="bg-gray-700 hover:bg-gray-800 text-white font-bold py-2 px-4 rounded-full transition duration-300 inline-block">
-                                        Saiba Mais
-                                    </a>
-                                </div>
-                            </div>
-
-                            <div class="product-card bg-white rounded-xl shadow-lg overflow-hidden">
-                                <img src="https://placehold.co/600x400/D1D5DB/000000?text=Marcadores+de+Pagina"
-                                    alt="Marcadores de página personalizados" class="w-full h-48 object-cover">
-                                <div class="p-6">
-                                    <h3 class="text-2xl font-semibold text-gray-900 mb-2">Marca Páginas</h3>
-                                    <p class="text-gray-600 mb-4">
-                                        Marque suas leituras com estilo! Marcadores de página únicos com designs, fotos
-                                        ou mensagens especiais.
-                                    </p>
-                                    <a href="Produtos/mpagina.html"
-                                        class="bg-gray-700 hover:bg-gray-800 text-white font-bold py-2 px-4 rounded-full transition duration-300 inline-block">
-                                        Saiba Mais
-                                    </a>
-                                </div>
-                            </div>
-
-                            <div class="product-card bg-white rounded-xl shadow-lg overflow-hidden">
-                                <img src="https://placehold.co/600x400/D1D5DB/000000?text=Canetas" alt="Canetas"
-                                    class="w-full h-48 object-cover">
-                                <div class="p-6">
-                                    <h3 class="text-2xl font-semibold text-gray-900 mb-2">Canetas</h3>
-                                    <p class="text-gray-600 mb-4">
-                                        Sua marca ou mensagem em cada traço. Canetas elegantes, ideais para brindes ou
-                                        um presente único.
-                                    </p>
-                                    <a href="Produtos/canetas.html"
-                                        class="bg-gray-700 hover:bg-gray-800 text-white font-bold py-2 px-4 rounded-full transition duration-300 inline-block">
-                                        Saiba Mais
-                                    </a>
-                                </div>
-                            </div>
-
-                            <div class="product-card bg-white rounded-xl shadow-lg overflow-hidden">
-                                <img src="https://placehold.co/600x400/D1D5DB/000000?text=Camisas"
-                                    alt="Camisas de algodão com design único" class="w-full h-48 object-cover">
-                                <div class="p-6">
-                                    <h3 class="text-2xl font-semibold text-gray-900 mb-2">Camisas</h3>
-                                    <p class="text-gray-600 mb-4">
-                                        Camisas com design único, logotipos ou ilustrações. Conforto e estilo
-                                        personalizados.
-                                    </p>
-                                    <a href="Produtos/camisetas.html"
-                                        class="bg-gray-700 hover:bg-gray-800 text-white font-bold py-2 px-4 rounded-full transition duration-300 inline-block">
-                                        Saiba Mais
-                                    </a>
-                                </div>
-                            </div>
-
-                            <div class="product-card bg-white rounded-xl shadow-lg overflow-hidden">
-                                <img src="https://placehold.co/600x400/D1D5DB/000000?text=Capas+de+Celular"
-                                    alt="Capas de celular personalizadas" class="w-full h-48 object-cover">
-                                <div class="p-6">
-                                    <h3 class="text-2xl font-semibold text-gray-900 mb-2">Capas de Celular</h3>
-                                    <p class="text-gray-600 mb-4">
-                                        Proteja seu celular com estilo! Capas personalizadas com suas imagens favoritas
-                                        ou padrões exclusivos.
-                                    </p>
-                                    <a href="Produtos/capascel.html"
-                                        class="bg-gray-700 hover:bg-gray-800 text-white font-bold py-2 px-4 rounded-full transition duration-300 inline-block">
-                                        Saiba Mais
-                                    </a>
-                                </div>
-                            </div>
-
-                            <div class="product-card bg-white rounded-xl shadow-lg overflow-hidden">
-                                <img src="https://placehold.co/600x400/D1D5DB/000000?text=Chaveiros"
-                                    alt="Chaveiros personalizados com nomes ou designs"
-                                    class="w-full h-48 object-cover">
-                                <div class="p-6">
-                                    <h3 class="text-2xl font-semibold text-gray-900 mb-2">Chaveiros</h3>
-                                    <p class="text-gray-600 mb-4">
-                                        Pequenos detalhes que fazem a diferença. Chaveiros com nomes, iniciais ou
-                                        designs divertidos.
-                                    </p>
-                                    <a href="Produtos/chaveiros.html"
-                                        class="bg-gray-700 hover:bg-gray-800 text-white font-bold py-2 px-4 rounded-full transition duration-300 inline-block">
-                                        Saiba Mais
-                                    </a>
-                                </div>
-                            </div>
-
-                            <div class="product-card bg-white rounded-xl shadow-lg overflow-hidden">
-                                <img src="https://placehold.co/600x400/D1D5DB/000000?text=Almofadas+Decorativas"
-                                    alt="Almofadas decorativas com estampas personalizadas"
-                                    class="w-full h-48 object-cover">
-                                <div class="p-6">
-                                    <h3 class="text-2xl font-semibold text-gray-900 mb-2">Almofadas Decorativas</h3>
-                                    <p class="text-gray-600 mb-4">
-                                        Conforto e estilo para sua casa. Almofadas com estampas personalizadas, fotos de
-                                        família ou frases inspiradoras.
-                                    </p>
-                                    <a href="Produtos/almofadas.html"
-                                        class="bg-gray-700 hover:bg-gray-800 text-white font-bold py-2 px-4 rounded-full transition duration-300 inline-block">
-                                        Saiba Mais
-                                    </a>
-                                </div>
-                            </div>
-
-                            <div class="product-card bg-white rounded-xl shadow-lg overflow-hidden">
-                                <img src="https://placehold.co/600x400/D1D5DB/000000?text=Quadros+Decorativos"
-                                    alt="Quadros decorativos com arte personalizada" class="w-full h-48 object-cover">
-                                <div class="p-6">
-                                    <h3 class="text-2xl font-semibold text-gray-900 mb-2">Quadros Decorativos</h3>
-                                    <p class="text-gray-600 mb-4">
-                                        Arte personalizada para suas paredes. Quadros com ilustrações, fotografias ou
-                                        mensagens que marcam.
-                                    </p>
-                                    <a href="Produtos/quadros.html"
-                                        class="bg-gray-700 hover:bg-gray-800 text-white font-bold py-2 px-4 rounded-full transition duration-300 inline-block">
-                                        Saiba Mais
-                                    </a>
-                                </div>
-                            </div>
-
-                            <div class="product-card bg-white rounded-xl shadow-lg overflow-hidden">
-                                <img src="https://placehold.co/600x400/D1D5DB/000000?text=Azulejos-decorativos"
-                                    alt="Quadros decorativos com arte personalizada" class="w-full h-48 object-cover">
-                                <div class="p-6">
-                                    <h3 class="text-2xl font-semibold text-gray-900 mb-2">Azulejos Decorativos</h3>
-                                    <p class="text-gray-600 mb-4">
-                                        Peças exclusivas que transformam qualquer ambiente com cor e personalidade.
-                                    </p>
-                                    <a href="Produtos/azulejos.html"
-                                        class="bg-gray-700 hover:bg-gray-800 text-white font-bold py-2 px-4 rounded-full transition duration-300 inline-block">
-                                        Saiba Mais
-                                    </a>
-                                </div>
-                            </div>
-
-                            <div class="product-card bg-white rounded-xl shadow-lg overflow-hidden">
-                                <img src="https://placehold.co/600x400/D1D5DB/000000?text=Relogios+Azulejos"
-                                    alt="Quadros decorativos com arte personalizada" class="w-full h-48 object-cover">
-                                <div class="p-6">
-                                    <h3 class="text-2xl font-semibold text-gray-900 mb-2">Relógio em Azulejo</h3>
-                                    <p class="text-gray-600 mb-4">
-                                        Marque o tempo com estilo. Relógios únicos que unem a beleza do azulejo à
-                                        funcionalidade para sua casa.
-                                    </p>
-                                    <a href="Produtos/azulejosrelogio.html"
-                                        class="bg-gray-700 hover:bg-gray-800 text-white font-bold py-2 px-4 rounded-full transition duration-300 inline-block">
-                                        Saiba Mais
-                                    </a>
-                                </div>
-                            </div>
-
-                            <div class="product-card bg-white rounded-xl shadow-lg overflow-hidden">
-                                <img src="https://placehold.co/600x400/D1D5DB/000000?text=Placas+de+Acrílico"
-                                    alt="Placas de Acrílico com arte personalizada" class="w-full h-48 object-cover">
-                                <div class="p-6">
-                                    <h3 class="text-2xl font-semibold text-gray-900 mb-2">Placas de Acrílico</h3>
-                                    <p class="text-gray-600 mb-4">
-                                        Reconheça com brilho e elegância. Troféus personalizados para celebrar
-                                        conquistas e momentos especiais.
-                                    </p>
-                                    <a href="Produtos/placas_acrilico.html"
-                                        class="bg-gray-700 hover:bg-gray-800 text-white font-bold py-2 px-4 rounded-full transition duration-300 inline-block">
-                                        Saiba Mais
-                                    </a>
-                                </div>
-                            </div>
-
-                            <div class="product-card bg-white rounded-xl shadow-lg overflow-hidden">
-                                <img src="https://placehold.co/600x400/D1D5DB/000000?text=Artigos+Religiosos"
-                                    alt="Artigos religiosos personalizados" class="w-full h-48 object-cover">
-                                <div class="p-6">
-                                    <h3 class="text-2xl font-semibold text-gray-900 mb-2">Artigos Religiosos</h3>
-                                    <p class="text-gray-600 mb-4">
-                                        Itens de fé e devoção personalizados com símbolos, orações ou imagens sagradas.
-                                    </p>
-                                    <a href="Produtos/artigos-religiosos.html"
-                                        class="bg-gray-700 hover:bg-gray-800 text-white font-bold py-2 px-4 rounded-full transition duration-300 inline-block">
-                                        Saiba Mais
-                                    </a>
-                                </div>
-                            </div>
-
-
-                            <!-- Cartão de Produto 15: Artigos Religiosos -->
-                            <div class="product-card bg-white rounded-xl shadow-lg overflow-hidden">
-                                <img src="https://placehold.co/600x400/D1D5DB/000000?text=Artigos+Religiosos"
-                                    alt="Artigos religiosos personalizados" class="w-full h-48 object-cover">
-                                <div class="p-6">
-                                    <h3 class="text-2xl font-semibold text-gray-900 mb-2">Artigos Religiosos</h3>
-                                    <p class="text-gray-600 mb-4">
-                                        Itens de fé e devoção personalizados com símbolos, orações ou imagens sagradas.
-                                    </p>
-                                    <a href="Produtos/artigos-religiosos.html"
-                                        class="bg-gray-700 hover:bg-gray-800 text-white font-bold py-2 px-4 rounded-full transition duration-300 inline-block">
-                                        Saiba Mais
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-                <!--Fim Produtos-->
-
-                <!-- Seção Sobre Nós -->
-                <section id="sobre" class="py-16 bg-white">
-                    <div class="container mx-auto px-6 max-w-4xl flex flex-col md:flex-row items-center gap-10">
-                        <div class="md:w-1/2 text-center md:text-left">
-                            <h2 class="text-4xl font-bold text-gray-800 mb-6 section-title md:mx-0 mx-auto">Sobre Nós
-                            </h2>
-                            <p class="text-lg text-gray-700 leading-relaxed mb-4">
-                                Somos uma equipe apaixonada por criar produtos personalizados que contam histórias e
-                                expressam a individualidade de cada cliente. Acreditamos que cada item deve ser tão
-                                único quanto a pessoa que o possui.
-                            </p>
-                            <p class="text-lg text-gray-700 leading-relaxed">
-                                Utilizamos materiais de alta qualidade e técnicas de produção avançadas para garantir
-                                que cada produto não apenas atenda, mas supere suas expectativas. Do design à entrega,
-                                nosso foco é a sua satisfação.
-                            </p>
-                        </div>
-                        <div class="md:w-1/2">
-                            <img src="https://placehold.co/600x400/D1D5DB/000000?text=Nossa+Equipe"
-                                alt="Equipe da Idealize Store trabalhando"
-                                class="rounded-xl shadow-lg w-full h-auto object-cover">
-                        </div>
-                    </div>
-                </section>
-
-                <!-- Seção de Carrossel de Imagens Automático (Galeria) -->
-                <section id="carousel" class="py-16 bg-gray-50">
-                    <div class="container mx-auto px-6 max-w-4xl">
-                        <h2 class="text-4xl font-bold text-center text-gray-800 mb-12 section-title mx-auto">Galeria
-                        </h2>
-
-                        <div class="carousel-container">
-                            <div class="carousel-track" id="carousel-track">
-                                <div class="carousel-slide">
-                                    <img src="https://placehold.co/900x400/A0A0A0/FFFFFF?text=Foto+Produto+1"
-                                        alt="Exemplo de produto personalizado 1" class="w-full h-full object-cover">
-                                </div>
-                                <div class="carousel-slide">
-                                    <img src="https://placehold.co/900x400/B0B0B0/FFFFFF?text=Foto+Produto+2"
-                                        alt="Exemplo de produto personalizado 2" class="w-full h-full object-cover">
-                                </div>
-                                <div class="carousel-slide">
-                                    <img src="https://placehold.co/900x400/C0C0C0/FFFFFF?text=Foto+Produto+3"
-                                        alt="Exemplo de produto personalizado 3" class="w-full h-full object-cover">
-                                </div>
-                                <div class="carousel-slide">
-                                    <img src="https://placehold.co/900x400/D0D0D0/FFFFFF?text=Foto+Produto+4"
-                                        alt="Exemplo de produto personalizado 4" class="w-full h-full object-cover">
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Indicadores da Galeria -->
-                        <div class="gallery-indicators" id="gallery-indicators">
-                            <!-- Os pontos serão gerados dinamicamente aqui pelo JavaScript -->
-                        </div>
-                    </div>
-                </section>
-
-                <!-- Botão Flutuante do WhatsApp -->
-                <a href="https://wa.me/+5598984204274" target="_blank"
-                    class="fixed bottom-6 right-6 bg-green-500 hover:bg-green-600 text-white p-4 rounded-full shadow-lg transition duration-300 ease-in-out transform hover:scale-110 z-50">
-                    <i class="fab fa-whatsapp fa-2x"></i>
-                </a>
-
-                <!-- Seção de Depoimentos -->
-                <section id="testimonials" class="py-16 bg-white">
-                    <div class="feedback container mx-auto px-6">
-                        <h2 class="text-4xl font-bold text-center text-gray-800 mb-12 section-title mx-auto">O que dizem
-                            nossos clientes</h2>
-                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                            <!-- Depoimento 1 -->
-                            <div class="bg-gray-100 p-6 rounded-lg shadow-md">
-                                <p class="text-gray-700 italic mb-4">"Atendimento impecável e produtos de alta
-                                    qualidade! Minha caneca personalizada ficou perfeita."</p>
-                                <p class="font-semibold text-gray-900">- Ana Paula S.</p>
-                            </div>
-                            <!-- Depoimento 2 -->
-                            <div class="bg-gray-100 p-6 rounded-lg shadow-md">
-                                <p class="text-gray-700 italic mb-4">"Adorei a camiseta! A estampa é linda e o tecido
-                                    super confortável. Recomendo a Idealize Store!"</p>
-                                <p class="font-semibold text-gray-900">- João Carlos M.</p>
-                            </div>
-                            <!-- Depoimento 3 -->
-                            <div class="bg-gray-100 p-6 rounded-lg shadow-md">
-                                <p class="text-gray-700 italic mb-4">"O quebra-cabeça com a foto da minha família foi um
-                                    presente incrível. Todos amaram!"</p>
-                                <p class="font-semibold text-gray-900">- Mariana L.</p>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-                <!-- Placeholder para o Rodapé -->
-                <div id="footer-placeholder"></div>
-
-                <script>
-                    // Função para carregar conteúdo HTML em um placeholder
-                    async function loadHTML(elementId, filePath) {
-                        try {
-                            // Constrói um URL absoluto a partir do filePath relativo
-                            // Isso é crucial para ambientes onde as URLs base podem ser complicadas (como URLs blob:)
-                            const absoluteUrl = new URL(filePath, window.location.href).href;
-                            const response = await fetch(absoluteUrl); // Usa o URL absoluto
-                            if (!response.ok) {
-                                throw new Error(`Erro HTTP! Status: ${response.status}`);
-                            }
-                            const html = await response.text();
-                            document.getElementById(elementId).innerHTML = html;
-                        } catch (error) {
-                            console.error(`Não foi possível carregar ${filePath}:`, error);
-                        }
-                    }
-
-                    // Função para inicializar todos os comportamentos da página (após carregar header/footer)
-                    function initPageScripts() {
-                        // Referências aos elementos do cabeçalho (agora que estão no DOM)
-                        const mainHeader = document.getElementById('main-header');
-                        const mainNav = document.getElementById('main-nav');
-                        const headerLogo = document.getElementById('header-logo');
-                        const body = document.body;
-                        const mobileMenu = document.getElementById('mobile-menu');
-                        const hamburgerIcon = document.getElementById('hamburger-icon');
-                        const mobileMenuButton = document.getElementById('mobile-menu-button');
-
-                        // Função para atualizar o padding-top do body
-                        function updateBodyPadding() {
-                            if (mainHeader) {
-                                body.style.paddingTop = `${mainHeader.offsetHeight}px`;
-                            }
-                        }
-
-                        // Toggle do menu móvel
-                        if (mobileMenuButton && mobileMenu && hamburgerIcon) {
-                            mobileMenuButton.addEventListener('click', () => {
-                                mobileMenu.classList.toggle('open-menu');
-                                hamburgerIcon.classList.toggle('open');
-                            });
-                        }
-
-                        // Smooth scrolling para links de navegação (para links internos na mesma página)
-                        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                            anchor.addEventListener('click', function (e) {
-                                e.preventDefault();
-                                const targetId = this.getAttribute('href').substring(1);
-                                const targetElement = document.getElementById(targetId);
-                                if (targetElement) {
-                                    targetElement.scrollIntoView({
-                                        behavior: 'smooth'
-                                    });
-                                }
-                                // Fecha o menu móvel se estiver aberto
-                                if (mobileMenu && mobileMenu.classList.contains('open-menu')) {
-                                    mobileMenu.classList.remove('open-menu');
-                                    hamburgerIcon.classList.remove('open');
-                                }
-                            });
-                        });
-
-                        // Lógica do Cabeçalho Fixo (encolher ao rolar)
-                        window.addEventListener('scroll', () => {
-                            const scrollThreshold = 50; // Pixels rolados antes que o cabeçalho encolha
-                            if (window.scrollY > scrollThreshold) {
-                                if (mainNav) { mainNav.classList.remove('py-2'); mainNav.classList.add('py-1'); }
-                                if (headerLogo) { headerLogo.classList.remove('h-16'); headerLogo.classList.add('h-12'); }
-                                if (mainHeader) { mainHeader.classList.add('scrolled-header'); }
-                            } else {
-                                if (mainNav) { mainNav.classList.remove('py-1'); mainNav.classList.add('py-2'); }
-                                if (headerLogo) { headerLogo.classList.remove('h-12'); headerLogo.classList.add('h-16'); }
-                                if (mainHeader) { mainHeader.classList.remove('scrolled-header'); }
-                            }
-                            updateBodyPadding(); // Atualiza o padding ao rolar
-                        });
-
-                        // Lógica do Carrossel de Imagens Automático (Galeria)
-                        const carouselTrack = document.getElementById('carousel-track');
-                        const carouselSlides = document.querySelectorAll('.carousel-slide');
-                        const galleryIndicators = document.getElementById('gallery-indicators');
-                        let currentSlide = 0;
-                        const slideInterval = 3000;
-                        let galleryAutoSlideInterval;
-
-                        if (carouselTrack && carouselSlides.length > 0 && galleryIndicators) {
-                            function updateGalleryIndicators() {
-                                Array.from(galleryIndicators.children).forEach((dot) => {
-                                    dot.classList.remove('active');
-                                });
-                                if (galleryIndicators.children[currentSlide]) {
-                                    galleryIndicators.children[currentSlide].classList.add('active');
-                                }
-                            }
-
-                            function goToGallerySlide(index) {
-                                currentSlide = index;
-                                updateCarousel();
-                                updateGalleryIndicators();
-                                resetGalleryAutoSlide();
-                            }
-
-                            function nextSlide() {
-                                currentSlide++;
-                                if (currentSlide >= carouselSlides.length) {
-                                    currentSlide = 0;
-                                }
-                                updateCarousel();
-                                updateGalleryIndicators();
-                            }
-
-                            function updateCarousel() {
-                                const slideWidth = carouselSlides[0].clientWidth;
-                                carouselTrack.style.transform = `translateX(-${currentSlide * slideWidth}px)`;
-                            }
-
-                            function startGalleryAutoSlide() {
-                                galleryAutoSlideInterval = setInterval(nextSlide, slideInterval);
-                            }
-
-                            function resetGalleryAutoSlide() {
-                                clearInterval(galleryAutoSlideInterval);
-                                startGalleryAutoSlide();
-                            }
-
-                            function generateGalleryIndicators() {
-                                galleryIndicators.innerHTML = '';
-                                carouselSlides.forEach((slide, index) => {
-                                    const dot = document.createElement('span');
-                                    dot.classList.add('gallery-indicator-dot');
-                                    dot.addEventListener('click', () => goToGallerySlide(index));
-                                    galleryIndicators.appendChild(dot);
-                                });
-                                updateGalleryIndicators();
-                            }
-
-                            generateGalleryIndicators();
-                            startGalleryAutoSlide();
-                            window.addEventListener('resize', () => { // Atualiza no redimensionamento
-                                updateCarousel();
-                                generateGalleryIndicators();
-                            });
-                        }
-
-                        // Lógica do Carrossel de Notícias (Banner)
-                        const newsCarouselTrack = document.getElementById('carousel-track-banner');
-                        const newsCarouselSlides = document.querySelectorAll('.carousel-slide-banner');
-                        const newsBannerIndicators = document.getElementById('banner-indicators');
-                        const prevBannerButton = document.getElementById('prev-banner');
-                        const nextBannerButton = document.getElementById('next-banner');
-                        let currentNewsSlide = 0;
-                        const newsSlideInterval = 4000;
-                        let newsAutoSlideInterval;
-
-                        if (newsCarouselTrack && newsCarouselSlides.length > 0 && newsBannerIndicators && prevBannerButton && nextBannerButton) {
-                            function updateNewsIndicators() {
-                                Array.from(newsBannerIndicators.children).forEach((dot) => {
-                                    dot.classList.remove('active');
-                                });
-                                if (newsBannerIndicators.children[currentNewsSlide]) {
-                                    newsBannerIndicators.children[currentNewsSlide].classList.add('active');
-                                }
-                            }
-
-                            function goToNewsSlide(index) {
-                                currentNewsSlide = index;
-                                updateNewsCarousel();
-                                updateNewsIndicators();
-                                resetNewsAutoSlide();
-                            }
-
-                            function nextNewsSlide() {
-                                currentNewsSlide++;
-                                if (currentNewsSlide >= newsCarouselSlides.length) {
-                                    currentNewsSlide = 0;
-                                }
-                                updateNewsCarousel();
-                                updateNewsIndicators();
-                            }
-
-                            function prevNewsSlide() {
-                                currentNewsSlide--;
-                                if (currentNewsSlide < 0) {
-                                    currentNewsSlide = newsCarouselSlides.length - 1;
-                                }
-                                updateNewsCarousel();
-                                updateNewsIndicators();
-                            }
-
-                            function updateNewsCarousel() {
-                                const slideWidth = newsCarouselSlides[0].clientWidth;
-                                newsCarouselTrack.style.transform = `translateX(-${currentNewsSlide * slideWidth}px)`;
-                            }
-
-                            function startNewsAutoSlide() {
-                                newsAutoSlideInterval = setInterval(nextNewsSlide, newsSlideInterval);
-                            }
-
-                            function resetNewsAutoSlide() {
-                                clearInterval(newsAutoSlideInterval);
-                                startNewsAutoSlide();
-                            }
-
-                            newsBannerIndicators.addEventListener('click', (event) => {
-                                if (event.target.classList.contains('banner-indicator-dot')) {
-                                    const index = Array.from(newsBannerIndicators.children).indexOf(event.target);
-                                    if (index !== -1) {
-                                        goToNewsSlide(index);
-                                    }
-                                }
-                            });
-
-                            prevBannerButton.addEventListener('click', prevNewsSlide);
-                            nextBannerButton.addEventListener('click', nextNewsSlide);
-
-                            startNewsAutoSlide();
-                            updateNewsCarousel(); // Posição inicial
-                            updateNewsIndicators(); // Indicador inicial
-                            window.addEventListener('resize', updateNewsCarousel); // Atualiza no redimensionamento
-                        }
-
-                        // Lógica do Efeito de Foco dos Cartões de Produto
-                        const productCards = document.querySelectorAll('.product-card');
-
-                        if (productCards.length > 0) {
-                            const handleProductCardFocus = (cardToFocus = null) => {
-                                productCards.forEach(card => {
-                                    if (card === cardToFocus) {
-                                        card.classList.remove('blurred');
-                                    } else {
-                                        card.classList.add('blurred');
-                                    }
-                                });
-                            };
-
-                            productCards.forEach(card => {
-                                card.addEventListener('mouseover', () => {
-                                    handleProductCardFocus(card);
-                                });
-                                card.addEventListener('mouseout', () => {
-                                    productCards.forEach(c => {
-                                        c.classList.remove('blurred');
-                                    });
-                                });
-                            });
-                        }
-
-                        // Garante que o padding do body seja atualizado no carregamento inicial
-                        updateBodyPadding();
-                    }
-
-                    // Ação principal ao carregar o DOM
-                    document.addEventListener('DOMContentLoaded', async () => {
-                        // Primeiro, carregue o cabeçalho e o rodapé
-                        await loadHTML('header-placeholder', 'header.html');
-                        await loadHTML('footer-placeholder', 'footer.html');
-
-                        // Agora que o cabeçalho e o rodapé estão no DOM, inicialize todos os scripts da página
-                        initPageScripts();
-                    });
-
-                    // Adiciona um listener para o evento resize da janela para recalcular o padding do body
-                    // e atualizar os carrosséis, caso initPageScripts já tenha sido executado.
-                    // Isso é importante para responsividade.
-                    window.addEventListener('resize', () => {
-                        // Re-chama initPageScripts para re-avaliar e aplicar as lógicas de redimensionamento
-                        // para elementos como carrosséis e padding do body.
-                        // É seguro chamar novamente, pois os listeners de evento são adicionados apenas uma vez
-                        // ou a lógica dentro deles é idempotente (não causa efeitos colaterais múltiplos).
-                        initPageScripts();
-                    });
-                </script>
-
-
-                <!--V Libras -->
-                <div vw class="enabled">
-                    <div vw-access-button class="active"></div>
-                    <div vw-plugin-wrapper>
-                        <div class="vw-plugin-top-wrapper"></div>
+             <!-- Cartão de Produto 1: Canecas -->
+                <div class="product-card bg-white rounded-xl shadow-lg overflow-hidden">
+                    <img src="https://placehold.co/600x400/D1D5DB/000000?text=Canecas" alt="Canecas personalizadas com estampas exclusivas" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-2xl font-semibold text-gray-900 mb-2">Canecas</h3>
+                        <p class="text-gray-600 mb-4">
+                            Canecas de cerâmica com estampas exclusivas, fotos ou frases. Perfeitas para presentes ou uso diário.
+                        </p>
+                        <a href="Produtos/canecas.html" class="bg-gray-700 hover:bg-gray-800 text-white font-bold py-2 px-4 rounded-full transition duration-300 inline-block">
+                            Saiba Mais
+                        </a>
                     </div>
                 </div>
-                <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
-                <script>
-                    new window.VLibras.Widget('https://vlibras.gov.br/app');
-                </script>
 
-</body>
+                <!-- Cartão de Produto 2: Blocos A6 -->
+                <div class="product-card bg-white rounded-xl shadow-lg overflow-hidden">
+                    <img src="https://placehold.co/600x400/D1D5DB/000000?text=Blocos+A6" alt="Blocos de anotações A6 personalizados" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-2xl font-semibold text-gray-900 mb-2">Bloquinhos</h3>
+                        <p class="text-gray-600 mb-4">
+                            Blocos de anotações compactos no tamanho A6, ideais para levar para qualquer lugar, com capas personalizadas.
+                        </p>
+                        <a href="Produtos/blocos.html" class="bg-gray-700 hover:bg-gray-800 text-white font-bold py-2 px-4 rounded-full transition duration-300 inline-block">
+                            Saiba Mais
+                        </a>
+                    </div>
+                </div>
 
-</html>
+                <!-- Cartão de Produto 3: Cadernos -->
+                <div class="product-card bg-white rounded-xl shadow-lg overflow-hidden">
+                    <img src="https://placehold.co/600x400/D1D5DB/000000?text=Cadernos" alt="Cadernos com capas exclusivas" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-2xl font-semibold text-gray-900 mb-2">Cadernos</h3>
+                        <p class="text-gray-600 mb-4">
+                            Cadernos com capas exclusivas, nomes ou designs que inspiram. Perfeitos para estudos, trabalho ou anotações.
+                        </p>
+                        <a href="Produtos/cadernos.html" class="bg-gray-700 hover:bg-gray-800 text-white font-bold py-2 px-4 rounded-full transition duration-300 inline-block">
+                            Saiba Mais
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Cartão de Produto 4: Agendas -->
+                <div class="product-card bg-white rounded-xl shadow-lg overflow-hidden">
+                    <img src="https://placehold.co/600x400/D1D5DB/000000?text=Agendas" alt="Agendas personalizadas" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-2xl font-semibold text-gray-900 mb-2">Agendas</h3>
+                        <p class="text-gray-600 mb-4">
+                            Organize seu dia com estilo! Agendas personalizadas com seu nome, logo ou arte favorita.
+                        </p>
+                        <a href="Produtos/agendas.html" class="bg-gray-700 hover:bg-gray-800 text-white font-bold py-2 px-4 rounded-full transition duration-300 inline-block">
+                            Saiba Mais
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Cartão de Produto 5: Marcadores de Página -->
+                <div class="product-card bg-white rounded-xl shadow-lg overflow-hidden">
+                    <img src="https://placehold.co/600x400/D1D5DB/000000?text=Marcadores+de+Pagina" alt="Marcadores de página personalizados" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-2xl font-semibold text-gray-900 mb-2">Marca Páginas</h3>
+                        <p class="text-gray-600 mb-4">
+                            Marque suas leituras com estilo! Marcadores de página únicos com designs, fotos ou mensagens especiais.
+                        </p>
+                        <a href="Produtos/mpagina.html" class="bg-gray-700 hover:bg-gray-800 text-white font-bold py-2 px-4 rounded-full transition duration-300 inline-block">
+                            Saiba Mais
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Cartão de Produto 6: Canetas-->
+                <div class="product-card bg-white rounded-xl shadow-lg overflow-hidden">
+                    <img src="https://placehold.co/600x400/D1D5DB/000000?text=Canetas" alt="Canetas" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-2xl font-semibold text-gray-900 mb-2">Canetas</h3>
+                        <p class="text-gray-600 mb-4">
+                            Sua marca ou mensagem em cada traço. Canetas elegantes, ideais para brindes ou um presente único.
+                        </p>
+                        <a href="Produtos/canetas.html" class="bg-gray-700 hover:bg-gray-800 text-white font-bold py-2 px-4 rounded-full transition duration-300 inline-block">
+                            Saiba Mais
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Cartão de Produto 7: Camisas -->
+                <div class="product-card bg-white rounded-xl shadow-lg overflow-hidden">
+                    <img src="https://placehold.co/600x400/D1D5DB/000000?text=Camisas" alt="Camisas de algodão com design único" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-2xl font-semibold text-gray-900 mb-2">Camisas</h3>
+                        <p class="text-gray-600 mb-4">
+                            Camisas com design único, logotipos ou ilustrações. Conforto e estilo personalizados.
+                        </p>
+                        <a href="Produtos/camisetas.html" class="bg-gray-700 hover:bg-gray-800 text-white font-bold py-2 px-4 rounded-full transition duration-300 inline-block">
+                            Saiba Mais
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Cartão de Produto 8: Capas de Celular -->
+                <div class="product-card bg-white rounded-xl shadow-lg overflow-hidden">
+                    <img src="https://placehold.co/600x400/D1D5DB/000000?text=Capas+de+Celular" alt="Capas de celular personalizadas" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-2xl font-semibold text-gray-900 mb-2">Capas de Celular</h3>
+                        <p class="text-gray-600 mb-4">
+                            Proteja seu celular com estilo! Capas personalizadas com suas imagens favoritas ou padrões exclusivos.
+                        </p>
+                        <a href="Produtos/capascel.html" class="bg-gray-700 hover:bg-gray-800 text-white font-bold py-2 px-4 rounded-full transition duration-300 inline-block">
+                            Saiba Mais
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Cartão de Produto 9: Chaveiros -->
+                <div class="product-card bg-white rounded-xl shadow-lg overflow-hidden">
+                    <img src="https://placehold.co/600x400/D1D5DB/000000?text=Chaveiros" alt="Chaveiros personalizados com nomes ou designs" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-2xl font-semibold text-gray-900 mb-2">Chaveiros</h3>
+                        <p class="text-gray-600 mb-4">
+                            Pequenos detalhes que fazem a diferença. Chaveiros com nomes, iniciais ou designs divertidos.
+                        </p>
+                        <a href="Produtos/chaveiros.html" class="bg-gray-700 hover:bg-gray-800 text-white font-bold py-2 px-4 rounded-full transition duration-300 inline-block">
+                            Saiba Mais
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Cartão de Produto 10: Almofadas Decorativas -->
+                <div class="product-card bg-white rounded-xl shadow-lg overflow-hidden">
+                    <img src="https://placehold.co/600x400/D1D5DB/000000?text=Almofadas+Decorativas" alt="Almofadas decorativas com estampas personalizadas" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-2xl font-semibold text-gray-900 mb-2">Almofadas Decorativas</h3>
+                        <p class="text-gray-600 mb-4">
+                            Conforto e estilo para sua casa. Almofadas com estampas personalizadas, fotos de família ou frases inspiradoras.
+                        </p>
+                        <a href="Produtos/almofadas.html" class="bg-gray-700 hover:bg-gray-800 text-white font-bold py-2 px-4 rounded-full transition duration-300 inline-block">
+                            Saiba Mais
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Cartão de Produto 11: Quadros Decorativos -->
+                <div class="product-card bg-white rounded-xl shadow-lg overflow-hidden">
+                    <img src="https://placehold.co/600x400/D1D5DB/000000?text=Quadros+Decorativos" alt="Quadros decorativos com arte personalizada" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-2xl font-semibold text-gray-900 mb-2">Quadros Decorativos</h3>
+                        <p class="text-gray-600 mb-4">
+                            Arte personalizada para suas paredes. Quadros com ilustrações, fotografias ou mensagens que marcam.
+                        </p>
+                        <a href="Produtos/quadros.html" class="bg-gray-700 hover:bg-gray-800 text-white font-bold py-2 px-4 rounded-full transition duration-300 inline-block">
+                            Saiba Mais
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Cartão de Produto 12: Azulejos -->
+                <div class="product-card bg-white rounded-xl shadow-lg overflow-hidden">
+                    <img src="https://placehold.co/600x400/D1D5DB/000000?text=Azulejos-decorativos" alt="Quadros decorativos com arte personalizada" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-2xl font-semibold text-gray-900 mb-2">Azulejos Decorativos</h3>
+                        <p class="text-gray-600 mb-4">
+                            Peças exclusivas que transformam qualquer ambiente com cor e personalidade.
+                        </p>
+                        <a href="Produtos/azulejos.html" class="bg-gray-700 hover:bg-gray-800 text-white font-bold py-2 px-4 rounded-full transition duration-300 inline-block">
+                            Saiba Mais
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Cartão de Produto 13: Relogio em azulejo -->
+                <div class="product-card bg-white rounded-xl shadow-lg overflow-hidden">
+                    <img src="https://placehold.co/600x400/D1D5DB/000000?text=Relogios+Azulejos" alt="Quadros decorativos com arte personalizada" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-2xl font-semibold text-gray-900 mb-2">Relógio em Azulejo</h3>
+                        <p class="text-gray-600 mb-4">
+                            Marque o tempo com estilo. Relógios únicos que unem a beleza do azulejo à funcionalidade para sua casa.
+                        </p>
+                        <a href="Produtos/azulejosrelogio.html" class="bg-gray-700 hover:bg-gray-800 text-white font-bold py-2 px-4 rounded-full transition duration-300 inline-block">
+                            Saiba Mais
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Cartão de Produto 14: Placas de Acrílico -->
+                <div class="product-card bg-white rounded-xl shadow-lg overflow-hidden">
+                    <img src="https://placehold.co/600x400/D1D5DB/000000?text=Placas+de+Acrílico" alt="Placas de Acrílico com arte personalizada" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-2xl font-semibold text-gray-900 mb-2">Placas de Acrílico</h3>
+                        <p class="text-gray-600 mb-4">
+                            Reconheça com brilho e elegância. Troféus personalizados para celebrar conquistas e momentos especiais.
+                        </p>
+                        <a href="Produtos/placas_acrilico.html" class="bg-gray-700 hover:bg-gray-800 text-white font-bold py-2 px-4 rounded-full transition duration-300 inline-block">
+                            Saiba Mais
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Cartão de Produto 15: Artigos Religiosos -->
+                <div class="product-card bg-white rounded-xl shadow-lg overflow-hidden">
+                    <img src="https://placehold.co/600x400/D1D5DB/000000?text=Artigos+Religiosos" alt="Artigos religiosos personalizados" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-2xl font-semibold text-gray-900 mb-2">Artigos Religiosos</h3>
+                        <p class="text-gray-600 mb-4">
+                            Itens de fé e devoção personalizados com símbolos, orações ou imagens sagradas.
+                        </p>
+                        <a href="Produtos/artigos-religiosos.html" class="bg-gray-700 hover:bg-gray-800 text-white font-bold py-2 px-4 rounded-full transition duration-300 inline-block">
+                            Saiba Mais
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+<!--Fim Produtos-->
+
+    <!-- Seção Sobre Nós -->
+    <section id="sobre" class="py-16 bg-white">
+        <div class="container mx-auto px-6 max-w-4xl flex flex-col md:flex-row items-center gap-10">
+            <div class="md:w-1/2 text-center md:text-left">
+                <h2 class="text-4xl font-bold text-gray-800 mb-6 section-title md:mx-0 mx-auto">Sobre Nós</h2>
+                <p class="text-lg text-gray-700 leading-relaxed mb-4">
+                    Somos uma equipe apaixonada por criar produtos personalizados que contam histórias e expressam a individualidade de cada cliente. Acreditamos que cada item deve ser tão único quanto a pessoa que o possui.
+                </p>
+                <p class="text-lg text-gray-700 leading-relaxed">
+                    Utilizamos materiais de alta qualidade e técnicas de produção avançadas para garantir que cada produto não apenas atenda, mas supere suas expectativas. Do design à entrega, nosso foco é a sua satisfação.
+                </p>
+            </div>
+            <div class="md:w-1/2">
+                <img src="https://placehold.co/600x400/D1D5DB/000000?text=Nossa+Equipe" alt="Equipe da Idealize Store trabalhando" class="rounded-xl shadow-lg w-full h-auto object-cover">
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção de Carrossel de Imagens Automático (Galeria) -->
+    <section id="carousel" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-6 max-w-4xl">
+            <h2 class="text-4xl font-bold text-center text-gray-800 mb-12 section-title mx-auto">Galeria</h2>
+
+            <div class="carousel-container">
+                <div class="carousel-track" id="carousel-track">
+                    <div class="carousel-slide">
+                        <img src="https://placehold.co/900x400/A0A0A0/FFFFFF?text=Foto+Produto+1" alt="Exemplo de produto personalizado 1" class="w-full h-full object-cover">
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="https://placehold.co/900x400/B0B0B0/FFFFFF?text=Foto+Produto+2" alt="Exemplo de produto personalizado 2" class="w-full h-full object-cover">
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="https://placehold.co/900x400/C0C0C0/FFFFFF?text=Foto+Produto+3" alt="Exemplo de produto personalizado 3" class="w-full h-full object-cover">
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="https://placehold.co/900x400/D0D0D0/FFFFFF?text=Foto+Produto+4" alt="Exemplo de produto personalizado 4" class="w-full h-full object-cover">
+                    </div>
+                </div>
+            </div>
+            <!-- Indicadores da Galeria -->
+            <div class="gallery-indicators" id="gallery-indicators">
+                <!-- Os pontos serão gerados dinamicamente aqui pelo JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Botão Flutuante do WhatsApp -->
+    <a href="https://wa.me/+5598984204274" target="_blank" class="fixed bottom-6 right-6 bg-green-500 hover:bg-green-600 text-white p-4 rounded-full shadow-lg transition duration-300 ease-in-out transform hover:scale-110 z-50">
+        <i class="fab fa-whatsapp fa-2x"></i>
+    </a>
+
+        <!-- Seção de Depoimentos -->
+        <section id="testimonials" class="py-16 bg-white">
+            <div class="feedback container mx-auto px-6">
+                <h2 class="text-4xl font-bold text-center text-gray-800 mb-12 section-title mx-auto">O que dizem nossos clientes</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Depoimento 1 -->
+                    <div class="bg-gray-100 p-6 rounded-lg shadow-md">
+                        <p class="text-gray-700 italic mb-4">"Atendimento impecável e produtos de alta qualidade! Minha caneca personalizada ficou perfeita."</p>
+                        <p class="font-semibold text-gray-900">- Ana Paula S.</p>
+                    </div>
+                    <!-- Depoimento 2 -->
+                    <div class="bg-gray-100 p-6 rounded-lg shadow-md">
+                        <p class="text-gray-700 italic mb-4">"Adorei a camiseta! A estampa é linda e o tecido super confortável. Recomendo a Idealize Store!"</p>
+                        <p class="font-semibold text-gray-900">- João Carlos M.</p>
+                    </div>
+                    <!-- Depoimento 3 -->
+                    <div class="bg-gray-100 p-6 rounded-lg shadow-md">
+                        <p class="text-gray-700 italic mb-4">"O quebra-cabeça com a foto da minha família foi um presente incrível. Todos amaram!"</p>
+                        <p class="font-semibold text-gray-900">- Mariana L.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    <!-- Placeholder para o Rodapé -->
+    <div id="footer-placeholder"></div>
+
+    <script>
+        // Função para carregar conteúdo HTML em um placeholder
+        async function loadHTML(elementId, filePath) {
+            try {
+                // Constrói um URL absoluto a partir do filePath relativo
+                // Isso é crucial para ambientes onde as URLs base podem ser complicadas (como URLs blob:)
+                const absoluteUrl = new URL(filePath, window.location.href).href;
+                const response = await fetch(absoluteUrl); // Usa o URL absoluto
+                if (!response.ok) {
+                    throw new Error(`Erro HTTP! Status: ${response.status}`);
+                }
+                const html = await response.text();
+                document.getElementById(elementId).innerHTML = html;
+            } catch (error) {
+                console.error(`Não foi possível carregar ${filePath}:`, error);
+            }
+        }
+
+        // Função para inicializar todos os comportamentos da página (após carregar header/footer)
+        function initPageScripts() {
+            // Referências aos elementos do cabeçalho (agora que estão no DOM)
+            const mainHeader = document.getElementById('main-header');
+            const mainNav = document.getElementById('main-nav');
+            const headerLogo = document.getElementById('header-logo');
+            const body = document.body;
+            const mobileMenu = document.getElementById('mobile-menu');
+            const hamburgerIcon = document.getElementById('hamburger-icon');
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+
+            // Função para atualizar o padding-top do body
+            function updateBodyPadding() {
+                if (mainHeader) {
+                    body.style.paddingTop = `${mainHeader.offsetHeight}px`;
+                }
+            }
+
+            // Toggle do menu móvel
+            if (mobileMenuButton && mobileMenu && hamburgerIcon) {
+                mobileMenuButton.addEventListener('click', () => {
+                    mobileMenu.classList.toggle('open-menu');
+                    hamburgerIcon.classList.toggle('open');
+                });
+            }
+
+            // Smooth scrolling para links de navegação (para links internos na mesma página)
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href').substring(1);
+                    const targetElement = document.getElementById(targetId);
+                    if (targetElement) {
+                        targetElement.scrollIntoView({
+                            behavior: 'smooth'
+                        });
+                    }
+                    // Fecha o menu móvel se estiver aberto
+                    if (mobileMenu && mobileMenu.classList.contains('open-menu')) {
+                        mobileMenu.classList.remove('open-menu');
+                        hamburgerIcon.classList.remove('open');
+                    }
+                });
+            });
+
+            // Lógica do Cabeçalho Fixo (encolher ao rolar)
+            window.addEventListener('scroll', () => {
+                const scrollThreshold = 50; // Pixels rolados antes que o cabeçalho encolha
+                if (window.scrollY > scrollThreshold) {
+                    if (mainNav) { mainNav.classList.remove('py-2'); mainNav.classList.add('py-1'); }
+                    if (headerLogo) { headerLogo.classList.remove('h-16'); headerLogo.classList.add('h-12'); }
+                    if (mainHeader) { mainHeader.classList.add('scrolled-header'); }
+                } else {
+                    if (mainNav) { mainNav.classList.remove('py-1'); mainNav.classList.add('py-2'); }
+                    if (headerLogo) { headerLogo.classList.remove('h-12'); headerLogo.classList.add('h-16'); }
+                    if (mainHeader) { mainHeader.classList.remove('scrolled-header'); }
+                }
+                updateBodyPadding(); // Atualiza o padding ao rolar
+            });
+
+            // Lógica do Carrossel de Imagens Automático (Galeria)
+            const carouselTrack = document.getElementById('carousel-track');
+            const carouselSlides = document.querySelectorAll('.carousel-slide');
+            const galleryIndicators = document.getElementById('gallery-indicators');
+            let currentSlide = 0;
+            const slideInterval = 3000;
+            let galleryAutoSlideInterval;
+
+            if (carouselTrack && carouselSlides.length > 0 && galleryIndicators) {
+                function updateGalleryIndicators() {
+                    Array.from(galleryIndicators.children).forEach((dot) => {
+                        dot.classList.remove('active');
+                    });
+                    if (galleryIndicators.children[currentSlide]) {
+                        galleryIndicators.children[currentSlide].classList.add('active');
+                    }
+                }
+
+                function goToGallerySlide(index) {
+                    currentSlide = index;
+                    updateCarousel();
+                    updateGalleryIndicators();
+                    resetGalleryAutoSlide();
+                }
+
+                function nextSlide() {
+                    currentSlide++;
+                    if (currentSlide >= carouselSlides.length) {
+                        currentSlide = 0;
+                    }
+                    updateCarousel();
+                    updateGalleryIndicators();
+                }
+
+                function updateCarousel() {
+                    const slideWidth = carouselSlides[0].clientWidth;
+                    carouselTrack.style.transform = `translateX(-${currentSlide * slideWidth}px)`;
+                }
+
+                function startGalleryAutoSlide() {
+                    galleryAutoSlideInterval = setInterval(nextSlide, slideInterval);
+                }
+
+                function resetGalleryAutoSlide() {
+                    clearInterval(galleryAutoSlideInterval);
+                    startGalleryAutoSlide();
+                }
+
+                function generateGalleryIndicators() {
+                    galleryIndicators.innerHTML = '';
+                    carouselSlides.forEach((slide, index) => {
+                        const dot = document.createElement('span');
+                        dot.classList.add('gallery-indicator-dot');
+                        dot.addEventListener('click', () => goToGallerySlide(index));
+                        galleryIndicators.appendChild(dot);
+                    });
+                    updateGalleryIndicators();
+                }
+
+                generateGalleryIndicators();
+                startGalleryAutoSlide();
+                window.addEventListener('resize', () => { // Atualiza no redimensionamento
+                    updateCarousel();
+                    generateGalleryIndicators();
+                });
+            }
+
+            // Lógica do Carrossel de Notícias (Banner)
+            const newsCarouselTrack = document.getElementById('carousel-track-banner');
+            const newsCarouselSlides = document.querySelectorAll('.carousel-slide-banner');
+            const newsBannerIndicators = document.getElementById('banner-indicators');
+            const prevBannerButton = document.getElementById('prev-banner');
+            const nextBannerButton = document.getElementById('next-banner');
+            let currentNewsSlide = 0;
+            const newsSlideInterval = 4000;
+            let newsAutoSlideInterval;
+
+            if (newsCarouselTrack && newsCarouselSlides.length > 0 && newsBannerIndicators && prevBannerButton && nextBannerButton) {
+                function updateNewsIndicators() {
+                    Array.from(newsBannerIndicators.children).forEach((dot) => {
+                        dot.classList.remove('active');
+                    });
+                    if (newsBannerIndicators.children[currentNewsSlide]) {
+                        newsBannerIndicators.children[currentNewsSlide].classList.add('active');
+                    }
+                }
+
+                function goToNewsSlide(index) {
+                    currentNewsSlide = index;
+                    updateNewsCarousel();
+                    updateNewsIndicators();
+                    resetNewsAutoSlide();
+                }
+
+                function nextNewsSlide() {
+                    currentNewsSlide++;
+                    if (currentNewsSlide >= newsCarouselSlides.length) {
+                        currentNewsSlide = 0;
+                    }
+                    updateNewsCarousel();
+                    updateNewsIndicators();
+                }
+
+                function prevNewsSlide() {
+                    currentNewsSlide--;
+                    if (currentNewsSlide < 0) {
+                        currentNewsSlide = newsCarouselSlides.length - 1;
+                    }
+                    updateNewsCarousel();
+                    updateNewsIndicators();
+                }
+
+                function updateNewsCarousel() {
+                    const slideWidth = newsCarouselSlides[0].clientWidth;
+                    newsCarouselTrack.style.transform = `translateX(-${currentNewsSlide * slideWidth}px)`;
+                }
+
+                function startNewsAutoSlide() {
+                    newsAutoSlideInterval = setInterval(nextNewsSlide, newsSlideInterval);
+                }
+
+                function resetNewsAutoSlide() {
+                    clearInterval(newsAutoSlideInterval);
+                    startNewsAutoSlide();
+                }
+
+                newsBannerIndicators.addEventListener('click', (event) => {
+                    if (event.target.classList.contains('banner-indicator-dot')) {
+                        const index = Array.from(newsBannerIndicators.children).indexOf(event.target);
+                        if (index !== -1) {
+                            goToNewsSlide(index);
+                        }
+                    }
+                });
+
+                prevBannerButton.addEventListener('click', prevNewsSlide);
+                nextBannerButton.addEventListener('click', nextNewsSlide);
+
+                startNewsAutoSlide();
+                updateNewsCarousel(); // Posição inicial
+                updateNewsIndicators(); // Indicador inicial
+                window.addEventListener('resize', updateNewsCarousel); // Atualiza no redimensionamento
+            }
+
+            // Lógica do Efeito de Foco dos Cartões de Produto
+            const productCards = document.querySelectorAll('.product-card');
+
+            if (productCards.length > 0) {
+                const handleProductCardFocus = (cardToFocus = null) => {
+                    productCards.forEach(card => {
+                        if (card === cardToFocus) {
+                            card.classList.remove('blurred');
+                        } else {
+                            card.classList.add('blurred');
+                        }
+                    });
+                };
+
+                productCards.forEach(card => {
+                    card.addEventListener('mouseover', () => {
+                        handleProductCardFocus(card);
+                    });
+                    card.addEventListener('mouseout', () => {
+                        productCards.forEach(c => {
+                            c.classList.remove('blurred');
+                        });
+                    });
+                });
+            }
+
+            // Garante que o padding do body seja atualizado no carregamento inicial
+            updateBodyPadding();
+        }
+
+        // Ação principal ao carregar o DOM
+        document.addEventListener('DOMContentLoaded', async () => {
+            // Primeiro, carregue o cabeçalho e o rodapé
+            await loadHTML('header-placeholder', 'header.html');
+            await loadHTML('footer-placeholder', 'footer.html');
+
+            // Agora que o cabeçalho e o rodapé estão no DOM, inicialize todos os scripts da página
+            initPageScripts();
+        });
+
+        // Adiciona um listener para o evento resize da janela para recalcular o padding do body
+        // e atualizar os carrosséis, caso initPageScripts já tenha sido executado.
+        // Isso é importante para responsividade.
+        window.addEventListener('resize', () => {
+            // Re-chama initPageScripts para re-avaliar e aplicar as lógicas de redimensionamento
+            // para elementos como carrosséis e padding do body.
+            // É seguro chamar novamente, pois os listeners de evento são adicionados apenas uma vez
+            // ou a lógica dentro deles é idempotente (não causa efeitos colaterais múltiplos).
+            initPageScripts();
+        });
+    </script>
+
+
+    <!--V Libras -->
+    <div vw class="enabled">
+        <div vw-access-button class="active"></div>
+        <div vw-plugin-wrapper>
+            <div class="vw-plugin-top-wrapper"></div>
+        </div>
+    </div>
+    <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+    <script>
+        new window.VLibras.Widget('https://vlibras.gov.br/app');
+    </script>
+    
+    </body>
+    
+    </html>
