@@ -11,6 +11,15 @@ body {
 
 }
 
+.depoimentos {
+max-width: 900px;        /* Equivalente ao max-w-4xl */
+  margin-left: auto;       /* mx-auto: centraliza horizontalmente */
+  margin-right: auto;
+  padding-left: 24px;      /* px-6: padding horizontal */
+  padding-right: 24px;
+  text-align: auto;
+}
+
 /* Estilo para títulos de seção com linha inferior */
 .section-title {
     position: relative;
