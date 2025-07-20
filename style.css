@@ -1,457 +1,452 @@
-<style>
-        /* Estilos globais para o corpo da página */
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #f8f8f8;
-            /* Fundo cinza claro */
-            color: #333;
-            /* Texto cinza escuro */
-            padding-top: 70px;
-            /* Padding inicial, será atualizado pelo JS */
-            transition: padding-top 0.3s ease-in-out;
-            /* Transição suave para o padding */
-        
-        }
-
-        /* Estilo para títulos de seção com linha inferior */
-        .section-title {
-            position: relative;
-            display: inline-block;
-            padding-bottom: 8px;
-        }
-
-        .section-title::after {
-            content: '';
-            position: absolute;
-            left: 50%;
-            /* Centraliza a linha */
-            transform: translateX(-50%);
-            /* Ajusta para centralizar perfeitamente */
-            bottom: 0;
-            width: 50%;
-            height: 3px;
-            background-color: #6b7280;
-            /* Cinza 500 para destaque */
-            border-radius: 9999px;
-        }
-
-        /* Estilos específicos do carrossel da galeria */
-        .carousel-container {
-            position: relative;
-            width: 100%;
-            max-width: 900px;
-            /* Largura máxima para o carrossel da galeria */
-            margin: 0 auto;
-            overflow: hidden;
-            border-radius: 1rem;
-            /* rounded-xl */
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-            /* shadow-lg */
-        }
-
-        .carousel-track {
-            display: flex;
-            transition: transform 0.5s ease-in-out;
-        }
-
-        .carousel-slide {
-            min-width: 100%;
-            flex-shrink: 0;
-        }
-
-        .carousel-slide img {
-            width: 100%;
-            height: 400px;
-            /* Altura fixa para imagens do carrossel da galeria */
-            object-fit: cover;
-            border-radius: 1rem;
-            /* rounded-xl */
-        }
-
-        /* Esconde a barra de rolagem para o track do carrossel */
-        .carousel-track::-webkit-scrollbar {
-            display: none;
-        }
-
-        .carousel-track {
-            -ms-overflow-style: none;
-            /* IE e Edge */
-            scrollbar-width: none;
-            /* Firefox */
-        }
-
-        /* Estilos de animação do menu hambúrguer */
-        .hamburger-icon {
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            width: 30px;
-            height: 20px;
-            cursor: pointer;
-            transition: transform 0.3s ease-in-out;
-        }
-
-        .hamburger-icon span {
-            display: block;
-            width: 100%;
-            height: 3px;
-            background-color: white;
-            border-radius: 2px;
-            transition: all 0.3s ease-in-out;
-        }
-
-        .hamburger-icon.open span:nth-child(1) {
-            transform: translateY(8.5px) rotate(45deg);
-        }
-
-        .hamburger-icon.open span:nth-child(2) {
-            opacity: 0;
-        }
-
-        .hamburger-icon.open span:nth-child(3) {
-            transform: translateY(-8.5px) rotate(-45deg);
-        }
-
-        /* Animação de slide do menu móvel */
-        #mobile-menu {
-            max-height: 0;
-            opacity: 0;
-            overflow: hidden;
-            transition: max-height 0.5s ease-out, opacity 0.3s ease-out;
-            position: absolute;
-            /* Posiciona absolutamente para sobrepor */
-            top: 100%;
-            /* Posiciona abaixo do cabeçalho */
-            left: 0;
-            width: 100%;
-            background-color: rgba(31, 41, 55, 0.95);
-            /* Fundo ligeiramente transparente para sobreposição */
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-        }
-
-        #mobile-menu.open-menu {
-            max-height: 500px;
-            /* Ajuste este valor se o conteúdo do seu menu for mais alto */
-            opacity: 1;
-        }
-
-        /* Estilos específicos do carrossel de notícias (banner) */
-        #news-banner-carousel {
-            position: relative;
-            width: 100%;
-            background-color: #f8f8f8;
-            /* Fundo cinza claro */
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-            /* shadow-md */
-        }
-
-        .carousel-container-banner {
-            width: 100%;
-            margin: 0 auto;
-            overflow: hidden;
-            position: relative;
-            /* Necessário para posicionamento absoluto das setas */
-        }
-
-        .carousel-track-banner {
-            display: flex;
-            transition: transform 0.5s ease-in-out;
-        }
-
-        .carousel-slide-banner {
-            min-width: 100%;
-            flex-shrink: 0;
-            position: relative;
-            /* Adicionado para sobreposição e posicionamento de conteúdo */
-            height: 550px;
-            /* Altura aumentada para desktop */
-        }
-
-        .carousel-slide-banner img {
-            position: absolute;
-            /* Posiciona a imagem absolutamente para permitir sobreposição */
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            /* Preenche a altura do slide pai */
-            object-fit: cover;
-            object-position: center center;
-            /* Garante que o conteúdo seja centralizado ao cortar */
-            z-index: 1;
-            /* Garante que a imagem esteja atrás da sobreposição e do texto */
-        }
-
-        /* Estilo de sobreposição (mantido para uso futuro ou se o usuário quiser adicionar novamente) */
-        .banner-overlay {
-            position: absolute;
-            inset: 0;
-            /* Top, right, bottom, left para 0 */
-            background-color: rgba(0, 0, 0, 0.4);
-            /* Sobreposição escura semi-transparente */
-            z-index: 2;
-            /* Acima da imagem, abaixo do texto */
-        }
-
-        /* Estilo do contêiner de conteúdo (mantido para uso futuro ou se o usuário quiser adicionar novamente) */
-        .banner-content {
-            position: relative;
-            /* Torna o conteúdo relativo para ficar acima da sobreposição */
-            z-index: 3;
-            /* Acima da sobreposição */
-            color: white;
-            /* Cor do texto */
-            padding: 1rem;
-            /* Padding para o conteúdo */
-            max-width: 90%;
-            /* Limita a largura do conteúdo */
-        }
-
-        /* Media queries para altura responsiva do banner em telas menores */
-        @media (max-width: 768px) {
-
-            /* Para tablets e telefones maiores */
-            .carousel-slide-banner {
-                height: 400px;
-                /* Altura reduzida para melhor ajuste em dispositivos móveis */
-            }
-        }
-
-        @media (max-width: 480px) {
-
-            /* Para dispositivos móveis menores */
-            .carousel-slide-banner {
-                height: 300px;
-                /* Altura ainda mais reduzida para telas muito pequenas */
-            }
-        }
-
-        /* Esconde a barra de rolagem para o track do carrossel do banner */
-        .carousel-track-banner::-webkit-scrollbar {
-            display: none;
-        }
-
-        .carousel-track-banner {
-            -ms-overflow-style: none;
-            scrollbar-width: none;
-        }
-
-        /* Estilos dos indicadores do banner */
-        .banner-indicators {
-            position: absolute;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            justify-content: center;
-            z-index: 10;
-        }
-
-        .banner-indicator-dot {
-            width: 12px;
-            height: 12px;
-            background-color: rgba(255, 255, 255, 0.5);
-            border-radius: 50%;
-            margin: 0 6px;
-            cursor: pointer;
-            transition: background-color 0.3s ease, transform 0.3s ease;
-            border: 1px solid rgba(0, 0, 0, 0.2);
-        }
-
-        .banner-indicator-dot.active {
-            background-color: white;
-            transform: scale(1.2);
-        }
-
-        /* Setas de navegação do banner */
-        .banner-arrow {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background-color: rgba(0, 0, 0, 0.05);
-            color: white;
-            padding: 4px 8px;
-            cursor: pointer;
-            z-index: 10;
-            font-size: 0.8rem;
-            border-radius: 0.25rem;
-            transition: background-color 0.3s ease;
-        }
-
-        .banner-arrow:hover {
-            background-color: rgba(0, 0, 0, 0.2);
-        }
-
-        .banner-arrow.left {
-            left: 10px;
-        }
-
-        .banner-arrow.right {
-            right: 10px;
-        }
-
-        /* Estilo personalizado para contêiner de iframe de vídeo */
-        .video-responsive-container {
-            position: relative;
-            width: 100%;
-            padding-bottom: 56.25%;
-            height: 0;
-            overflow: hidden;
-            background-color: black;
-            border-radius: 1rem;
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-        }
-
-        .video-responsive-container iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border: 0;
-        }
-
-        /* Estilos dos indicadores da galeria (similar ao banner, mas específico para a galeria) */
-        .gallery-indicators {
-            display: flex;
-            justify-content: center;
-            margin-top: 20px;
-            z-index: 10;
-        }
-
-        .gallery-indicator-dot {
-            width: 10px;
-            height: 10px;
-            background-color: rgba(107, 114, 128, 0.5);
-            border-radius: 50%;
-            margin: 0 5px;
-            cursor: pointer;
-            transition: background-color 0.3s ease, transform 0.3s ease;
-            border: 1px solid rgba(0, 0, 0, 0.1);
-        }
-
-        .gallery-indicator-dot.active {
-            background-color: #6b7280;
-            transform: scale(1.2);
-        }
-
-        /* --- Novos estilos para o Efeito de Foco dos Cartões de Produto --- */
-        .product-card {
-            filter: blur(0);
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-            transform: scale(1.02);
-            transition: all 0.3s ease-in-out;
-        }
-
-        .product-card.blurred {
-            filter: blur(4px);
-            box-shadow: none;
-            transform: scale(1);
-        }
-
-        /* --- Fim dos Novos estilos para o Efeito de Foco dos Cartões de Produto --- */
-
-        .feedback {
-            display: flex;
-            flex-direction: column;
-            margin: 0 2rem;
-            
-        }
-
-
-        /* --- Estilos Específicos do Cabeçalho Móvel --- */
-        @media (max-width: 767px) {
-            #main-nav {
-                padding-top: 0.5rem;
-                padding-bottom: 0.5rem;
-            }
-
-            #header-logo {
-                height: 48px;
-            }
-
-            /* Ajusta o padding-top para o body em dispositivos móveis para acomodar o cabeçalho menor */
-            body {
-                padding-top: 60px;
-            }
-
-            /* Reduz ainda mais o padding-top ao rolar para dispositivos móveis */
-            .scrolled-header #main-nav {
-                padding-top: 0.125rem;
-                padding-bottom: 0.125rem;
-            }
-
-            .scrolled-header #header-logo {
-                height: 32px;
-            }
-
-            .scrolled-header body {
-                padding-top: 40px;
-            }
-        }
-
-        /* --- Fim dos Estilos Específicos do Cabeçalho Móvel --- */
-
-        /* --- Efeito de Texto Gradiente (Similar ao Cabeçalho) --- */
-        .header-gradient-text {
-            background-image: linear-gradient(to right, #4b5563, #1f2937);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            transition: all 0.5s ease-in-out;
-        }
-
-        .header-gradient-text:hover {
-            background-image: linear-gradient(to right, #6b7280, #374151);
-        }
-
-        /* --- Fim do Efeito de Texto Gradiente --- */
-
-        /* --- Estilos Personalizados para Efeito Hover do Logo --- */
-        .logo-link {
-            transition: transform 0.3s ease-in-out;
-        }
-
-        .logo-link:hover {
-            transform: scale(1.05);
-        }
-
-        /* --- Fim dos Estilos Personalizados para Efeito Hover do Logo --- */
-
-        /* --- Estilos Personalizados para Efeito Hover de Link de Navegação (Salto) --- */
-        .nav-link-jump {
-            position: relative;
-            transition: transform 0.3s ease-in-out;
-        }
-
-        .nav-link-jump:hover {
-            transform: translateY(-5px);
-        }
-
-        /* --- Fim dos Estilos Personalizados para Efeito Hover de Link de Navegação (Salto) --- */
-
-        /* --- Estilo para fonte tipo escrita --- */
-        .writing-font {
-            font-family: 'Dancing Script', cursive;
-            font-weight: 700;
-        }
-
-        /* --- Estilos para animações de escala no hover --- */
-        .scale-on-hover {
-            transition: transform 0.3s ease-in-out;
-        }
-
-        .scale-on-hover:hover {
-            transform: scale(1.02);
-        }
-
-        .shrink-on-hover {
-            transition: transform 0.3s ease-in-out;
-        }
-
-        .shrink-on-hover:hover {
-            transform: scale(0.98);
-        }
-
-        /* --- Fim dos estilos para animações de escala no hover --- */
-    </style>
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #f8f8f8;
+    /* Fundo cinza claro */
+    color: #333;
+    /* Texto cinza escuro */
+    padding-top: 70px;
+    /* Padding inicial, será atualizado pelo JS */
+    transition: padding-top 0.3s ease-in-out;
+    /* Transição suave para o padding */
+
+}
+
+/* Estilo para títulos de seção com linha inferior */
+.section-title {
+    position: relative;
+    display: inline-block;
+    padding-bottom: 8px;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    /* Centraliza a linha */
+    transform: translateX(-50%);
+    /* Ajusta para centralizar perfeitamente */
+    bottom: 0;
+    width: 50%;
+    height: 3px;
+    background-color: #6b7280;
+    /* Cinza 500 para destaque */
+    border-radius: 9999px;
+}
+
+/* Estilos específicos do carrossel da galeria */
+.carousel-container {
+    position: relative;
+    width: 100%;
+    max-width: 900px;
+    /* Largura máxima para o carrossel da galeria */
+    margin: 0 auto;
+    overflow: hidden;
+    border-radius: 1rem;
+    /* rounded-xl */
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    /* shadow-lg */
+}
+
+.carousel-track {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+
+.carousel-slide {
+    min-width: 100%;
+    flex-shrink: 0;
+}
+
+.carousel-slide img {
+    width: 100%;
+    height: 400px;
+    /* Altura fixa para imagens do carrossel da galeria */
+    object-fit: cover;
+    border-radius: 1rem;
+    /* rounded-xl */
+}
+
+/* Esconde a barra de rolagem para o track do carrossel */
+.carousel-track::-webkit-scrollbar {
+    display: none;
+}
+
+.carousel-track {
+    -ms-overflow-style: none;
+    /* IE e Edge */
+    scrollbar-width: none;
+    /* Firefox */
+}
+
+/* Estilos de animação do menu hambúrguer */
+.hamburger-icon {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    height: 20px;
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out;
+}
+
+.hamburger-icon span {
+    display: block;
+    width: 100%;
+    height: 3px;
+    background-color: white;
+    border-radius: 2px;
+    transition: all 0.3s ease-in-out;
+}
+
+.hamburger-icon.open span:nth-child(1) {
+    transform: translateY(8.5px) rotate(45deg);
+}
+
+.hamburger-icon.open span:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger-icon.open span:nth-child(3) {
+    transform: translateY(-8.5px) rotate(-45deg);
+}
+
+/* Animação de slide do menu móvel */
+#mobile-menu {
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease-out, opacity 0.3s ease-out;
+    position: absolute;
+    /* Posiciona absolutamente para sobrepor */
+    top: 100%;
+    /* Posiciona abaixo do cabeçalho */
+    left: 0;
+    width: 100%;
+    background-color: rgba(31, 41, 55, 0.95);
+    /* Fundo ligeiramente transparente para sobreposição */
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+#mobile-menu.open-menu {
+    max-height: 500px;
+    /* Ajuste este valor se o conteúdo do seu menu for mais alto */
+    opacity: 1;
+}
+
+/* Estilos específicos do carrossel de notícias (banner) */
+#news-banner-carousel {
+    position: relative;
+    width: 100%;
+    background-color: #f8f8f8;
+    /* Fundo cinza claro */
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    /* shadow-md */
+}
+
+.carousel-container-banner {
+    width: 100%;
+    margin: 0 auto;
+    overflow: hidden;
+    position: relative;
+    /* Necessário para posicionamento absoluto das setas */
+}
+
+.carousel-track-banner {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+
+.carousel-slide-banner {
+    min-width: 100%;
+    flex-shrink: 0;
+    position: relative;
+    /* Adicionado para sobreposição e posicionamento de conteúdo */
+    height: 550px;
+    /* Altura aumentada para desktop */
+}
+
+.carousel-slide-banner img {
+    position: absolute;
+    /* Posiciona a imagem absolutamente para permitir sobreposição */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* Preenche a altura do slide pai */
+    object-fit: cover;
+    object-position: center center;
+    /* Garante que o conteúdo seja centralizado ao cortar */
+    z-index: 1;
+    /* Garante que a imagem esteja atrás da sobreposição e do texto */
+}
+
+/* Estilo de sobreposição (mantido para uso futuro ou se o usuário quiser adicionar novamente) */
+.banner-overlay {
+    position: absolute;
+    inset: 0;
+    /* Top, right, bottom, left para 0 */
+    background-color: rgba(0, 0, 0, 0.4);
+    /* Sobreposição escura semi-transparente */
+    z-index: 2;
+    /* Acima da imagem, abaixo do texto */
+}
+
+/* Estilo do contêiner de conteúdo (mantido para uso futuro ou se o usuário quiser adicionar novamente) */
+.banner-content {
+    position: relative;
+    /* Torna o conteúdo relativo para ficar acima da sobreposição */
+    z-index: 3;
+    /* Acima da sobreposição */
+    color: white;
+    /* Cor do texto */
+    padding: 1rem;
+    /* Padding para o conteúdo */
+    max-width: 90%;
+    /* Limita a largura do conteúdo */
+}
+
+/* Media queries para altura responsiva do banner em telas menores */
+@media (max-width: 768px) {
+
+    /* Para tablets e telefones maiores */
+    .carousel-slide-banner {
+        height: 400px;
+        /* Altura reduzida para melhor ajuste em dispositivos móveis */
+    }
+}
+
+@media (max-width: 480px) {
+
+    /* Para dispositivos móveis menores */
+    .carousel-slide-banner {
+        height: 300px;
+        /* Altura ainda mais reduzida para telas muito pequenas */
+    }
+}
+
+/* Esconde a barra de rolagem para o track do carrossel do banner */
+.carousel-track-banner::-webkit-scrollbar {
+    display: none;
+}
+
+.carousel-track-banner {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+/* Estilos dos indicadores do banner */
+.banner-indicators {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    justify-content: center;
+    z-index: 10;
+}
+
+.banner-indicator-dot {
+    width: 12px;
+    height: 12px;
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 50%;
+    margin: 0 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.banner-indicator-dot.active {
+    background-color: white;
+    transform: scale(1.2);
+}
+
+/* Setas de navegação do banner */
+.banner-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.05);
+    color: white;
+    padding: 4px 8px;
+    cursor: pointer;
+    z-index: 10;
+    font-size: 0.8rem;
+    border-radius: 0.25rem;
+    transition: background-color 0.3s ease;
+}
+
+.banner-arrow:hover {
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+.banner-arrow.left {
+    left: 10px;
+}
+
+.banner-arrow.right {
+    right: 10px;
+}
+
+/* Estilo personalizado para contêiner de iframe de vídeo */
+.video-responsive-container {
+    position: relative;
+    width: 100%;
+    padding-bottom: 56.25%;
+    height: 0;
+    overflow: hidden;
+    background-color: black;
+    border-radius: 1rem;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+.video-responsive-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+/* Estilos dos indicadores da galeria (similar ao banner, mas específico para a galeria) */
+.gallery-indicators {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    z-index: 10;
+}
+
+.gallery-indicator-dot {
+    width: 10px;
+    height: 10px;
+    background-color: rgba(107, 114, 128, 0.5);
+    border-radius: 50%;
+    margin: 0 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.gallery-indicator-dot.active {
+    background-color: #6b7280;
+    transform: scale(1.2);
+}
+
+/* --- Novos estilos para o Efeito de Foco dos Cartões de Produto --- */
+.product-card {
+    filter: blur(0);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    transform: scale(1.02);
+    transition: all 0.3s ease-in-out;
+}
+
+.product-card.blurred {
+    filter: blur(4px);
+    box-shadow: none;
+    transform: scale(1);
+}
+
+/* --- Fim dos Novos estilos para o Efeito de Foco dos Cartões de Produto --- */
+
+.feedback {
+    display: flex;
+    flex-direction: column;
+    margin: 0 2rem;
+
+}
+
+
+/* --- Estilos Específicos do Cabeçalho Móvel --- */
+@media (max-width: 767px) {
+    #main-nav {
+        padding-top: 0.5rem;
+        padding-bottom: 0.5rem;
+    }
+
+    #header-logo {
+        height: 48px;
+    }
+
+    /* Ajusta o padding-top para o body em dispositivos móveis para acomodar o cabeçalho menor */
+    body {
+        padding-top: 60px;
+    }
+
+    /* Reduz ainda mais o padding-top ao rolar para dispositivos móveis */
+    .scrolled-header #main-nav {
+        padding-top: 0.125rem;
+        padding-bottom: 0.125rem;
+    }
+
+    .scrolled-header #header-logo {
+        height: 32px;
+    }
+
+    .scrolled-header body {
+        padding-top: 40px;
+    }
+}
+
+/* --- Fim dos Estilos Específicos do Cabeçalho Móvel --- */
+
+/* --- Efeito de Texto Gradiente (Similar ao Cabeçalho) --- */
+.header-gradient-text {
+    background-image: linear-gradient(to right, #4b5563, #1f2937);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    transition: all 0.5s ease-in-out;
+}
+
+.header-gradient-text:hover {
+    background-image: linear-gradient(to right, #6b7280, #374151);
+}
+
+/* --- Fim do Efeito de Texto Gradiente --- */
+
+/* --- Estilos Personalizados para Efeito Hover do Logo --- */
+.logo-link {
+    transition: transform 0.3s ease-in-out;
+}
+
+.logo-link:hover {
+    transform: scale(1.05);
+}
+
+/* --- Fim dos Estilos Personalizados para Efeito Hover do Logo --- */
+
+/* --- Estilos Personalizados para Efeito Hover de Link de Navegação (Salto) --- */
+.nav-link-jump {
+    position: relative;
+    transition: transform 0.3s ease-in-out;
+}
+
+.nav-link-jump:hover {
+    transform: translateY(-5px);
+}
+
+/* --- Fim dos Estilos Personalizados para Efeito Hover de Link de Navegação (Salto) --- */
+
+/* --- Estilo para fonte tipo escrita --- */
+.writing-font {
+    font-family: 'Dancing Script', cursive;
+    font-weight: 700;
+}
+
+/* --- Estilos para animações de escala no hover --- */
+.scale-on-hover {
+    transition: transform 0.3s ease-in-out;
+}
+
+.scale-on-hover:hover {
+    transform: scale(1.02);
+}
+
+.shrink-on-hover {
+    transition: transform 0.3s ease-in-out;
+}
+
+.shrink-on-hover:hover {
+    transform: scale(0.98);
+}
