@@ -698,7 +698,7 @@ max-width: 900px;        /* Equivalente ao max-w-4xl */
 
         .nav-button {
             position: absolute;
-            top: 65%;
+            top: 75%;
             transform: translateY(-50%);
             background-color: rgba(0, 0, 0, 0.5);
             color: white;
@@ -706,7 +706,7 @@ max-width: 900px;        /* Equivalente ao max-w-4xl */
             border-radius: 50%;
             width: 2rem; /* Um pouco maior para ser mais fácil de clicar */
             height: 2rem; /* Um pouco maior */
-            font-size: 2rem; /* Seta maior */
+            font-size: 1rem; /* Seta maior */
             cursor: pointer;
             display: flex;
             justify-content: center;
