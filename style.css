@@ -717,11 +717,11 @@ max-width: 900px;        /* Equivalente ao max-w-4xl */
         }
 
         .prev-button {
-            left: 2rem; /* Posiciona à esquerda */
+            left: 1rem; /* Posiciona à esquerda */
         }
 
         .next-button {
-            right: 2rem; /* Posiciona à direita */
+            right: 1rem; /* Posiciona à direita */
         }
 
         .close-button:hover,
