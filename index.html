@@ -391,31 +391,42 @@
     <section id="carousel" class="py-16 bg-gray-50 ">
         <div class="container mx-auto px-6 max-w-4xl">
             <h2 class="text-4xl font-bold text-center text-gray-800 mb-12 section-title mx-auto">Galeria</h2>
+    <div class="grid-container">
+        <div class="grid-item">
+            <img src="1.png" alt="Foto 1" onerror="this.onerror=null; this.src='https://placehold.co/600x400/FF5733/FFFFFF?text=Erro+ao+Carregar'">
+        </div>
+        <div class="grid-item">
+            <img src="2.webp" alt="Foto 2" onerror="this.onerror=null; this.src='https://placehold.co/400x300/33FF57/FFFFFF?text=Erro+ao+Carregar'">
+        </div>
+        <div class="grid-item">
+            <img src="3.jpg" alt="Foto 3" onerror="this.onerror=null; this.src='https://placehold.co/400x300/5733FF/FFFFFF?text=Erro+ao+Carregar'">
+        </div>
+        <div class="grid-item">
+            <img src="4.jpg" alt="Foto 4" onerror="this.onerror=null; this.src='https://placehold.co/400x300/FF33A1/FFFFFF?text=Erro+ao+Carregar'">
+        </div>
+        <div class="grid-item">
+            <img src="5.png" alt="Foto 5" onerror="this.onerror=null; this.src='https://placehold.co/400x300/33A1FF/FFFFFF?text=Erro+ao+Carregar'">
+        </div>
+        <div class="grid-item">
+            <img src="1.png" alt="Foto 6" onerror="this.onerror=null; this.src='https://placehold.co/600x400/A1FF33/FFFFFF?text=Erro+ao+Carregar'">
+        </div>
+        
+    </div>
+    <div class="button-wrapper">
+        <a href="#" class="view-more-button">Veja Mais</a>
+    </div>
 
-            <div class="carousel-container">
-                <div class="carousel-track" id="carousel-track">
-                    <div class="carousel-slide">
-                        <img src="https://placehold.co/900x400/A0A0A0/FFFFFF?text=Foto+Produto+1"
-                            alt="Exemplo de produto personalizado 1" class="w-full h-full object-cover">
-                    </div>
-                    <div class="carousel-slide">
-                        <img src="https://placehold.co/900x400/B0B0B0/FFFFFF?text=Foto+Produto+2"
-                            alt="Exemplo de produto personalizado 2" class="w-full h-full object-cover">
-                    </div>
-                    <div class="carousel-slide">
-                        <img src="https://placehold.co/900x400/C0C0C0/FFFFFF?text=Foto+Produto+3"
-                            alt="Exemplo de produto personalizado 3" class="w-full h-full object-cover">
-                    </div>
-                    <div class="carousel-slide">
-                        <img src="https://placehold.co/900x400/D0D0D0/FFFFFF?text=Foto+Produto+4"
-                            alt="Exemplo de produto personalizado 4" class="w-full h-full object-cover">
-                    </div>
-                </div>
-            </div>
-            <!-- Indicadores da Galeria -->
-            <div class="gallery-indicators" id="gallery-indicators">
-                <!-- Os pontos serão gerados dinamicamente aqui pelo JavaScript -->
-            </div>
+    <!-- Modal de Visualização -->
+    <div id="imageModal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+        <div class="modal-content">
+            <h2 id="modalTitle" style="position:absolute; left:-9999px;">Visualização da Imagem</h2> <!-- Título oculto para acessibilidade -->
+            <img id="modalImage" src="" alt="Imagem Ampliada" onerror="this.onerror=null; this.src='https://placehold.co/600x400/FF0000/FFFFFF?text=Erro+Carregamento+Modal'">
+        </div>
+        <button class="close-button" aria-label="Fechar imagem">&times;</button>
+        <button class="nav-button prev-button" aria-label="Imagem anterior">&#10094;</button> <!-- Seta esquerda -->
+        <button class="nav-button next-button" aria-label="Próxima imagem">&#10095;</button> <!-- Seta direita -->
+        <div id="imageCounter" class="image-counter"></div>
+    </div>
         </div>
     </section>
 
