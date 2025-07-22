@@ -58,21 +58,26 @@ max-width: 900px;        /* Equivalente ao max-w-4xl */
 
 .carousel-track {
     display: flex;
+    /* Remova padding: auto; */
     transition: transform 0.5s ease-in-out;
 }
 
 .carousel-slide {
     min-width: 100%;
     flex-shrink: 0;
+    /* Adicione propriedades flexbox para centralizar o conteúdo dentro do slide */
+    display: flex;
+    justify-content: center; /* Centraliza o conteúdo horizontalmente */
+    align-items: center;     /* Centraliza o conteúdo verticalmente */
 }
 
 .carousel-slide img {
-    width: 100%;
-    height: 400px;
-    /* Altura fixa para imagens do carrossel da galeria */
-    object-fit: cover;
-    border-radius: 1rem;
-    /* rounded-xl */
+    max-width: 1000px; /* Garante que a imagem não transborde seu pai */
+    max-height: 125rem; /* Garante que a imagem não transborde seu pai */
+    object-fit: center; /* A imagem será redimensionada para caber, mantendo a proporção */
+    display: block; /* Remove qualquer espaço extra ao redor da imagem */
+    margin: center; /* Centraliza a imagem horizontalmente dentro de seu pai */
+    border-radius: 3rem;
 }
 
 /* Esconde a barra de rolagem para o track do carrossel */
