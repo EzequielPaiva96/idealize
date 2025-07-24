@@ -474,10 +474,10 @@ max-width: 900px;        /* Equivalente ao max-w-4xl */
     width: 100%;
     max-width: 1200px;
     /* Largura máxima para o grid */
-    margin: auto;
+    margin: 1rem auto;
     /* Centraliza o container */
-    padding: 1rem;
-    margin-bottom: 1.5rem;
+    padding: auto;
+    margin-bottom: 1rem;
     /* Espaçamento entre o grid e o botão */
 }
 
@@ -606,13 +606,13 @@ max-width: 900px;        /* Equivalente ao max-w-4xl */
     }
 
     .grid-container>div:nth-child(1) img {
-        height: 510px;
+        height: 320px;
         /* Ajusta a altura para a imagem maior no desktop */
     }
 
     /* Garante que as outras imagens voltem ao tamanho padrão */
     .grid-container>div:not(:nth-child(1)) img {
-        height: 250px;
+        height: 150px;
     }
 }
 
@@ -645,6 +645,7 @@ max-width: 900px;        /* Equivalente ao max-w-4xl */
 
 .grid-item img {
     width: 100%;
+    /* Garante que a imagem ocupe toda a largura do item */
     object-fit: cover;
     /* Garante que a imagem cubra o espaço sem distorcer */
     display: block;
