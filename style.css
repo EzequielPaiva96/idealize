@@ -361,6 +361,53 @@ max-width: 900px;        /* Equivalente ao max-w-4xl */
     transform: scale(1);
 }
 
+
+.grid-item-produtos {
+    overflow: hidden;
+    /* Garante que a imagem não transborde */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    /* Transição suave para hover */
+    outline: none;
+    /* Remove o contorno padrão do item do grid */
+    cursor: pointer;
+    /* Indica que o item é clicável */
+}
+
+.grid-item-produtos:focus {
+    outline: none;
+    /* Garante que o contorno seja removido ao focar o item do grid */
+}
+
+.grid-item-produtos:hover {
+    transform: translateY(-5px) scale(1.02);
+    /* Pequeno levantamento e aumento no hover */
+}
+
+.grid-item-produtos img {
+    width: 100%;
+    /* Garante que a imagem ocupe toda a largura do item */
+    object-fit: cover;
+    /* Garante que a imagem cubra o espaço sem distorcer */
+    display: block;
+    /* Remove espaço extra abaixo da imagem */
+    transition: transform 0.3s ease;
+    /* Transição para o efeito de zoom na imagem */
+    outline: none;
+    /* Remove o contorno padrão da imagem */
+}
+
+.grid-item-produtos img:focus {
+    outline: none;
+    /* Garante que o contorno seja removido ao focar a imagem */
+}
+
+.grid-item-produtos:hover img {
+    transform: scale(1.05);
+    /* Pequeno zoom na imagem no hover */
+}
+
+
+
 /* --- Fim dos Novos estilos para o Efeito de Foco dos Cartões de Produto --- */
 
 .feedback {
