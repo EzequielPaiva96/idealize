@@ -619,7 +619,7 @@ max-width: 900px;        /* Equivalente ao max-w-4xl */
 .grid-item {
     overflow: hidden;
     /* Garante que a imagem não transborde */
-    border-radius: 1rem;
+    border-radius: 0.5rem;
     /* Cantos arredondados para cada item */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
     /* Sombra para cada item */
