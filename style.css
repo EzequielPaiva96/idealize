@@ -975,15 +975,6 @@ max-width: 900px;        /* Equivalente ao max-w-4xl */
             --image-gap: 1rem; /* Tamanho do espaçamento entre as imagens */
         }
 
-        /* Base body styles for font, background, and text color */
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #f8f8f8; /* Light gray background */
-            color: #333; /* Dark gray text */
-            padding-top: 70px; /* Initial padding, will be updated dynamically by JS based on header height */
-            transition: padding-top 0.3s ease-in-out; /* Smooth transition for padding changes */
-        }
-
         /* Styles for the section title underline effect */
         .section-title {
             position: relative;
@@ -1003,75 +994,6 @@ max-width: 900px;        /* Equivalente ao max-w-4xl */
             border-radius: 9999px; /* Rounded ends for the underline */
         }
 
-        /* Hamburger menu icon animation styles */
-        .hamburger-icon {
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            width: 30px;
-            height: 20px;
-            cursor: pointer;
-            transition: transform 0.3s ease-in-out;
-        }
-
-        .hamburger-icon span {
-            display: block;
-            width: 100%;
-            height: 3px;
-            background-color: white;
-            border-radius: 2px;
-            transition: all 0.3s ease-in-out;
-        }
-
-        /* Hamburger icon transformation when open */
-        .hamburger-icon.open span:nth-child(1) {
-            transform: translateY(8.5px) rotate(45deg);
-        }
-
-        .hamburger-icon.open span:nth-child(2) {
-            opacity: 0; /* Hide the middle bar */
-        }
-
-        .hamburger-icon.open span:nth-child(3) {
-            transform: translateY(-8.5px) rotate(-45deg);
-        }
-
-        /* Mobile Menu Slide Animation */
-        #mobile-menu {
-            max-height: 0;
-            opacity: 0;
-            overflow: hidden;
-            transition: max-height 0.5s ease-out, opacity 0.3s ease-out;
-            position: absolute;
-            top: 100%; /* Position below the header */
-            left: 0;
-            width: 100%;
-            background-color: rgba(31, 41, 55, 0.95); /* Semi-transparent dark background */
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-            z-index: 40; /* Ensure it's above other content but below fixed header */
-        }
-
-        #mobile-menu.open-menu {
-            max-height: 500px; /* Sufficient height to show all menu items */
-            opacity: 1;
-        }
-
-        /* Mobile Header Specific Styles */
-        @media (max-width: 767px) {
-            #main-nav {
-                padding-top: 0.5rem;
-                padding-bottom: 0.5rem;
-            }
-
-            #header-logo {
-                height: 48px;
-            }
-
-            /* Adjust padding-top for body on mobile to account for smaller header */
-            body {
-                padding-top: 60px;
-            }
-
             /* Further reduce padding-top on scroll for mobile */
             .scrolled-header #main-nav {
                 padding-top: 0.125rem;
@@ -1085,8 +1007,7 @@ max-width: 900px;        /* Equivalente ao max-w-4xl */
             .scrolled-header body {
                 padding-top: 40px;
             }
-        }
-
+        
         /* Custom Styles for Logo Hover Effect */
         .logo-link {
             transition: transform 0.3s ease-in-out;
