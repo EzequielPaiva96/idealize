@@ -811,7 +811,7 @@ max-width: 900px;        /* Equivalente ao max-w-4xl */
 .close-button:hover,
 .nav-button:hover {
     background-color: rgba(0, 0, 0, 0.7);
-    
+
 }
 
 .image-counter {
