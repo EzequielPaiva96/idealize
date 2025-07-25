@@ -799,19 +799,19 @@ max-width: 900px;        /* Equivalente ao max-w-4xl */
 }
 
 .prev-button {
-    left: 1rem;
+    left: 3rem;
     /* Posiciona à esquerda */
 }
 
 .next-button {
-    right: 1rem;
+    right: 3rem;
     /* Posiciona à direita */
 }
 
 .close-button:hover,
 .nav-button:hover {
     background-color: rgba(0, 0, 0, 0.7);
-    transform: scale(1.1);
+    
 }
 
 .image-counter {
