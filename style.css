@@ -874,3 +874,24 @@ max-width: 900px;        /* Equivalente ao max-w-4xl */
     z-index: 1001;
 
 }
+
+        #toggleContraste {
+            position: fixed; /* Botão fixo na tela */
+            right: 1.5%; /* 20px da margem direita */
+            top: 40%; /* Centraliza verticalmente */
+
+            width: 40px; /* Largura para o botão redondo */
+            
+            border-radius: 8px; /* Torna o botão redondo */
+            background-color: #007bff; /* Azul para botões padrão */
+            color: #ffffff;
+            border: none;
+            cursor: pointer;
+            font-size: 24px; /* Tamanho do ícone */
+            display: flex; /* Para centralizar o ícone */
+          
+            justify-content: center; /* Centraliza horizontalmente o ícone */
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2); /* Sombra mais pronunciada para botão fixo */
+            transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease; /* Transição suave */
+            z-index: 1000; /* Garante que o botão fique acima de outros elementos */
+        }
