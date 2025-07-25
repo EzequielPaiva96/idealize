@@ -877,8 +877,8 @@ max-width: 900px;        /* Equivalente ao max-w-4xl */
 
         #toggleContraste {
             position: fixed; /* Botão fixo na tela */
-            right: 1.5%; /* 20px da margem direita */
-            top: 40%; /* Centraliza verticalmente */
+            right: 0.6rem; /* 20px da margem direita */
+            top: 38%; /* Centraliza verticalmente */
 
             width: 40px; /* Largura para o botão redondo */
             
