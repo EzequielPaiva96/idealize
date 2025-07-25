@@ -260,19 +260,19 @@ max-width: 900px;        /* Equivalente ao max-w-4xl */
 }
 
 .banner-indicator-dot {
-    width: 12px;
-    height: 12px;
+    width: 20px;
+    height: 3px;
     background-color: rgba(255, 255, 255, 0.5);
-    border-radius: 50%;
-    margin: 0 6px;
+    border-radius: 20%;
+    margin: 0 5%;
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.3s ease;
-    border: 1px solid rgba(0, 0, 0, 0.2);
+   
 }
 
 .banner-indicator-dot.active {
     background-color: white;
-    transform: scale(1.2);
+    
 }
 
 /* Setas de navegação do banner */
