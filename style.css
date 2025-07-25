@@ -768,7 +768,7 @@ max-width: 900px;        /* Equivalente ao max-w-4xl */
     /* Fundo semi-transparente escuro */
     justify-content: center;
     align-items: center;
-    z-index: 1000;
+    z-index: 1001;
     /* Garante que fique acima de outros elementos */
     backdrop-filter: blur(5px);
     /* Efeito de desfoque no fundo */
@@ -955,12 +955,11 @@ max-width: 900px;        /* Equivalente ao max-w-4xl */
             background-color: #222222; /* Um cinza quase preto para cards */
             color: #ffffff; /* Texto branco nos cards */
         }
-        .alto-contraste .bg-white2 {
-            background-color: #222222; /* Um cinza quase preto para cards */
+
+        .alto-contraste .text-gray-700 {
             color: #ffffff; /* Texto branco nos cards */
         }
-        
-        .alto-contraste .text-gray-700 {
+        .alto-contraste .text-gray-600 {
             color: #ffffff; /* Texto branco nos cards */
         }
 
@@ -1113,7 +1112,7 @@ max-width: 900px;        /* Equivalente ao max-w-4xl */
             display: flex;
             justify-content: center;
             align-items: center;
-            z-index: 1000; /* Ensure it's on top */
+            z-index: 1001; /* Ensure it's on top */
             opacity: 0;
             visibility: hidden;
             transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
