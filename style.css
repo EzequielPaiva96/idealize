@@ -818,7 +818,7 @@ max-width: 900px;        /* Equivalente ao max-w-4xl */
     position: absolute;
     bottom: 2rem;
     left: 50%;
-    transform: translateX(-50%);
+    
     color: white;
     font-size: 1.2rem;
     background-color: rgba(0, 0, 0, 0.5);
