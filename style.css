@@ -963,6 +963,9 @@ max-width: 900px;        /* Equivalente ao max-w-4xl */
             color: #ffffff; /* Texto branco nos cards */
         }
 
+        .vlibras {
+            z-index: 1001; 
+        }
 
 
         /* Estilos paginas produtos*/
