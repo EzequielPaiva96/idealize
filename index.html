@@ -75,7 +75,7 @@
     </section>
 
     <!-- Seção do Manifesto em Vídeo -->
-    <section id="video-manifesto" class="py-16 bg-gray-50">
+    <section id="video-manifesto" class="py-16">
         <div class="container mx-auto px-6 max-w-4xl text-center">
             <h2 class="text-4xl font-bold text-gray-800 mb-12 section-title writing-font mx-auto">Momentos especiais
                 merecem ser lembrados.</h2>
@@ -843,32 +843,31 @@
         
 
        /* Novo script para alternar alto contraste */
+        document.addEventListener('DOMContentLoaded', function() {
+            const toggleButton = document.getElementById('toggleContraste');
+            const body = document.body;
+            const contrasteKey = 'altoContrasteAtivo'; // Chave para localStorage
 
-            document.addEventListener('DOMContentLoaded', function () {
-                const toggleButton = document.getElementById('toggleContraste');
-                const body = document.body;
-                const contrasteKey = 'altoContrasteAtivo'; // Chave para localStorage
+            // Função para aplicar/remover o alto contraste
+            function toggleAltoContraste() {
+                body.classList.toggle('alto-contraste');
+                const isPressed = body.classList.contains('alto-contraste');
+                toggleButton.setAttribute('aria-pressed', isPressed);
+                localStorage.setItem(contrasteKey, isPressed); // Salva a preferência
+            }
 
-                // Função para aplicar/remover o alto contraste
-                function toggleAltoContraste() {
-                    body.classList.toggle('alto-contraste');
-                    const isPressed = body.classList.contains('alto-contraste');
-                    toggleButton.setAttribute('aria-pressed', isPressed);
-                    localStorage.setItem(contrasteKey, isPressed); // Salva a preferência
+            // Verifica se o alto contraste estava ativo na última visita
+            // Adiciona um pequeno atraso para garantir que o DOM esteja totalmente renderizado
+            setTimeout(() => {
+                if (localStorage.getItem(contrasteKey) === 'true') {
+                    toggleAltoContraste(); // Ativa se estava salvo como true
                 }
+            }, 50); // Pequeno atraso de 50ms
 
-                // Verifica se o alto contraste estava ativo na última visita
-                // Adiciona um pequeno atraso para garantir que o DOM esteja totalmente renderizado
-                setTimeout(() => {
-                    if (localStorage.getItem(contrasteKey) === 'true') {
-                        toggleAltoContraste(); // Ativa se estava salvo como true
-                    }
-                }, 50); // Pequeno atraso de 50ms
-
-                // Adiciona o evento de clique ao botão
-                toggleButton.addEventListener('click', toggleAltoContraste);
-            });
-        
+            // Adiciona o evento de clique ao botão
+            toggleButton.addEventListener('click', toggleAltoContraste);
+        });
+    
 
     </script>
 
@@ -884,7 +883,7 @@
 
     <!--V Libras -->
     <div vw class="enabled">
-        <div vw-access-button class="#toggleContraste"></div>
+        <div vw-access-button class="active"></div>
         <div vw-plugin-wrapper>
             <div class="vw-plugin-top-wrapper"></div>
         </div>
