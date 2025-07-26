@@ -939,7 +939,7 @@ max-width: 900px;        /* Equivalente ao max-w-4xl */
         .alto-contraste .bg-white {
             background-color: #181717; /* Um cinza quase preto para cards */
             color: #ffffff; /* Texto branco nos cards */
-            box-shadow: none; /* Remover sombra se preferir no alto contraste */
+            box-shadow: rgba(255, 255, 255, 0.323); /* Remover sombra se preferir no alto contraste */
         }
         .alto-contraste .bg-gray-50 {
             background-color: #222222; /* Um cinza quase preto para cards */
