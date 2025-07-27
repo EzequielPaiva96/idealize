@@ -939,7 +939,7 @@ max-width: 900px;        /* Equivalente ao max-w-4xl */
         .alto-contraste .bg-white {
             background-color: #181717; /* Um cinza quase preto para cards */
             color: #ffffff; /* Texto branco nos cards */
-            box-shadow: none; /* Remover sombra se preferir no alto contraste */
+            box-shadow: rgb(255, 255, 255); /* Remover sombra se preferir no alto contraste */
         }
         .alto-contraste .bg-gray-50 {
             background-color: #222222; /* Um cinza quase preto para cards */
@@ -1028,14 +1028,23 @@ max-width: 900px;        /* Equivalente ao max-w-4xl */
         .nav-link-jump:hover {
             transform: translateY(-5px); /* Move link up slightly on hover */
         }
-
+        
+        /* Cards Produtos */
+        .page-produto-card {
+        width: 500px;
+        height: 380px;
+        object-fit: cover;
+        border-radius: 0.5rem; /* Or adjust to 0.75rem or another value if 0.5rem isn't the desired "lg" */
+        margin-bottom: 1.5rem;
+        }
+        
         /* Custom Styles for Mug Card Hover Effect - Increased Effect */
         .mug-card-hover {
             transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
         }
 
         .mug-card-hover:hover {
-            transform: translateY(-10px) scale(1.05); /* Move up more and enlarge more on hover */
+            transform: translateY(-5px) scale(1.02); /* Move up more and enlarge more on hover */
             box-shadow: 0 15px 25px -5px rgba(0, 0, 0, 0.2), 0 8px 10px -6px rgba(0, 0, 0, 0.1); /* Add a much stronger shadow */
         }
 
