@@ -910,7 +910,7 @@ max-width: 900px;        /* Equivalente ao max-w-4xl */
         }
 
         body.alto-contraste {
-            background-color: #000000; /* Fundo cinza escuro */
+            background-color: #181717; /* Fundo cinza escuro */
             color: #000000; /* Texto branco */
         }
 
@@ -1032,7 +1032,7 @@ max-width: 900px;        /* Equivalente ao max-w-4xl */
         /* Cards Produtos */
         .page-produto-card {
         width: 500px;
-        height: 380px;
+        height: 320px;
         object-fit: cover;
         border-radius: 0.5rem; /* Or adjust to 0.75rem or another value if 0.5rem isn't the desired "lg" */
         margin-bottom: 1.5rem;
