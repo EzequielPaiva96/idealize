@@ -777,7 +777,7 @@ max-width: 900px;        /* Equivalente ao max-w-4xl */
 .modal-content {
     position: relative;
     /* O modal-content agora é apenas um wrapper para a imagem, não um quadrado com fundo */
-    width: 95vw;
+    width: 95v;
     /* Ocupa quase toda a largura da viewport */
     height: 95vh;
     /* Ocupa quase toda a altura da viewport */
@@ -963,13 +963,8 @@ max-width: 900px;        /* Equivalente ao max-w-4xl */
             color: #ffffff; /* Texto branco nos cards */
         }
 
-        .vlibras {
-            z-index: 1000; 
-        }
-
 
         /* Estilos paginas produtos*/
-
 
 
         /* Definindo uma variável CSS para o espaçamento entre as imagens */
@@ -1114,17 +1109,17 @@ max-width: 900px;        /* Equivalente ao max-w-4xl */
         }
 
         /* Lightbox Styles */
-        .lightbox-overlay {
+        .lightbox-overlay  {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.9); /* Darker, more opaque background */
+            background-color: rgba(0, 0, 0, 0.9); /* Fundo escuro*/
             display: flex;
             justify-content: center;
             align-items: center;
-            z-index: 1001; /* Ensure it's on top */
+            z-index: 1001 /*  Garante que fique acima de outros elementos */;
             opacity: 0;
             visibility: hidden;
             transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
@@ -1145,19 +1140,19 @@ max-width: 900px;        /* Equivalente ao max-w-4xl */
         }
 
         .lightbox-content img {
-            max-width: 100%;
-            max-height: 100%;
-            object-fit: contain; /* Ensure the whole image is visible */
+            max-height: 90vh; /* Limita a altura máxima da imagem */
+            width: 100%;
+            object-fit: cover; /* Garante que a imagem se ajuste ao contêiner */
             border-radius: 0.75rem;
             box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
         }
 
         .lightbox-close, .lightbox-nav {
-            position: absolute;
+            position: fixed;
             background-color: rgba(255, 255, 255, 0.2); /* Semi-transparent white */
             color: white;
             border: none;
-            padding: 0.75rem 1rem;
+            padding: 2rem;
             border-radius: 9999px; /* Fully rounded */
             cursor: pointer;
             font-size: 1.5rem;
@@ -1165,8 +1160,8 @@ max-width: 900px;        /* Equivalente ao max-w-4xl */
             display: flex;
             align-items: center;
             justify-content: center;
-            width: 50px; /* Fixed width for buttons */
-            height: 50px; /* Fixed height for buttons */
+            width: 3rem; /* Fixed width for buttons */
+            height: 3rem;                 /
         }
 
         .lightbox-close:hover, .lightbox-nav:hover {
@@ -1175,8 +1170,8 @@ max-width: 900px;        /* Equivalente ao max-w-4xl */
         }
 
         .lightbox-close {
-            top: 1.5rem;
-            right: 1.5rem;
+            top: 16px;
+            right: 16px;
         }
 
         .lightbox-nav.prev {
