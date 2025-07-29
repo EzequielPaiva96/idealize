@@ -1204,3 +1204,8 @@ max-width: 900px;        /* Equivalente ao max-w-4xl */
                 height: 40px;
             }
         }
+
+#vw-access-button {
+  z-index: 10 !important;
+  max-width: 10% !important;
+}
