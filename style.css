@@ -1147,7 +1147,25 @@ max-width: 900px;        /* Equivalente ao max-w-4xl */
             box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
         }
 
-        .lightbox-close, .lightbox-nav {
+        .lightbox-nav {
+            position: fixed;
+            background-color: rgba(255, 255, 255, 0.2); /* Semi-transparent white */
+            color: white;
+            border: none;
+            padding: 2rem;
+            border-radius: 9999px; /* Fully rounded */
+            cursor: pointer;
+            font-size: 1.5rem;
+            transition: background-color 0.3s ease-in-out, transform 0.2s ease-in-out;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 3rem; /* Fixed width for buttons */
+            height: 3rem;                 
+        }
+        
+        
+        .lightbox-close {
             position: fixed;
             background-color: rgba(255, 255, 255, 0.2); /* Semi-transparent white */
             color: white;
@@ -1175,12 +1193,18 @@ max-width: 900px;        /* Equivalente ao max-w-4xl */
         }
 
         .lightbox-nav.prev {
-            left: 1.5rem;
-        }
+        left: 1.5rem; /* Posiciona a partir da borda esquerda */
+        top: 75%; /* <--- Experimente este valor! Exemplo: 70% do topo */
+        transform: translateY(-50%); /* Ajusta para centralizar verticalmente em relação ao 'top' */
+        
+      }
 
         .lightbox-nav.next {
-            right: 1.5rem;
-        }
+        right: 1.5rem; /* Posiciona a partir da borda direita */
+        top: 75%; /* <--- Experimente este valor! Exemplo: 70% do topo */
+        transform: translateY(-50%); /* Ajusta para centralizar verticalmente em relação ao 'top' */
+        
+      }
 
         /* Media queries for responsive lightbox navigation */
         @media (max-width: 768px) {
