@@ -502,10 +502,13 @@ max-width: 900px;        /* Equivalente ao max-w-4xl */
         grid-row: 1 / span 2;
     }
 
-    .grid-container>div:nth-child(1) img {
+    .grid-container>div:nth-child(1) {
+        height: 200px;
         object-fit: cover;
         /* Altura ajustada para a Foto 1 no mobile */
     }
+
+
 
     .grid-container>div:nth-child(2) {
         /* Foto 2: Canto superior direito */
