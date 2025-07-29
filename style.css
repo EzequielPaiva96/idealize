@@ -503,7 +503,7 @@ max-width: 900px;        /* Equivalente ao max-w-4xl */
     }
 
     .grid-container>div:nth-child(1) {
-        height: 200px;
+        height: 220px;
         object-fit: cover;
         /* Altura ajustada para a Foto 1 no mobile */
     }
@@ -512,6 +512,7 @@ max-width: 900px;        /* Equivalente ao max-w-4xl */
 
     .grid-container>div:nth-child(2) {
         /* Foto 2: Canto superior direito */
+        height: 100px;
         grid-column: 3;
         grid-row: 1;
     }
@@ -523,6 +524,7 @@ max-width: 900px;        /* Equivalente ao max-w-4xl */
 
     .grid-container>div:nth-child(3) {
         /* Foto 3: Canto inferior direito (abaixo da Foto 2) */
+        height: 100px;
         grid-column: 3;
         grid-row: 2;
     }
