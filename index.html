@@ -612,82 +612,107 @@
                 });
             }
 
-            // Lógica do Carrossel de Notícias (Banner)
-            const newsCarouselTrack = document.getElementById('carousel-track-banner');
-            const newsCarouselSlides = document.querySelectorAll('.carousel-slide-banner');
-            const newsBannerIndicators = document.getElementById('banner-indicators');
-            const prevBannerButton = document.getElementById('prev-banner');
-            const nextBannerButton = document.getElementById('next-banner');
-            let currentNewsSlide = 0;
-            const newsSlideInterval = 4000;
-            let newsAutoSlideInterval;
+// Lógica do Carrossel de Notícias (Banner)
+const newsCarouselTrack = document.getElementById('carousel-track-banner');
+const newsCarouselSlides = document.querySelectorAll('.carousel-slide-banner');
+const newsBannerIndicators = document.getElementById('banner-indicators');
+const prevBannerButton = document.getElementById('prev-banner');
+const nextBannerButton = document.getElementById('next-banner');
+let currentNewsSlide = 0;
+const newsSlideInterval = 4000;
+let newsAutoSlideInterval;
 
-            if (newsCarouselTrack && newsCarouselSlides.length > 0 && newsBannerIndicators && prevBannerButton && nextBannerButton) {
-                function updateNewsIndicators() {
-                    Array.from(newsBannerIndicators.children).forEach((dot) => {
-                        dot.classList.remove('active');
-                    });
-                    if (newsBannerIndicators.children[currentNewsSlide]) {
-                        newsBannerIndicators.children[currentNewsSlide].classList.add('active');
-                    }
-                }
+if (
+    newsCarouselTrack &&
+    newsCarouselSlides.length > 0 &&
+    newsBannerIndicators &&
+    prevBannerButton &&
+    nextBannerButton
+) {
+    function updateNewsIndicators() {
+        Array.from(newsBannerIndicators.children).forEach((dot) => {
+            dot.classList.remove('active');
+        });
+        if (newsBannerIndicators.children[currentNewsSlide]) {
+            newsBannerIndicators.children[currentNewsSlide].classList.add('active');
+        }
+    }
 
-                function goToNewsSlide(index) {
-                    currentNewsSlide = index;
-                    updateNewsCarousel();
-                    updateNewsIndicators();
-                    resetNewsAutoSlide();
-                }
+    function goToNewsSlide(index) {
+        currentNewsSlide = index;
+        updateNewsCarousel();
+        updateNewsIndicators();
+        resetNewsAutoSlide();
+    }
 
-                function nextNewsSlide() {
-                    currentNewsSlide++;
-                    if (currentNewsSlide >= newsCarouselSlides.length) {
-                        currentNewsSlide = 0;
-                    }
-                    updateNewsCarousel();
-                    updateNewsIndicators();
-                }
+    function nextNewsSlide() {
+        currentNewsSlide++;
+        if (currentNewsSlide >= newsCarouselSlides.length) {
+            currentNewsSlide = 0;
+        }
+        updateNewsCarousel();
+        updateNewsIndicators();
+    }
 
-                function prevNewsSlide() {
-                    currentNewsSlide--;
-                    if (currentNewsSlide < 0) {
-                        currentNewsSlide = newsCarouselSlides.length - 1;
-                    }
-                    updateNewsCarousel();
-                    updateNewsIndicators();
-                }
+    function prevNewsSlide() {
+        currentNewsSlide--;
+        if (currentNewsSlide < 0) {
+            currentNewsSlide = newsCarouselSlides.length - 1;
+        }
+        updateNewsCarousel();
+        updateNewsIndicators();
+    }
 
-                function updateNewsCarousel() {
-                    const slideWidth = newsCarouselSlides[0].clientWidth;
-                    newsCarouselTrack.style.transform = `translateX(-${currentNewsSlide * slideWidth}px)`;
-                }
+    function updateNewsCarousel() {
+        const slideWidth = newsCarouselSlides[0].getBoundingClientRect().width;
+        newsCarouselTrack.style.transform = `translateX(-${currentNewsSlide * slideWidth}px)`;
+    }
 
-                function startNewsAutoSlide() {
-                    newsAutoSlideInterval = setInterval(nextNewsSlide, newsSlideInterval);
-                }
+    function startNewsAutoSlide() {
+        if (newsAutoSlideInterval) clearInterval(newsAutoSlideInterval);
+        newsAutoSlideInterval = setInterval(nextNewsSlide, newsSlideInterval);
+    }
 
-                function resetNewsAutoSlide() {
-                    clearInterval(newsAutoSlideInterval);
-                    startNewsAutoSlide();
-                }
+    function resetNewsAutoSlide() {
+        clearInterval(newsAutoSlideInterval);
+        startNewsAutoSlide();
+    }
 
-                newsBannerIndicators.addEventListener('click', (event) => {
-                    if (event.target.classList.contains('banner-indicator-dot')) {
-                        const index = Array.from(newsBannerIndicators.children).indexOf(event.target);
-                        if (index !== -1) {
-                            goToNewsSlide(index);
-                        }
-                    }
-                });
-
-                prevBannerButton.addEventListener('click', prevNewsSlide);
-                nextBannerButton.addEventListener('click', nextNewsSlide);
-
-                startNewsAutoSlide();
-                updateNewsCarousel(); // Posição inicial
-                updateNewsIndicators(); // Indicador inicial
-                window.addEventListener('resize', updateNewsCarousel); // Atualiza no redimensionamento
+    newsBannerIndicators.addEventListener('click', (event) => {
+        if (event.target.classList.contains('banner-indicator-dot')) {
+            const index = Array.from(newsBannerIndicators.children).indexOf(event.target);
+            if (index !== -1) {
+                goToNewsSlide(index);
             }
+        }
+    });
+
+    prevBannerButton.addEventListener('click', () => {
+        prevNewsSlide();
+        resetNewsAutoSlide();
+    });
+
+    nextBannerButton.addEventListener('click', () => {
+        nextNewsSlide();
+        resetNewsAutoSlide();
+    });
+
+    // Pausa automática ao sair da aba
+    document.addEventListener('visibilitychange', () => {
+        if (document.hidden) {
+            clearInterval(newsAutoSlideInterval);
+        } else {
+            startNewsAutoSlide();
+        }
+    });
+
+    // Inicialização
+    startNewsAutoSlide();
+    updateNewsCarousel();
+    updateNewsIndicators();
+    window.addEventListener('resize', updateNewsCarousel);
+}
+
 
             // Lógica do Efeito de Foco dos Cartões de Produto
             const productCards = document.querySelectorAll('.product-card');
