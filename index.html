@@ -766,96 +766,122 @@ if (
         });
 
         /*Novo script*/
-        document.addEventListener('DOMContentLoaded', () => {
-            const gridItems = document.querySelectorAll('.grid-item');
-            const imageModal = document.getElementById('imageModal');
-            const modalImage = document.getElementById('modalImage');
-            const closeButton = document.querySelector('.lightbox-close');
-            const prevButton = document.querySelector('.lightbox-nav.prev');
-            const nextButton = document.querySelector('.lightbox-nav.next');
-            const imageCounter = document.getElementById('imageCounter');
+document.addEventListener('DOMContentLoaded', () => {
+    const gridItems = document.querySelectorAll('.grid-item');
+    const imageModal = document.getElementById('imageModal');
+    const modalImage = document.getElementById('modalImage');
+    const closeButton = document.querySelector('.lightbox-close');
+    const prevButton = document.querySelector('.lightbox-nav.prev');
+    const nextButton = document.querySelector('.lightbox-nav.next');
+    const imageCounter = document.getElementById('imageCounter');
 
-            // Verifica se o elemento modalImage foi encontrado
-            if (!modalImage) {
-                console.error("Erro: Elemento com ID 'modalImage' não encontrado! Verifique o HTML.");
-                return; // Interrompe a execução se o elemento crítico estiver faltando
+    if (!modalImage || !imageModal || !closeButton || !prevButton || !nextButton || !imageCounter) {
+        console.error("Erro: Um ou mais elementos críticos do modal não foram encontrados.");
+        return;
+    }
+
+    let currentImageIndex = 0;
+    const imageUrls = Array.from(gridItems).map(item => item.querySelector('img')?.src).filter(Boolean);
+
+    if (imageUrls.length === 0) {
+        console.warn("Aviso: Nenhuma imagem válida encontrada nos itens do grid.");
+        return;
+    }
+
+    function showImageInModal(index) {
+        if (!imageUrls[index]) return;
+
+        modalImage.src = '';
+        modalImage.style.opacity = 0;
+        imageModal.style.display = 'flex';
+
+        const img = new Image();
+        img.onload = () => {
+            modalImage.src = img.src;
+            modalImage.alt = `Imagem Ampliada - Foto ${index + 1}`;
+            modalImage.style.opacity = 1;
+            modalImage.style.objectFit = 'contain';
+            imageCounter.textContent = `${index + 1} de ${imageUrls.length}`;
+            currentImageIndex = index;
+            closeButton.focus();
+        };
+        img.src = imageUrls[index];
+    }
+
+    gridItems.forEach((item, index) => {
+        item.setAttribute('tabindex', '0');
+        item.setAttribute('role', 'button');
+        item.setAttribute('aria-label', `Abrir imagem ${index + 1}`);
+
+        item.addEventListener('click', () => showImageInModal(index));
+
+        item.addEventListener('keydown', (event) => {
+            if (event.key === 'Enter' || event.key === ' ') {
+                event.preventDefault();
+                showImageInModal(index);
             }
-
-            let currentImageIndex = 0;
-            // Popula o array imageUrls dinamicamente a partir dos src das imagens no grid
-            const imageUrls = Array.from(gridItems).map(item => item.querySelector('img').src);
-            console.log("URLs das imagens carregadas do grid:", imageUrls); // Mensagem de depuração
-
-            // Função para exibir a imagem no modal e atualizar o contador
-            function showImageInModal(index) {
-                // Define o src e o alt da imagem do modal
-                modalImage.setAttribute('src', imageUrls[index]);
-                modalImage.setAttribute('alt', `Imagem Ampliada - Foto ${index + 1}`);
-                console.log("Definindo modalImage.src para:", modalImage.getAttribute('src')); // Mensagem de depuração
-                
-                currentImageIndex = index;
-                imageCounter.textContent = `${currentImageIndex + 1} de ${imageUrls.length}`; // Atualiza o texto do contador
-                imageModal.style.display = 'flex';
-                modalImage.style.objectFit = 'contain'; // Garante que a imagem seja mostrada toda sem corte
-                closeButton.focus();
-            }
-
-            // Adiciona evento de clique a cada item do grid
-            gridItems.forEach((item, index) => {
-                item.setAttribute('tabindex', '0');
-                item.addEventListener('click', () => {
-                    console.log('Item do grid clicado:', index); // Mensagem de depuração
-                    showImageInModal(index);
-                });
-                item.addEventListener('keydown', (event) => {
-                    if (event.key === 'Enter' || event.key === ' ') {
-                        event.preventDefault();
-                        console.log('Item do grid ativado por teclado:', index); // Mensagem de depuração
-                        showImageInModal(index);
-                    }
-                });
-            });
-
-            // Navegar para a imagem anterior
-            prevButton.addEventListener('click', () => {
-                currentImageIndex = (currentImageIndex - 1 + imageUrls.length) % imageUrls.length;
-                showImageInModal(currentImageIndex); // Reutiliza a função para atualizar imagem e contador
-                console.log('Navegar para imagem anterior. Novo índice:', currentImageIndex); // Mensagem de depuração
-            });
-
-            // Navegar para a próxima imagem
-            nextButton.addEventListener('click', () => {
-                currentImageIndex = (currentImageIndex + 1) % imageUrls.length;
-                showImageInModal(currentImageIndex); // Reutiliza a função para atualizar imagem e contador
-                console.log('Navegar para próxima imagem. Novo índice:', currentImageIndex); // Mensagem de depuração
-            });
-
-            // Fecha o modal ao clicar no botão 'X'
-            closeButton.addEventListener('click', () => {
-                imageModal.style.display = 'none';
-                gridItems[currentImageIndex].focus();
-                console.log('Modal fechado pelo botão X.'); // Mensagem de depuração
-            });
-
-            // Fecha o modal ao pressionar a tecla ESC
-            document.addEventListener('keydown', (event) => {
-                if (event.key === 'Escape' && imageModal.style.display === 'flex') {
-                    imageModal.style.display = 'none';
-                    gridItems[currentImageIndex].focus();
-                    console.log('Modal fechado pela tecla ESC.'); // Mensagem de depuração
-                }
-                // Navegação com setas do teclado
-                if (imageModal.style.display === 'flex') {
-                    if (event.key === 'ArrowLeft') {
-                        prevButton.click();
-                        console.log('Navegação por seta esquerda.'); // Mensagem de depuração
-                    } else if (event.key === 'ArrowRight') {
-                        nextButton.click();
-                        console.log('Navegação por seta direita.'); // Mensagem de depuração
-                    }
-                }
-            });
         });
+    });
+
+    function navigateImage(step) {
+        currentImageIndex = (currentImageIndex + step + imageUrls.length) % imageUrls.length;
+        showImageInModal(currentImageIndex);
+    }
+
+    prevButton.addEventListener('click', () => navigateImage(-1));
+    nextButton.addEventListener('click', () => navigateImage(1));
+
+    function closeModal() {
+        imageModal.style.display = 'none';
+        gridItems[currentImageIndex]?.focus();
+    }
+
+    closeButton.addEventListener('click', closeModal);
+
+    // Fechar ao clicar fora da imagem
+    imageModal.addEventListener('click', (event) => {
+        if (event.target === imageModal) {
+            closeModal();
+        }
+    });
+
+    // Teclado
+    document.addEventListener('keydown', (event) => {
+        if (imageModal.style.display === 'flex') {
+            switch (event.key) {
+                case 'Escape':
+                    closeModal();
+                    break;
+                case 'ArrowLeft':
+                    navigateImage(-1);
+                    break;
+                case 'ArrowRight':
+                    navigateImage(1);
+                    break;
+            }
+        }
+    });
+
+    // Gestos de toque (swipe)
+    let touchStartX = 0;
+
+    imageModal.addEventListener('touchstart', (e) => {
+        touchStartX = e.changedTouches[0].screenX;
+    });
+
+    imageModal.addEventListener('touchend', (e) => {
+        const touchEndX = e.changedTouches[0].screenX;
+        const deltaX = touchEndX - touchStartX;
+
+        if (Math.abs(deltaX) > 50) {
+            if (deltaX > 0) {
+                navigateImage(-1); // Swipe para direita → imagem anterior
+            } else {
+                navigateImage(1); // Swipe para esquerda → próxima imagem
+            }
+        }
+    });
+});
 
 
        /* Novo script para alternar alto contraste */
