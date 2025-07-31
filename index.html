@@ -393,10 +393,10 @@
             <h2 class="text-4xl font-bold text-center text-gray-800 mb-12 section-title mx-auto">Galeria</h2>
     <div class="grid-container">
         <div class="grid-item">
-            <img src="/idealize/imagens/Galeria/1.jpg" alt="Foto 1">
+            <img src="/imagens/Galeria/1.jpg" alt="Foto 1">
         </div>
         <div class="grid-item">
-            <img src="/idealize/imagens/Galeria/2.jpg" alt="Foto 2">
+            <img src="/imagens/Galeria/2.jpg" alt="Foto 2">
         </div>
         <div class="grid-item">
             <img src="/idealize/imagens/Galeria/3.jpg" alt="Foto 3">
@@ -765,8 +765,7 @@ if (
             initPageScripts();
         });
 
-        /*Novo script*/
-document.addEventListener('DOMContentLoaded', () => {
+    document.addEventListener('DOMContentLoaded', () => {
     const gridItems = document.querySelectorAll('.grid-item');
     const imageModal = document.getElementById('imageModal');
     const modalImage = document.getElementById('modalImage');
@@ -781,19 +780,22 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     let currentImageIndex = 0;
-    const imageUrls = Array.from(gridItems).map(item => item.querySelector('img')?.src).filter(Boolean);
+    const imageUrls = Array.from(gridItems)
+        .map(item => item.querySelector('img')?.src)
+        .filter(Boolean);
 
     if (imageUrls.length === 0) {
         console.warn("Aviso: Nenhuma imagem válida encontrada nos itens do grid.");
         return;
     }
 
+    let closedWithKeyboard = false;
+
     function showImageInModal(index) {
         if (!imageUrls[index]) return;
 
         modalImage.src = '';
         modalImage.style.opacity = 0;
-        imageModal.style.display = 'flex';
 
         const img = new Image();
         img.onload = () => {
@@ -803,6 +805,8 @@ document.addEventListener('DOMContentLoaded', () => {
             modalImage.style.objectFit = 'contain';
             imageCounter.textContent = `${index + 1} de ${imageUrls.length}`;
             currentImageIndex = index;
+            imageModal.style.display = 'flex';
+            imageModal.classList.add('active');
             closeButton.focus();
         };
         img.src = imageUrls[index];
@@ -830,26 +834,30 @@ document.addEventListener('DOMContentLoaded', () => {
 
     prevButton.addEventListener('click', () => navigateImage(-1));
     nextButton.addEventListener('click', () => navigateImage(1));
+    modalImage.addEventListener('click', () => navigateImage(1)); // clique na imagem avança
 
     function closeModal() {
+        imageModal.classList.remove('active');
         imageModal.style.display = 'none';
-        gridItems[currentImageIndex]?.focus();
+        if (closedWithKeyboard) {
+            gridItems[currentImageIndex]?.focus();
+            closedWithKeyboard = false;
+        }
     }
 
     closeButton.addEventListener('click', closeModal);
 
-    // Fechar ao clicar fora da imagem
     imageModal.addEventListener('click', (event) => {
         if (event.target === imageModal) {
             closeModal();
         }
     });
 
-    // Teclado
     document.addEventListener('keydown', (event) => {
-        if (imageModal.style.display === 'flex') {
+        if (imageModal.classList.contains('active')) {
             switch (event.key) {
                 case 'Escape':
+                    closedWithKeyboard = true;
                     closeModal();
                     break;
                 case 'ArrowLeft':
@@ -862,7 +870,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Gestos de toque (swipe)
+    // Gestos de toque
     let touchStartX = 0;
 
     imageModal.addEventListener('touchstart', (e) => {
@@ -875,9 +883,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (Math.abs(deltaX) > 50) {
             if (deltaX > 0) {
-                navigateImage(-1); // Swipe para direita → imagem anterior
+                navigateImage(-1); // swipe direita
             } else {
-                navigateImage(1); // Swipe para esquerda → próxima imagem
+                navigateImage(1); // swipe esquerda
             }
         }
     });
