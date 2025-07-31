@@ -1037,20 +1037,24 @@ max-width: 900px;        /* Equivalente ao max-w-4xl */
         }
 
         .lightbox-nav {
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none; /* impede clique quando invisível */
             position: fixed;
             background-color: rgba(255, 255, 255, 0.2); /* Semi-transparent white */
             color: white;
             border: none;
-            padding: 2rem;
+            padding: 1rem;
             border-radius: 9999px; /* Fully rounded */
             cursor: pointer;
-            font-size: 1.5rem;
+            font-size: 1rem;
+            transform: translateY(-50%);
             transition: background-color 0.3s ease-in-out, transform 0.2s ease-in-out;
             display: flex;
             align-items: center;
             justify-content: center;
-            width: 3rem; /* Fixed width for buttons */
-            height: 3rem;                 
+            width: 1rem; /* Fixed width for buttons */
+            height: 1rem;                 
         }
         
         
@@ -1059,21 +1063,22 @@ max-width: 900px;        /* Equivalente ao max-w-4xl */
             background-color: rgba(255, 255, 255, 0.2); /* Semi-transparent white */
             color: white;
             border: none;
-            padding: 2rem;
+            padding: 1rem;
             border-radius: 9999px; /* Fully rounded */
             cursor: pointer;
-            font-size: 1.5rem;
+            font-size: 1rem;
             transition: background-color 0.3s ease-in-out, transform 0.2s ease-in-out;
             display: flex;
             align-items: center;
             justify-content: center;
-            width: 3rem; /* Fixed width for buttons */
-            height: 3rem;                 /
+            width: 1rem; /* Fixed width for buttons */
+            height: 1rem;                 /
         }
 
         .lightbox-close:hover, .lightbox-nav:hover {
             background-color: rgba(255, 255, 255, 0.4);
             transform: scale(1.1);
+
         }
 
         .lightbox-close {
@@ -1083,38 +1088,44 @@ max-width: 900px;        /* Equivalente ao max-w-4xl */
 
         .lightbox-nav.prev {
         left: 5rem; /* Posiciona a partir da borda esquerda */
-        /*top: 75%; /* <--- Experimente este valor! Exemplo: 70% do topo */
-        /*transform: translateY(-50%); /* Ajusta para centralizar verticalmente em relação ao 'top' */
-        
+        top: 75%; /* <--- Experimente este valor! Exemplo: 70% do topo */
+        transform: translateY(-50%); /* Ajusta para centralizar verticalmente em relação ao 'top' */
+        transition: opacity 0.5s ease;
       }
 
         .lightbox-nav.next {
         right: 5rem; /* Posiciona a partir da borda direita */
-        /*top: 75%; /* <--- Experimente este valor! Exemplo: 70% do topo */
-        /*transform: translateY(-50%); /* Ajusta para centralizar verticalmente em relação ao 'top' */
-        
+        top: 75%; /* <--- Experimente este valor! Exemplo: 70% do topo */
+        transform: translateY(-50%); /* Ajusta para centralizar verticalmente em relação ao 'top' */
+        transition: opacity 0.5s ease;
       }
+
+    /* Mostra os botões ao passar o mouse no modal */
+    #imageModal:hover .lightbox-nav {
+    opacity: 1;
+    pointer-events: auto;
+}
 
         /* Media queries for responsive lightbox navigation */
         @media (max-width: 768px) {
             .lightbox-nav.prev {
-                left: 2rem;
-                font-size: 1.2rem;
-                width: 20px;
-                height: 20px;
+                left: 3rem;
+                font-size: 1rem;
+                width: 1rem;
+                height: 1rem;
             }
             .lightbox-nav.next {
-                right: 2rem;
-                font-size: 1.2rem;
-                width: 20px;
-                height: 20px;
+                right: 3rem;
+                font-size: 1rem;
+                width: 1rem;
+                height: 1rem;
             }
             .lightbox-close {
                 top: 0.5rem;
                 right: 0.5rem;
-                font-size: 1.2rem;
-                width: 40px;
-                height: 40px;
+                font-size: 1rem;
+                width: 1rem;
+                height: 1rem;
             }
         }
 
