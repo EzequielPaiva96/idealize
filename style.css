@@ -1082,32 +1082,32 @@ max-width: 900px;        /* Equivalente ao max-w-4xl */
         }
 
         .lightbox-nav.prev {
-        left: 1.5rem; /* Posiciona a partir da borda esquerda */
-        top: 75%; /* <--- Experimente este valor! Exemplo: 70% do topo */
-        transform: translateY(-50%); /* Ajusta para centralizar verticalmente em relação ao 'top' */
+        left: 5rem; /* Posiciona a partir da borda esquerda */
+        /*top: 75%; /* <--- Experimente este valor! Exemplo: 70% do topo */
+        /*transform: translateY(-50%); /* Ajusta para centralizar verticalmente em relação ao 'top' */
         
       }
 
         .lightbox-nav.next {
-        right: 1.5rem; /* Posiciona a partir da borda direita */
-        top: 75%; /* <--- Experimente este valor! Exemplo: 70% do topo */
-        transform: translateY(-50%); /* Ajusta para centralizar verticalmente em relação ao 'top' */
+        right: 5rem; /* Posiciona a partir da borda direita */
+        /*top: 75%; /* <--- Experimente este valor! Exemplo: 70% do topo */
+        /*transform: translateY(-50%); /* Ajusta para centralizar verticalmente em relação ao 'top' */
         
       }
 
         /* Media queries for responsive lightbox navigation */
         @media (max-width: 768px) {
             .lightbox-nav.prev {
-                left: 0.5rem;
+                left: 2rem;
                 font-size: 1.2rem;
-                width: 40px;
-                height: 40px;
+                width: 20px;
+                height: 20px;
             }
             .lightbox-nav.next {
-                right: 0.5rem;
+                right: 2rem;
                 font-size: 1.2rem;
-                width: 40px;
-                height: 40px;
+                width: 20px;
+                height: 20px;
             }
             .lightbox-close {
                 top: 0.5rem;
