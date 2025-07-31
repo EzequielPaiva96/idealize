@@ -1106,6 +1106,12 @@ max-width: 900px;        /* Equivalente ao max-w-4xl */
     pointer-events: auto;
 }
 
+    /* Mostra os botões ao passar o mouse no modal */
+    #lightbox:hover .lightbox-nav {
+    opacity: 1;
+    pointer-events: auto;
+}
+
         /* Media queries for responsive lightbox navigation */
         @media (max-width: 768px) {
             .lightbox-nav.prev {
