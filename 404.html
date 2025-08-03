@@ -11,222 +11,15 @@
     <!-- Google Fonts: Inter for general text, and Dancing Script for a writing-like style -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
-    <style>
-        /* Universal reset for margin and padding to ensure no browser defaults interfere */
-        html, body {
-            margin: 0;
-            padding: 0;
-        }
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../style.css">
 
-        /* Estilos globais para o corpo da página */
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #f8f8f8; /* Fundo cinza claro */
-            color: #333; /* Texto cinza escuro */
-            /* Padding inicial para desktop, correspondendo à altura do cabeçalho */
-            padding-top: 70px; /* Altura padrão do cabeçalho */
-            transition: padding-top 0.3s ease-in-out; /* Transição suave para o padding */
-            min-height: 100vh; /* Garante que a página ocupe no mínimo a altura da viewport */
-            display: flex;
-            flex-direction: column;
-        }
-
-        /* Estilos para o cabeçalho fixo (já presente no header.html, mas mantido para clareza) */
-        #main-header {
-            position: fixed; /* Fixa o cabeçalho no topo da viewport */
-            top: 0; /* Alinha o cabeçalho ao topo */
-            width: 100%; /* Ocupa toda a largura */
-            z-index: 50; /* Garante que o cabeçalho fique acima de outros conteúdos */
-        }
-
-        /* Estilo para títulos de seção com linha inferior */
-        .section-title {
-            position: relative;
-            display: inline-block;
-            padding-bottom: 8px;
-        }
-        .section-title::after {
-            content: '';
-            position: absolute;
-            left: 50%; /* Centraliza a linha */
-            transform: translateX(-50%); /* Ajusta para centralizar perfeitamente */
-            bottom: 0;
-            width: 50%;
-            height: 3px;
-            background-color: #6b7280; /* Cinza 500 para destaque */
-            border-radius: 9999px;
-        }
-
-        /* Hamburger menu icon animation styles */
-        .hamburger-icon {
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            width: 30px;
-            height: 20px;
-            cursor: pointer;
-            transition: transform 0.3s ease-in-out;
-        }
-
-        .hamburger-icon span {
-            display: block;
-            width: 100%;
-            height: 3px;
-            background-color: white; /* Cor das barras do hambúrguer */
-            border-radius: 2px;
-            transition: all 0.3s ease-in-out;
-        }
-
-        /* Hamburger icon transformation when open */
-        .hamburger-icon.open span:nth-child(1) {
-            transform: translateY(8.5px) rotate(45deg);
-        }
-
-        .hamburger-icon.open span:nth-child(2) {
-            opacity: 0; /* Hide the middle bar */
-        }
-
-        .hamburger-icon.open span:nth-child(3) {
-            transform: translateY(-8.5px) rotate(-45deg);
-        }
-
-        /* Mobile Menu Slide Animation */
-        #mobile-menu {
-            /* Changed properties for better transition */
-            height: 0; /* Start with height 0 */
-            overflow: hidden;
-            transition: height 0.5s ease-out, opacity 0.3s ease-out; /* Transition height and opacity */
-            opacity: 0; /* Start with opacity 0 */
-            position: absolute;
-            top: 100%; /* Position below the header */
-            left: 0;
-            width: 100%;
-            background-color: rgba(31, 41, 55, 0.95); /* Semi-transparent dark background */
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-            z-index: 40; /* Ensure it's above other content but below fixed header */
-        }
-
-        #mobile-menu.open-menu {
-            height: auto; /* Allow height to adjust to content */
-            max-height: 500px; /* Still good to have a max-height to prevent issues with very long content */
-            opacity: 1;
-        }
-
-        /* --- Estilos Específicos do Cabeçalho Móvel (copiados do index.html para consistência) --- */
-        @media (max-width: 767px) {
-            #main-nav {
-                padding-top: 0.5rem;
-                padding-bottom: 0.5rem;
-            }
-            #header-logo {
-                height: 48px;
-            }
-            /* Ajusta o padding-top para o body em dispositivos móveis para acomodar o cabeçalho menor */
-            body {
-                padding-top: 60px; /* Altura padrão do cabeçalho em mobile */
-            }
-
-            /* Reduz ainda mais o padding-top ao rolar para dispositivos móveis */
-            .scrolled-header #main-nav {
-                padding-top: 0.125rem;
-                padding-bottom: 0.125rem;
-            }
-            .scrolled-header #header-logo {
-                height: 32px;
-            }
-            .scrolled-header body {
-                padding-top: 40px; /* Altura do cabeçalho encolhido em mobile */
-            }
-
-            /* Mobile menu specific styles (já definidos acima, mas mantidos para consistência de agrupamento de media query) */
-            #mobile-menu {
-                /* As propriedades de max-height, opacity, overflow, position etc. já estão definidas fora da media query */
-                /* Apenas garantindo que o display: flex seja aplicado quando a classe open-menu está presente */
-                flex-direction: column; /* Garante que os itens do menu fiquem em coluna */
-                padding: 1rem 0;
-            }
-            /* As regras .hamburger-icon div e .hamburger-icon.open .barX foram removidas daqui */
-        }
-        /* --- Fim dos Estilos Específicos do Cabeçalho Móvel --- */
-
-        /* --- Efeito de Texto Gradiente (Similar ao Cabeçalho) --- */
-        .header-gradient-text {
-            background-image: linear-gradient(to right, #4b5563, #1f2937);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            transition: all 0.5s ease-in-out;
-        }
-        .header-gradient-text:hover {
-            background-image: linear-gradient(to right, #6b7280, #374151);
-        }
-        /* --- Fim do Efeito de Texto Gradiente --- */
-
-        /* --- Estilos Personalizados para Efeito Hover do Logo --- */
-        .logo-link {
-            transition: transform 0.3s ease-in-out;
-        }
-        .logo-link:hover {
-            transform: scale(1.05);
-        }
-        /* --- Fim dos Estilos Personalizados para Efeito Hover do Logo --- */
-
-        /* --- Estilos Personalizados para Efeito Hover de Link de Navegação (Salto) --- */
-        .nav-link-jump {
-            position: relative;
-            transition: transform 0.3s ease-in-out;
-        }
-        .nav-link-jump:hover {
-            transform: translateY(-5px);
-        }
-        /* --- Fim dos Estilos Personalizados para Efeito Hover de Link de Navegação (Salto) --- */
-
-        /* --- Estilo para fonte tipo escrita --- */
-        .writing-font {
-            font-family: 'Dancing Script', cursive;
-            font-weight: 700;
-        }
-
-        /* Main content flex grow to push footer to bottom */
-        main {
-            flex-grow: 1;
-        }
-    </style>
 </head>
 <body class="antialiased">
-    <!-- Cabeçalho Integrado Diretamente no HTML -->
-    <header id="main-header" class="fixed top-0 w-full z-50 bg-gradient-to-r from-gray-700 to-gray-900 text-white shadow-lg">
-        <nav id="main-nav" class="container mx-auto px-6 py-2 flex justify-between items-center transition-all duration-300 ease-in-out">
-            <!-- O link do logo agora aponta para index.html para voltar à página principal -->
-            <a href="index.html" class="logo-link text-3xl font-bold rounded-lg p-2 flex items-center">
-                <img id="header-logo" src="imagens/logo.png" alt="Logo Idealize Store" class="h-16 w-auto mr-2 transition-all duration-300 ease-in-out">
-            </a>
-            <!-- Botão do Menu Móvel (Hambúrguer) -->
-            <button id="mobile-menu-button" class="md:hidden text-white focus:outline-none">
-                <div class="hamburger-icon" id="hamburger-icon">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </div>
-            </button>
-            <!-- Links de Navegação para Desktop -->
-            <div class="hidden md:flex space-x-6">
-                <!-- Links de navegação agora apontam explicitamente para index.html#secao para garantir que funcionem de qualquer página -->
-                <a href="../index.html#Home" class="nav-link-jump text-white hover:text-gray-300 transition duration-300 rounded-md px-3 py-2">Home</a>
-                <a href="../index.html#produtos" class="nav-link-jump text-white hover:text-gray-300 transition duration-300 rounded-md px-3 py-2">Produtos</a>
-                <a href="../index.html#sobre" class="nav-link-jump text-white hover:text-gray-300 transition duration-300 rounded-md px-3 py-2">Sobre Nós</a>
-                <a href="../index.html#carousel" class="nav-link-jump text-white hover:text-gray-300 transition duration-300 rounded-md px-3 py-2">Galeria</a>
-            </div>
-        </nav>
-        <!-- Menu Móvel -->
-        <div id="mobile-menu" class="md:hidden bg-gray-800 pb-4">
-            <!-- Links do menu móvel também apontam explicitamente para index.html#secao -->
-            <a href="../index.html#Home" class="block text-white px-6 py-3 hover:bg-gray-900 transition duration-300">Home</a>
-            <a href="../index.html#produtos" class="block text-white px-6 py-3 hover:bg-gray-900 transition duration-300">Produtos</a>
-            <a href="../index.html#sobre" class="block text-white px-6 py-3 hover:bg-gray-900 transition duration-300">Sobre Nós</a>
-            <a href="../index.html#carousel" class="block text-white px-6 py-3 hover:bg-gray-900 transition duration-300">Galeria</a>
-        </div>
-    </header>
+
+    <!-- Placeholder for the header -->
+    <div id="header-placeholder"></div>
 
     <main class="flex items-center justify-center py-16 bg-gray-50 text-center">
         <div class="container mx-auto px-6 max-w-2xl">
@@ -361,8 +154,9 @@
 
         // Ação principal ao carregar o DOM
         document.addEventListener('DOMContentLoaded', async () => {
-            // Carrega apenas o rodapé, pois o cabeçalho agora está embutido
+            // Carrega o rodapé e o cabeçalho
             await loadHTML('footer-placeholder', 'footer.html');
+            await loadHTML('header-placeholder', 'header.html');
 
             // Inicializa os scripts da página, incluindo a lógica do cabeçalho
             initPageScripts();
