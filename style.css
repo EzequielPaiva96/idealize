@@ -295,7 +295,7 @@ max-width: 900px;        /* Equivalente ao max-w-4xl */
   box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
   transform: scale(1.02);
   transition: all 0.3s ease-in-out;
-  
+
   /*Analise*/
   background-color: white;
   border-radius: 0.75rem; /* Equivalent to rounded-xl in Tailwind */
@@ -315,7 +315,7 @@ max-width: 900px;        /* Equivalente ao max-w-4xl */
     transform: scale(1);
 }
 
-
+ni 
 .grid-item-produtos {
     overflow: hidden;
     /* Garante que a imagem não transborde */
