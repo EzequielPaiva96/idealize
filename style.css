@@ -326,7 +326,7 @@ max-width: 900px;        /* Equivalente ao max-w-4xl */
 /* Media query para dispositivos móveis (telas com largura máxima de 768px) */
 @media (max-width: 768px) {
 .grid-item-produtos {
-    height: 350px;
+    height: 300px;
     width: 100%;
     object-fit: cover;
 
