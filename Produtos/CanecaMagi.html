@@ -16,107 +16,6 @@
     <link rel="stylesheet" href="../style.css">
     <script src="../scripts.js"></script>
 
-    <!-- Estilos específicos para a página para garantir a responsividade e o visual -->
-    <style>
-        /* Estilização para as imagens de produto */
-        .page-produto-card {
-            border-radius: 1rem; /* Adiciona bordas arredondadas às imagens */
-            object-fit: cover;
-            width: 100%;
-            height: auto;
-            margin-bottom: 1.5rem;
-        }
-
-        /* Animação para a galeria de imagens */
-        .image-animation-viewport {
-            overflow: hidden;
-            border-radius: 1rem;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-        }
-
-        .image-strip-animated {
-            display: flex;
-            animation: slide 30s linear infinite;
-        }
-
-        .image-strip-item {
-            flex-shrink: 0;
-            width: 100%;
-        }
-
-        @keyframes slide {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-100%); }
-        }
-
-        /* Estilização para o lightbox */
-        .lightbox-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.9);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 1000;
-            opacity: 0;
-            visibility: hidden;
-            transition: opacity 0.3s ease;
-        }
-
-        .lightbox-overlay.show {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .lightbox-content {
-            position: relative;
-            max-width: 90%;
-            max-height: 90%;
-        }
-
-        .lightbox-content img {
-            max-width: 100%;
-            max-height: 100vh;
-            display: block;
-        }
-
-        .lightbox-close, .lightbox-nav {
-            position: absolute;
-            background: rgba(255, 255, 255, 0.2);
-            border: none;
-            color: white;
-            font-size: 2rem;
-            cursor: pointer;
-            padding: 0.5rem;
-            border-radius: 50%;
-            transition: background 0.3s ease;
-        }
-
-        .lightbox-close:hover, .lightbox-nav:hover {
-            background: rgba(255, 255, 255, 0.4);
-        }
-
-        .lightbox-close {
-            top: 1rem;
-            right: 1rem;
-        }
-
-        .lightbox-nav.prev {
-            left: 1rem;
-            top: 50%;
-            transform: translateY(-50%);
-        }
-
-        .lightbox-nav.next {
-            right: 1rem;
-            top: 50%;
-            transform: translateY(-50%);
-        }
-    </style>
-    
 </head>
 <body class="antialiased">
     <!-- Placeholder para o conteúdo do cabeçalho -->
@@ -132,14 +31,14 @@
             <section class="grid grid-cols-1 md:grid-cols-2 gap-10 items-stretch">
                 <!-- Detalhe 1: A magia que se revela -->
                 <div class="bg-white rounded-xl shadow-lg overflow-hidden p-6 flex flex-col mug-card-hover">
-                    <img src="https://placehold.co/1000x800/222222/cccccc?text=Caneca+Mágica+Fria" alt="Caneca mágica em estado frio, de cor preta, sem a arte visível." class="page-produto-card">
+                    <img src="https://drive.google.com/thumbnail?sz=w1000&id=1DXS6P_JvJCGDoExxC3iLh-x9Xm5jSaU5" alt="Caneca mágica em estado frio, de cor preta, sem a arte visível." class="page-produto-card">
                     <p class="text-gray-700 text-lg flex-grow">
                         Descubra a surpresa em cada gole! Nossas canecas mágicas são pretas quando frias e, ao receberem um líquido quente, revelam a arte personalizada por baixo.
                     </p>
                 </div>
                 <!-- Detalhe 2: Perfeita para presentes e momentos especiais -->
                 <div class="bg-white rounded-xl shadow-lg overflow-hidden p-6 flex flex-col mug-card-hover">
-                    <img src="https://placehold.co/1000x800/f5f5f5/555555?text=Caneca+Mágica+Quente" alt="Caneca mágica com a arte personalizada colorida e vibrante, revelada pelo calor." class="page-produto-card">
+                    <img src="https://drive.google.com/thumbnail?sz=w1000&id=1vgAOa4iySaoKgTy1EAMMC8ZexlqI8A4l" alt="Caneca mágica com a arte personalizada colorida e vibrante, revelada pelo calor." class="page-produto-card">
                     <p class="text-gray-700 text-lg flex-grow">
                         Ideal para presentes de aniversário, lembranças criativas ou para adicionar um toque de encanto à sua rotina matinal. Uma experiência única em cada xícara.
                     </p>
@@ -185,13 +84,13 @@
 
             <!-- Seção da faixa de imagens com animação -->
             <section class="mt-20">
-                <h2 class="text-3xl font-semibold text-center text-gray-800 mb-8 section-title mx-auto">Nossos Trabalhos Recentes</h2>
+                <h2 class="text-3xl font-semibold text-center text-gray-800 mb-8 section-title mx-auto">Veja mais...</h2>
                 <div class="image-animation-viewport">
                     <div class="image-strip-animated">
                         <!-- Imagens únicas para a galeria de canecas mágicas -->
                         <div class="image-strip-item">
                             <div class="image-aspect-ratio-container">
-                                <img src="https://placehold.co/1000x800/d9f1ff/003d52?text=Caneca+Mágica+com+Foto" alt="Caneca mágica personalizada com foto de família" data-index="0">
+                                <img src="https://drive.google.com/thumbnail?sz=w1000&id=1bW8LxMYjXz08t3ZUgLxThYXx-Yqw7TuF" alt="Caneca mágica personalizada com foto de família" data-index="0">
                             </div>
                         </div>
                         <div class="image-strip-item">
