@@ -296,17 +296,6 @@ max-width: 900px;        /* Equivalente ao max-w-4xl */
   transform: scale(1.02);
   transition: all 0.3s ease-in-out;
 
-  /*Analise*/
-  background-color: white;
-  border-radius: 0.75rem; /* Equivalent to rounded-xl in Tailwind */
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); /* Equivalent to shadow-lg */
-  overflow: hidden;
-  position: relative;
-  transition: transform 0.3s ease-in-out;
-}
-
-.product-card:hover {
-  transform: translateY(-0.25rem); /* Example of a simple hover effect, like mug-card-hover might imply */
 }
 
 .product-card.blurred {
@@ -315,16 +304,33 @@ max-width: 900px;        /* Equivalente ao max-w-4xl */
     transform: scale(1);
 }
 
-ni 
+.teste {
+    height: 190px;
+    width: 100%;
+    object-fit: cover;
+}
+
 .grid-item-produtos {
+    height: 200px;
+    width: 100%;
+    object-fit: cover;
     overflow: hidden;
     /* Garante que a imagem não transborde */
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     /* Transição suave para hover */
     outline: none;
     /* Remove o contorno padrão do item do grid */
-    cursor: pointer;
-    /* Indica que o item é clicável */
+
+}
+
+/* Media query para dispositivos móveis (telas com largura máxima de 768px) */
+@media (max-width: 768px) {
+.grid-item-produtos {
+    height: 350px;
+    width: 100%;
+    object-fit: cover;
+
+}
 }
 
 .grid-item-produtos:focus {
@@ -338,16 +344,10 @@ ni
 }
 
 .grid-item-produtos img {
+    height: 190px;
     width: 100%;
-    /* Garante que a imagem ocupe toda a largura do item */
     object-fit: cover;
-    /* Garante que a imagem cubra o espaço sem distorcer */
-    display: block;
-    /* Remove espaço extra abaixo da imagem */
-    transition: transform 0.3s ease;
-    /* Transição para o efeito de zoom na imagem */
-    outline: none;
-    /* Remove o contorno padrão da imagem */
+
 }
 
 .grid-item-produtos img:focus {
